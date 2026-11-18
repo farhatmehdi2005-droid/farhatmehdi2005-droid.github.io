@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Ta formation · Prise de poste</title>
+<meta name="robots" content="noindex">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one phone-width column (max 440px) walking the recruit through SMS → video → quiz → result (pass, retry or escalate to the manager). */
+:root {
+  --bg: #eef2f0;
+  --screen: #ffffff;
+  --ink: #13201c;
+  --muted: #5b6863;
+  --line: #dbe3df;
+  --accent: #1f6f5c;
+  --accent-ink: #ffffff;
+  --accent-soft: #e1f0ea;
+  --badge: #f2b33d;
+  --badge-ink: #362500;
+  --wrong: #b5482f;
+  --wrong-soft: #fbeae5;
+  --video-bg: #0d1311;
+  --notif: #1b2421;
+  --notif-ink: #eef4f1;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b100e; --screen: #151c19; --ink: #e7efec; --muted: #9aa8a2; --line: #27322e;
+    --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029;
+    --wrong: #f08a70; --wrong-soft: #3a1f18; --video-bg: #000000; --notif: #232e2a; --notif-ink: #eef4f1;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b100e; --screen: #151c19; --ink: #e7efec; --muted: #9aa8a2; --line: #27322e;
+  --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029;
+  --wrong: #f08a70; --wrong-soft: #3a1f18; --video-bg: #000000; --notif: #232e2a; --notif-ink: #eef4f1;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 40px;
+}
+.app { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.demo-note { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); text-align: center; }
+.screen { background: var(--screen); border: 1px solid var(--line); border-radius: 28px; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 16px; min-height: 560px; }
+h1, h2 { font-family: var(--font-display); margin: 0; line-height: 1.12; text-wrap: balance; }
+h1 { font-size: 1.7rem; font-weight: 800; }
+h2 { font-size: 1.2rem; font-weight: 700; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 0.9rem; }
+.mono { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn { border: 0; border-radius: 999px; padding: 14px 20px; font-weight: 600; cursor: pointer; background: var(--accent); color: var(--accent-ink); width: 100%; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn:disabled { opacity: .45; cursor: default; }
+.spacer { flex: 1; }
+.center { text-align: center; }
+
+/* SMS */
+.lock { display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 30px; }
+.lock .time { font-family: var(--font-display); font-size: 3.6rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.notif { background: var(--accent-soft); border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
+.notif-head { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
+.notif-head strong { color: var(--ink); }
+.link { color: var(--accent); font-weight: 600; text-decoration: underline; }
+
+/* Module */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.progress { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress span { display: block; height: 100%; background: var(--accent); width: 0; transition: width .3s; }
+.banner { border-radius: 14px; padding: 12px 14px; font-size: 0.92rem; background: var(--wrong-soft); }
+.video-wrap { background: var(--video-bg); border-radius: 16px; overflow: hidden; display: flex; justify-content: center; }
+video { display: block; width: 100%; max-width: 100%; max-height: 52vh; aspect-ratio: 9 / 16; object-fit: contain; background: var(--video-bg); }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.step { display: flex; gap: 12px; align-items: flex-start; width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 12px; padding: 10px; cursor: pointer; }
+.step:hover { border-color: var(--line); }
+.step .n { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.78rem; background: var(--accent-soft); color: var(--accent); }
+.step.seen .n { background: var(--accent); color: var(--accent-ink); }
+.step.todo { border-color: var(--wrong); }
+.step.todo .n { background: var(--wrong-soft); color: var(--wrong); }
+.step.now { border-color: var(--accent); background: var(--accent-soft); }
+.step .txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.step .at { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); }
+.gate { font-size: 0.85rem; color: var(--muted); text-align: center; }
+
+/* Quiz */
+.dots { display: flex; gap: 5px; }
+.dots i { width: 16px; height: 6px; border-radius: 3px; background: var(--line); }
+.dots i.ok { background: var(--accent); }
+.dots i.ko { background: var(--wrong); }
+.q-opts { display: flex; flex-direction: column; gap: 10px; }
+.opt { text-align: left; border: 1px solid var(--line); background: var(--screen); border-radius: 14px; padding: 14px 16px; cursor: pointer; }
+.opt:disabled { cursor: default; }
+.opt.picked-ok { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.opt.picked-ko { border-color: var(--wrong); background: var(--wrong-soft); }
+.order-slots { display: flex; flex-direction: column; gap: 6px; min-height: 44px; border: 1px dashed var(--line); border-radius: 14px; padding: 8px; }
+.order-slots .slot { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 10px; background: var(--accent-soft); font-size: 0.95rem; }
+.order-slots .slot b { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
+.order-slots .placeholder { color: var(--muted); font-size: 0.9rem; padding: 6px 8px; }
+.row { display: flex; gap: 8px; }
+.row .btn { flex: 1; }
+.feedback { border-radius: 14px; padding: 12px 14px; font-size: 0.95rem; }
+.feedback.ok { background: var(--accent-soft); }
+.feedback.ko { background: var(--wrong-soft); }
+
+/* Result */
+.medal { width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; align-self: center; margin-top: 12px; font-variant-numeric: tabular-nums; }
+.medal.pass { background: var(--badge); color: var(--badge-ink); }
+.medal.fail { background: var(--wrong-soft); color: var(--wrong); border: 2px solid var(--wrong); }
+.boss { background: var(--notif); color: var(--notif-ink); border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.boss .notif-head { color: var(--notif-ink); opacity: .75; }
+.boss .notif-head strong { color: var(--notif-ink); }
+.review { display: flex; flex-direction: column; gap: 8px; }
+.review-item { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 0.92rem; display: flex; flex-direction: column; gap: 4px; }
+.review-item.ko { border-color: var(--wrong); }
+.review-item .tag { font-family: var(--font-mono); font-size: 0.7rem; }
+.review-item.ok .tag { color: var(--accent); }
+.review-item.ko .tag { color: var(--wrong); }
+@media (prefers-reduced-motion: reduce) { .progress span { transition: none; } }
+.input { width: 100%; font: inherit; color: var(--ink); background: var(--screen); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.err { color: var(--wrong); font-size: 0.9rem; }
+.preview-banner { background: var(--badge); color: var(--badge-ink); border-radius: 14px; padding: 10px 14px; font-size: 0.9rem; font-weight: 600; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <p class="preview-banner" id="preview-banner" hidden>Aperçu : formation pas encore validée par le responsable</p>
+
+  <!-- 1. Accueil -->
+  <section class="screen" id="s-sms">
+    <span class="mono muted" id="welcome-commerce"></span>
+    <h1 id="welcome-title">Chargement de ta formation…</h1>
+    <p class="muted" id="welcome-text"></p>
+    <label class="mono muted" for="prenom">TON PRÉNOM</label>
+    <input class="input" id="prenom" autocomplete="given-name" placeholder="Ex. : Lucas">
+    <p class="err" id="prenom-err" hidden>Écris ton prénom pour commencer.</p>
+    <div class="spacer"></div>
+    <button class="btn" id="open" disabled>Commencer</button>
+  </section>
+  <!-- 2. Vidéo et étapes -->
+  <section class="screen" id="s-module" hidden>
+    <div class="top"><span class="mono muted" id="module-commerce"></span><span class="mono muted" id="attempt-label">1er essai</span></div>
+    <div class="progress"><span id="bar"></span></div>
+    <h1 id="module-title"></h1>
+    <div class="banner" id="revise-banner" hidden></div>
+    <div class="video-wrap">
+      <video id="vid" controls playsinline preload="metadata"></video>
+    </div>
+    <p class="muted small" id="module-hint">Regarde toute la vidéo : le quiz s'ouvre quand chaque étape a été vue. Touche une étape pour revoir ce passage.</p>
+    <ol class="steps" id="steps"></ol>
+    <p class="gate" id="gate"></p>
+    <button class="btn" id="to-quiz" disabled>Commencer le quiz</button>
+  </section>
+
+  <!-- 3. Quiz -->
+  <section class="screen" id="s-quiz" hidden>
+    <div class="top"><span class="mono muted" id="q-count"></span><div class="dots" id="dots"></div></div>
+    <h2 id="q-text"></h2>
+    <div id="q-body"></div>
+    <div class="feedback" id="q-fb" role="status" aria-live="polite" hidden></div>
+    <div class="spacer"></div>
+    <button class="btn" id="q-next" disabled>Question suivante</button>
+  </section>
+
+  <!-- 4. Résultat -->
+  <section class="screen" id="s-done" hidden>
+    <div class="medal" id="score"></div>
+    <h1 class="center" id="done-title"></h1>
+    <p class="center muted" id="done-text"></p>
+    <div class="boss" id="boss">
+      <div class="notif-head"><strong id="boss-to">Prise de poste → ton responsable</strong><span>maintenant</span></div>
+      <p id="boss-text"></p>
+    </div>
+    <p class="mono muted" id="review-title"></p>
+    <div class="review" id="review"></div>
+    <div class="spacer"></div>
+    <button class="btn" id="retry">Revoir les passages et repasser le quiz</button>
+    <button class="btn ghost" id="restart">Recommencer depuis le début</button>
+  </section>
+</div>
+
+<script>
+(function () {
+  // Données du module : module.json, publié à côté de cette page avec video.mp4
+  var MODULE = null;
+  function boot(m) {
+    MODULE = m;
+    MODULE.seuil = MODULE.seuil_reussite || 0.8; MODULE.essaisMax = MODULE.essais_max || 2;
+    MODULE.patron = MODULE.patron || "ton responsable"; MODULE.recrue = "toi";
+    start();
+  }
+  var SB_URL = "https://ydrcqevotcddnpigpawm.supabase.co", SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkcmNxZXZvdGNkZG5waWdwYXdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ5NDE4NTYsImV4cCI6MjExMDUxNzg1Nn0.Kt22b4FXzX7LWsuyXXvQ50zkMdYjbx-kzp-EAkosxhE";
+  var CODE = (new URLSearchParams(location.search).get("c") || "").replace(/[^a-z0-9]/g, "").slice(0, 16);
+  fetch(SB_URL + "/rest/v1/rpc/formation_publique", { method: "POST",
+      headers: { apikey: SB_ANON, Authorization: "Bearer " + SB_ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_code: CODE }) })
+    .then(function (r) { return r.json(); })
+    .then(function (rows) {
+      if (!CODE || !rows || !rows.length || !rows[0].module) throw new Error("introuvable");
+      var row = rows[0], m = row.module;
+      m.titre = row.titre || m.titre; m.commerce = row.commerce; m.patron = row.patron; m.apercu = row.apercu; m.code = row.code;
+      var v = document.getElementById("vid");
+      if (m.sous_titres) {
+        v.crossOrigin = "anonymous";  // nécessaire pour charger les sous-titres depuis le stockage
+        var tr = document.createElement("track");
+        tr.kind = "subtitles"; tr.srclang = "fr"; tr.label = "Français"; tr.default = true;
+        tr.src = row.video_public_url.replace(/\.mp4$/, ".vtt");
+        v.appendChild(tr);
+      }
+      v.src = row.video_public_url;
+      boot(m);
+    }).catch(function () {
+    document.getElementById("welcome-title").textContent = "Formation introuvable";
+    document.getElementById("welcome-text").textContent = "Le lien est peut-être incomplet. Demande à ton responsable de te le renvoyer.";
+  });
+  function start() {
+  var PAR_ESSAI = Math.min(MODULE.quiz.length, MODULE.questions_par_essai || MODULE.quiz.length);
+  var NEEDED = Math.ceil(MODULE.seuil * PAR_ESSAI);
+  // Tirage d'un quiz dans la banque : une question « ordre » si possible, puis un maximum d'étapes différentes
+  function tirage() {
+    var idx = shuffle(MODULE.quiz.map(function (_, i) { return i; })), pris = [], etapes = {};
+    var ordre = idx.filter(function (i) { return MODULE.quiz[i].type === "ordre"; })[0];
+    if (ordre !== undefined) { pris.push(ordre); etapes[MODULE.quiz[ordre].etape] = 1; }
+    idx.forEach(function (i) { if (pris.length < PAR_ESSAI && pris.indexOf(i) < 0 && !etapes[MODULE.quiz[i].etape]) { pris.push(i); etapes[MODULE.quiz[i].etape] = 1; } });
+    idx.forEach(function (i) { if (pris.length < PAR_ESSAI && pris.indexOf(i) < 0) pris.push(i); });
+    return shuffle(pris);
+  }
+  var $ = function (id) { return document.getElementById(id); };
+  var screens = ["s-sms", "s-module", "s-quiz", "s-done"];
+  function show(id) {
+    screens.forEach(function (s) { $(s).hidden = s !== id; }); window.scrollTo(0, 0);
+    var h = $(id).querySelector("h1, h2");  // lecteurs d'écran : annoncer le nouvel écran
+    if (h) { h.setAttribute("tabindex", "-1"); try { h.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  // Reprise : la progression est gardée dans ce navigateur (rien n'est envoyé)
+  var CLE = "pdp-" + MODULE.code, derniereSauvegarde = 0;
+  function sauver(etat) { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) {} }
+  function effacer() { try { localStorage.removeItem(CLE); } catch (e) {} }
+  function lire() { try { return JSON.parse(localStorage.getItem(CLE) || "null"); } catch (e) { return null; } }
+  function etatActuel() { return { prenom: MODULE.recrue, watched: watched, required: required, attempt: attempt, t: vid.currentTime || 0 }; }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function mmss(s) { s = Math.floor(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function stepOf(n) { return MODULE.etapes.filter(function (e) { return e.n === n; })[0]; }
+
+  // ---------- Suivi du visionnage : seules les secondes réellement regardées comptent ----------
+  var vid = $("vid"), stepsEl = $("steps");
+  var watched = {}, required = [], lastT = 0, attempt = 1;
+  function resetWatch(steps) { watched = {}; steps.forEach(function (n) { watched[n] = 0; }); required = steps.slice(); }
+  function isSeen(n) { var e = stepOf(n); return (watched[n] || 0) >= 0.7 * (e.fin - e.debut); }
+
+  MODULE.etapes.forEach(function (e) {
+    var li = document.createElement("li");
+    var b = document.createElement("button"); b.type = "button"; b.className = "step"; b.dataset.n = e.n;
+    var n = document.createElement("span"); n.className = "n"; n.textContent = e.n;
+    var t = document.createElement("span"); t.className = "txt";
+    var p = document.createElement("span"); p.textContent = e.texte;
+    var at = document.createElement("span"); at.className = "at"; at.textContent = "▶ voir à " + mmss(e.debut);
+    t.appendChild(p); t.appendChild(at); b.appendChild(n); b.appendChild(t); li.appendChild(b); stepsEl.appendChild(li);
+    b.addEventListener("click", function () {
+      try { vid.currentTime = e.debut; lastT = e.debut; var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (err) {}
+    });
+  });
+
+  vid.addEventListener("seeking", function () { lastT = vid.currentTime; });
+  vid.addEventListener("timeupdate", function () {
+    var t = vid.currentTime, dt = t - lastT; lastT = t;
+    if (!vid.paused && dt > 0 && dt < 1.5) {
+      MODULE.etapes.forEach(function (e) {
+        if (t > e.debut && t - dt < e.fin && watched.hasOwnProperty(e.n)) {
+          watched[e.n] += Math.min(t, e.fin) - Math.max(t - dt, e.debut);
+        }
+      });
+    }
+    renderSteps();
+    if (MODULE.recrue && MODULE.recrue !== "toi" && Date.now() - derniereSauvegarde > 4000) { sauver(etatActuel()); derniereSauvegarde = Date.now(); }
+  });
+
+  function renderSteps() {
+    var t = vid.currentTime || 0, seenCount = 0;
+    MODULE.etapes.forEach(function (e) {
+      var b = stepsEl.querySelector('[data-n="' + e.n + '"]');
+      var req = required.indexOf(e.n) !== -1, seen = req && isSeen(e.n);
+      if (seen) seenCount++;
+      b.classList.toggle("now", t >= e.debut && t < e.fin && !vid.paused);
+      b.classList.toggle("seen", seen || (!req && attempt > 1));
+      b.classList.toggle("todo", req && !seen && attempt > 1);
+      b.querySelector(".n").textContent = (seen || (!req && attempt > 1)) ? "✓" : e.n;
+    });
+    var ok = seenCount === required.length;
+    $("to-quiz").disabled = !ok;
+    $("gate").textContent = ok ? "Toutes les étapes ont été vues." : "Étapes vues : " + seenCount + "/" + required.length;
+    $("bar").style.width = Math.round(seenCount / Math.max(1, required.length) * 50) + "%";
+  }
+
+  // ---------- Quiz ----------
+  var order = [], qi = 0, results = [], answered = false, pick = [];
+  function startQuiz() {
+    try { vid.pause(); } catch (e) {}
+    order = tirage();
+    qi = 0; results = [];
+    renderQ(); show("s-quiz");
+  }
+  function renderDots() {
+    var d = $("dots"); d.innerHTML = "";
+    order.forEach(function (_, i) { var x = document.createElement("i"); if (i < results.length) x.className = results[i].ok ? "ok" : "ko"; d.appendChild(x); });
+  }
+  function renderQ() {
+    var q = MODULE.quiz[order[qi]]; answered = false; pick = [];
+    $("q-count").textContent = "QUESTION " + (qi + 1) + "/" + order.length + " · " + (attempt === 1 ? "1er" : attempt + "e") + " essai";
+    $("q-text").textContent = q.question;
+    $("q-fb").hidden = true;
+    $("q-next").disabled = true;
+    $("q-next").textContent = qi === order.length - 1 ? "Voir mon résultat" : "Question suivante";
+    renderDots();
+    var body = $("q-body"); body.innerHTML = "";
+    if (q.type === "choix") {
+      var box = document.createElement("div"); box.className = "q-opts";
+      shuffle(q.reponses.map(function (r, i) { return i; })).forEach(function (i) {
+        var o = document.createElement("button"); o.type = "button"; o.className = "opt"; o.textContent = q.reponses[i];
+        o.addEventListener("click", function () { answerChoice(i, o); });
+        box.appendChild(o);
+      });
+      body.appendChild(box);
+    } else {
+      var slots = document.createElement("div"); slots.className = "order-slots"; slots.id = "slots";
+      var pool = document.createElement("div"); pool.className = "q-opts"; pool.id = "pool";
+      var row = document.createElement("div"); row.className = "row";
+      var clear = document.createElement("button"); clear.type = "button"; clear.className = "btn ghost"; clear.textContent = "Effacer";
+      var validate = document.createElement("button"); validate.type = "button"; validate.className = "btn"; validate.textContent = "Valider l'ordre"; validate.id = "validate";
+      row.appendChild(clear); row.appendChild(validate);
+      body.appendChild(slots); body.appendChild(pool); body.appendChild(row);
+      var items = shuffle(q.reponses.map(function (r, i) { return i; }));
+      function draw() {
+        slots.innerHTML = "";
+        if (!pick.length) { var ph = document.createElement("span"); ph.className = "placeholder"; ph.textContent = "Touche les gestes dans l'ordre où tu les fais."; slots.appendChild(ph); }
+        pick.forEach(function (i, k) { var s = document.createElement("div"); s.className = "slot"; var b = document.createElement("b"); b.textContent = (k + 1) + "."; s.appendChild(b); s.appendChild(document.createTextNode(q.reponses[i])); slots.appendChild(s); });
+        pool.innerHTML = "";
+        items.forEach(function (i) {
+          if (pick.indexOf(i) !== -1) return;
+          var o = document.createElement("button"); o.type = "button"; o.className = "opt"; o.textContent = q.reponses[i];
+          o.disabled = answered;
+          o.addEventListener("click", function () { if (answered) return; pick.push(i); draw(); });
+          pool.appendChild(o);
+        });
+        validate.disabled = answered || pick.length !== q.reponses.length;
+        clear.disabled = answered || !pick.length;
+      }
+      clear.addEventListener("click", function () { pick = []; draw(); });
+      validate.addEventListener("click", function () {
+        if (answered) return; answered = true;
+        var ok = pick.every(function (v, k) { return v === k; });
+        record(ok, q); draw();
+      });
+      draw();
+    }
+  }
+  function answerChoice(i, el) {
+    if (answered) return; answered = true;
+    var q = MODULE.quiz[order[qi]], ok = i === q.bonne;
+    var opts = $("q-body").querySelectorAll(".opt");
+    for (var k = 0; k < opts.length; k++) opts[k].disabled = true;
+    el.classList.add(ok ? "picked-ok" : "picked-ko");
+    record(ok, q);
+  }
+  function record(ok, q) {
+    results.push({ ok: ok, q: q });
+    var fb = $("q-fb"); fb.hidden = false; fb.className = "feedback " + (ok ? "ok" : "ko");
+    // On ne révèle pas la bonne réponse en cas d'erreur : sinon il suffirait de repasser le quiz pour la recopier.
+    fb.textContent = ok ? "Bonne réponse. " + q.explication
+                        : "Mauvaise réponse. Ce point est expliqué à l'étape " + q.etape + " de la vidéo (" + mmss(stepOf(q.etape).debut) + ").";
+    $("q-next").disabled = false;
+    renderDots();
+  }
+  $("q-next").addEventListener("click", function () {
+    if (qi < order.length - 1) { qi++; renderQ(); return; }
+    finish();
+  });
+
+  // ---------- Résultat, alerte au patron, révision ----------
+  var missedSteps = [];
+  function finish() {
+    var score = results.filter(function (r) { return r.ok; }).length, total = results.length;
+    var passed = score >= NEEDED, last = attempt >= MODULE.essaisMax;
+    missedSteps = [];
+    results.forEach(function (r) { if (!r.ok && missedSteps.indexOf(r.q.etape) === -1) missedSteps.push(r.q.etape); });
+    missedSteps.sort();
+    var medal = $("score"); medal.textContent = score + "/" + total; medal.className = "medal " + (passed ? "pass" : "fail");
+    var stepsTxt = missedSteps.map(function (n) { return "étape " + n; }).join(", ");
+    var essai = attempt === 1 ? "au 1er essai" : "au " + attempt + "e essai";
+    if (passed) {
+      $("done-title").textContent = "Formation validée";
+      $("done-text").textContent = "Bravo " + MODULE.recrue + ". " + MODULE.patron + " voit que tu as validé ce module. Elle te montrera la machine en vrai à ton arrivée.";
+      $("boss-text").textContent = MODULE.recrue + " a validé « " + MODULE.titre + " » : " + score + "/" + total + " " + essai + "." + (missedSteps.length ? " Point à revoir avec lui : " + stepsTxt + "." : "");
+    } else if (!last) {
+      $("done-title").textContent = "Pas encore validé";
+      $("done-text").textContent = "Il faut au moins " + NEEDED + "/" + total + ". Revois les passages de la vidéo liés à tes erreurs, puis repasse le quiz : les questions et les réponses seront mélangées.";
+      $("boss-text").textContent = "Alerte : " + MODULE.recrue + " a obtenu " + score + "/" + total + " " + essai + " sur « " + MODULE.titre + " » (seuil : " + NEEDED + "/" + total + "). Erreurs sur : " + stepsTxt + ". Il doit revoir ces passages avant de repasser le quiz.";
+    } else {
+      $("done-title").textContent = "À voir avec " + MODULE.patron;
+      $("done-text").textContent = "Tu n'as pas atteint " + NEEDED + "/" + total + " après " + attempt + " essais. Pas de souci : " + MODULE.patron + " va te montrer ces gestes en vrai à ton arrivée.";
+      $("boss-text").textContent = "À accompagner : " + MODULE.recrue + " n'a pas validé « " + MODULE.titre + " » après " + attempt + " essais (dernier score : " + score + "/" + total + "). Gestes à lui montrer en personne : " + stepsTxt + ".";
+    }
+    // Correction : les bonnes réponses ne sont montrées qu'une fois le module terminé (validé ou épuisé).
+    var rev = $("review"); rev.innerHTML = "";
+    var reveal = passed || last;
+    $("review-title").textContent = reveal ? "CORRECTION" : "TES RÉPONSES";
+    results.forEach(function (r) {
+      var d = document.createElement("div"); d.className = "review-item " + (r.ok ? "ok" : "ko");
+      var tag = document.createElement("span"); tag.className = "tag"; tag.textContent = (r.ok ? "JUSTE" : "FAUX") + " · ÉTAPE " + r.q.etape;
+      var qq = document.createElement("span"); qq.textContent = r.q.question;
+      d.appendChild(tag); d.appendChild(qq);
+      if (reveal) { var ex = document.createElement("span"); ex.className = "muted"; ex.textContent = r.q.explication; d.appendChild(ex); }
+      rev.appendChild(d);
+    });
+    $("retry").hidden = passed || last;
+    show("s-done");
+    if (passed) { try { localStorage.setItem("pdp-fait-" + MODULE.code, "1"); } catch (e) {} }
+    if (passed || last) effacer();
+    else {  // en cas de départ avant la révision, la reprise ramène aux passages à revoir
+      var z = {}; missedSteps.forEach(function (n) { z[n] = 0; });
+      sauver({ prenom: MODULE.recrue, watched: z, required: missedSteps, attempt: attempt + 1, t: stepOf(missedSteps[0]).debut });
+    }
+    envoyerResultat(score, total, passed ? "valide" : (last ? "a_accompagner" : "alerte"), missedSteps);
+  }
+  $("retry").addEventListener("click", function () {
+    attempt++;
+    resetWatch(missedSteps);
+    $("attempt-label").textContent = attempt + "e essai";
+    var b = $("revise-banner"); b.hidden = false;
+    b.textContent = "Revois les passages en rouge (" + missedSteps.map(function (n) { return "étape " + n; }).join(", ") + ") en entier. Le quiz se rouvre ensuite.";
+    $("to-quiz").textContent = "Repasser le quiz";
+    $("module-hint").hidden = true;
+    try { vid.pause(); vid.currentTime = stepOf(missedSteps[0]).debut; lastT = vid.currentTime; } catch (e) {}
+    renderSteps(); show("s-module"); sauver(etatActuel());
+  });
+  function modeRevision() {
+    $("attempt-label").textContent = attempt + "e essai";
+    var b = $("revise-banner"); b.hidden = false;
+    b.textContent = "Revois les passages en rouge (" + required.map(function (n) { return "étape " + n; }).join(", ") + ") en entier. Le quiz se rouvre ensuite.";
+    $("to-quiz").textContent = "Repasser le quiz"; $("module-hint").hidden = true;
+  }
+  function envoyerResultat(score, total, statut, etapes) {
+    if (MODULE.apercu) return; // l'aperçu du patron ne génère pas de résultat
+    var body = { p_code: MODULE.code, p_prenom: MODULE.recrue, p_score: score, p_total: total, p_essai: attempt,
+      p_statut: statut, p_etapes: etapes.join(","),
+      p_details: results.map(function (r) { return { q: MODULE.quiz.indexOf(r.q), ok: r.ok }; }) };
+    try { fetch(SB_URL + "/rest/v1/rpc/enregistrer_resultat", { method: "POST",
+      headers: { apikey: SB_ANON, Authorization: "Bearer " + SB_ANON, "Content-Type": "application/json" },
+      body: JSON.stringify(body) }).catch(function () {}); } catch (e) {}
+  }
+  $("to-quiz").addEventListener("click", startQuiz);
+  $("open").addEventListener("click", function () {
+    var p = $("prenom").value.trim();
+    if (!p) { $("prenom-err").hidden = false; $("prenom").focus(); return; }
+    MODULE.recrue = p.slice(0, 40); show("s-module"); sauver(etatActuel());
+    try { localStorage.setItem("pdp-prenom", MODULE.recrue); } catch (e) {}
+  });
+  $("prenom").addEventListener("input", function () { $("prenom-err").hidden = true; });
+  $("restart").addEventListener("click", function () {
+    effacer(); attempt = 1; resetWatch(MODULE.etapes.map(function (e) { return e.n; }));
+    $("attempt-label").textContent = "1er essai"; $("revise-banner").hidden = true; $("module-hint").hidden = false;
+    $("to-quiz").textContent = "Commencer le quiz";
+    try { vid.pause(); vid.currentTime = 0; lastT = 0; } catch (e) {}
+    renderSteps(); show("s-sms");
+  });
+
+  resetWatch(MODULE.etapes.map(function (e) { return e.n; }));
+  renderSteps();
+  $("welcome-commerce").textContent = (MODULE.commerce || "").toUpperCase();
+  $("module-commerce").textContent = (MODULE.commerce || "").toUpperCase();
+  $("welcome-title").textContent = MODULE.titre;
+  $("module-title").textContent = MODULE.titre;
+  $("welcome-text").textContent = "Bienvenue ! Regarde la vidéo de " + (MODULE.patron === "ton responsable" ? "ton responsable" : MODULE.patron) + " en entier, puis réponds au quiz (" + PAR_ESSAI + " questions, " + NEEDED + " bonnes réponses minimum).";
+  $("boss-to").textContent = "Prise de poste → " + MODULE.patron;
+  $("preview-banner").hidden = !MODULE.apercu;
+  // Venue d'un parcours : lien de retour et prénom déjà connu
+  var PCODE = (new URLSearchParams(location.search).get("p") || "").replace(/[^a-z0-9]/g, "").slice(0, 16);
+  if (PCODE) {
+    var retour = document.createElement("a"); retour.className = "btn"; retour.href = "/p/?c=" + PCODE;
+    retour.textContent = "Retour à mon parcours"; retour.style.textAlign = "center"; retour.style.textDecoration = "none";
+    $("restart").parentNode.insertBefore(retour, $("restart"));
+  }
+  try { if (!$("prenom").value) $("prenom").value = localStorage.getItem("pdp-prenom") || ""; } catch (e) {}
+  var repris = lire();
+  if (repris && repris.prenom && Array.isArray(repris.required) && repris.attempt >= 1 && repris.attempt <= MODULE.essaisMax) {
+    $("prenom").value = repris.prenom;
+    attempt = repris.attempt; required = repris.required.filter(function (n) { return stepOf(n); });
+    watched = {}; required.forEach(function (n) { watched[n] = Number((repris.watched || {})[n]) || 0; });
+    if (attempt > 1) modeRevision();
+    renderSteps();
+    var reprendreA = Number(repris.t) || 0;
+    vid.addEventListener("loadedmetadata", function () { try { if (reprendreA > 1 && reprendreA < vid.duration - 1) { vid.currentTime = reprendreA; lastT = reprendreA; } } catch (e) {} }, { once: true });
+    $("welcome-text").textContent += " Tu reprends là où tu t'étais arrêté(e).";
+    $("open").textContent = "Reprendre";
+  }
+  $("open").disabled = false;
+  }
+})();
+</script>
+
+</body>
+</html>

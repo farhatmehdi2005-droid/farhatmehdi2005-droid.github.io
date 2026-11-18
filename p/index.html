@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ton parcours · Prise de poste</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one phone-width column listing the parcours' formations in order, each with its state for this recruit. */
+:root { --bg:#eef2f0; --screen:#ffffff; --ink:#13201c; --muted:#5b6863; --line:#dbe3df; --accent:#1f6f5c; --accent-ink:#ffffff; --accent-soft:#e1f0ea; --badge:#f2b33d; --badge-ink:#362500;
+  --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace; color-scheme:light; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0b100e; --screen:#151c19; --ink:#e7efec; --muted:#9aa8a2; --line:#27322e; --accent:#5cc5a6; --accent-ink:#0b1a15; --accent-soft:#163029; color-scheme:dark; } }
+* { box-sizing:border-box; } [hidden] { display:none !important; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 var(--font-body);
+  padding:24px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); }
+main { max-width:440px; margin:0 auto; background:var(--screen); border:1px solid var(--line); border-radius:28px; padding:24px 20px; display:flex; flex-direction:column; gap:16px; }
+h1 { font-family:var(--font-display); font-weight:800; font-size:1.7rem; line-height:1.1; margin:0; text-wrap:balance; }
+p { margin:0; } .muted { color:var(--muted); } .mono { font-family:var(--font-mono); font-size:.74rem; letter-spacing:.04em; }
+.bar { height:8px; background:var(--line); border-radius:4px; overflow:hidden; } .bar span { display:block; height:100%; background:var(--accent); width:0; }
+ol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+a.item { display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--ink); border:1px solid var(--line); border-radius:14px; padding:14px; }
+a.item:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.n { flex:none; width:32px; height:32px; border-radius:50%; display:grid; place-items:center; font-family:var(--font-mono); font-size:.8rem; background:var(--accent-soft); color:var(--accent); }
+.fait .n { background:var(--accent); color:var(--accent-ink); }
+.encours .n { background:var(--badge); color:var(--badge-ink); }
+.t { display:flex; flex-direction:column; min-width:0; } .t strong { overflow-wrap:anywhere; } .t span { font-size:.85rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <span class="mono muted" id="commerce"></span>
+  <h1 id="titre">Chargement de ton parcours…</h1>
+  <p class="muted" id="intro"></p>
+  <div class="bar" id="bar" hidden><span id="bar-fill"></span></div>
+  <ol id="liste"></ol>
+</main>
+<script>
+(function () {
+  var SB_URL = "https://ydrcqevotcddnpigpawm.supabase.co", SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkcmNxZXZvdGNkZG5waWdwYXdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ5NDE4NTYsImV4cCI6MjExMDUxNzg1Nn0.Kt22b4FXzX7LWsuyXXvQ50zkMdYjbx-kzp-EAkosxhE";
+  var CODE = (new URLSearchParams(location.search).get("c") || "").replace(/[^a-z0-9]/g, "").slice(0, 16);
+  var $ = function (id) { return document.getElementById(id); };
+  function lire(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  fetch(SB_URL + "/rest/v1/rpc/parcours_public", { method: "POST",
+      headers: { apikey: SB_ANON, Authorization: "Bearer " + SB_ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_code: CODE }) })
+    .then(function (r) { return r.json(); })
+    .then(function (rows) {
+      if (!CODE || !Array.isArray(rows) || !rows.length) throw new Error("introuvable");
+      var pa = rows[0], fs = pa.formations || [];
+      $("commerce").textContent = (pa.commerce || "").toUpperCase();
+      $("titre").textContent = pa.titre;
+      if (!fs.length) { $("intro").textContent = "Ce parcours ne contient encore aucune formation en ligne. Reviens un peu plus tard."; return; }
+      var faites = 0;
+      fs.forEach(function (f, i) {
+        var fait = lire("pdp-fait-" + f.code) === "1", encours = !fait && !!lire("pdp-" + f.code);
+        if (fait) faites++;
+        var li = document.createElement("li");
+        var a = document.createElement("a"); a.className = "item" + (fait ? " fait" : encours ? " encours" : "");
+        a.href = "/f/?c=" + encodeURIComponent(f.code) + "&p=" + encodeURIComponent(CODE);
+        var n = document.createElement("span"); n.className = "n"; n.textContent = fait ? "✓" : String(i + 1);
+        var t = document.createElement("span"); t.className = "t";
+        var s = document.createElement("strong"); s.textContent = f.titre;
+        var d = document.createElement("span"); d.textContent = (fait ? "Validée" : encours ? "En cours" : "À faire") + " · " + (f.duree || 3) + " min";
+        t.appendChild(s); t.appendChild(d); a.appendChild(n); a.appendChild(t); li.appendChild(a); $("liste").appendChild(li);
+      });
+      $("intro").textContent = faites === fs.length ? "Bravo, tu as validé tout ton parcours !" :
+        "Suis les formations dans l'ordre. Chacune : la vidéo en entier, puis un quiz. " + faites + " sur " + fs.length + " validée" + (faites > 1 ? "s" : "") + ".";
+      $("bar").hidden = false; $("bar-fill").style.width = Math.round(faites / fs.length * 100) + "%";
+    })
+    .catch(function () {
+      $("titre").textContent = "Parcours introuvable";
+      $("intro").textContent = "Le lien est peut-être incomplet. Demande à ton responsable de te le renvoyer.";
+    });
+})();
+</script>
+</body>
+</html>

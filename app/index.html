@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mon espace · Prise de poste</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f2b33d'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' text-anchor='middle' fill='%23362500'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: app shell with a top bar and one centered column (max 760px); each view is a section shown by hash route. */
+:root {
+  --bg: #f5f7f6; --surface: #ffffff; --ink: #13201c; --muted: #56645f; --line: #d9e1de;
+  --accent: #1f6f5c; --accent-ink: #ffffff; --accent-soft: #e1f0ea; --badge: #f2b33d; --badge-ink: #362500;
+  --wrong: #b5482f; --wrong-soft: #fbeae5; --info-soft: #eef0fb; --info: #3c4a9e;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0e1412; --surface: #161e1b; --ink: #e7efec; --muted: #9baaa4; --line: #27322e;
+    --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029; --wrong: #f08a70; --wrong-soft: #3a1f18;
+    --info-soft: #1d2340; --info: #a9b4f0; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--font-body); }
+[hidden] { display: none !important; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bar { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line);
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+.bar-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; text-decoration: none; color: var(--ink); }
+.logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--badge); color: var(--badge-ink); display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.72rem; }
+main { max-width: 760px; margin: 0 auto; padding: 28px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 20px; }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 5vw, 2.2rem); line-height: 1.1; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-size: 1.2rem; margin: 0; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 0.88rem; }
+.mono { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.04em; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 0.9rem; min-width: 0; }
+label small { font-weight: 400; color: var(--muted); }
+input, select, textarea { font: inherit; font-weight: 400; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; }
+textarea { min-height: 70px; resize: vertical; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn { border: 0; border-radius: 999px; padding: 12px 18px; font: 600 0.95rem var(--font-body); cursor: pointer; background: var(--accent); color: var(--accent-ink); text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 8px; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn.danger { background: transparent; color: var(--wrong); border: 1px solid var(--wrong); }
+.btn.small { padding: 8px 14px; font-size: 0.85rem; }
+.btn:disabled { opacity: .5; cursor: default; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; align-self: flex-start; }
+.tabs button { border: 0; background: transparent; color: var(--muted); font: 600 0.9rem var(--font-body); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.msg { border-radius: 10px; padding: 10px 12px; font-size: 0.92rem; }
+.msg.err { background: var(--wrong-soft); }
+.msg.ok { background: var(--accent-soft); }
+.msg.info { background: var(--info-soft); }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.item { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; text-decoration: none; color: var(--ink); min-width: 0; }
+.item:hover { border-color: var(--accent); }
+.item .t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.item .t strong { overflow-wrap: anywhere; }
+.pill { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.03em; padding: 3px 10px; border-radius: 999px; white-space: nowrap; border: 1px solid var(--line); color: var(--muted); }
+.pill.prep { background: var(--info-soft); color: var(--info); border-color: transparent; }
+.pill.todo { background: var(--badge); color: var(--badge-ink); border-color: transparent; }
+.pill.live { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.pill.ko { background: var(--wrong-soft); color: var(--wrong); border-color: transparent; }
+.empty { text-align: center; padding: 34px 18px; border: 1px dashed var(--line); border-radius: 16px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.drop { border: 2px dashed var(--line); border-radius: 14px; padding: 22px; text-align: center; display: flex; flex-direction: column; gap: 4px; align-items: center; cursor: pointer; font-weight: 400; }
+.drop.ok { border-color: var(--accent); background: var(--accent-soft); }
+.drop.ko { border-color: var(--wrong); background: var(--wrong-soft); }
+.check { flex-direction: row; align-items: flex-start; gap: 10px; font-weight: 400; font-size: 0.88rem; }
+.check input { width: auto; margin-top: 3px; }
+.progress { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress span { display: block; height: 100%; width: 0; background: var(--accent); }
+.edit-step { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
+.edit-step .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-family: var(--font-mono); font-size: 0.78rem; margin-top: 6px; }
+.q { border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.ans { display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: center; }
+.ans input[type="radio"] { width: 18px; height: 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font-weight: 500; text-transform: uppercase; }
+.table-box { overflow-x: auto; }
+.copy { display: flex; gap: 8px; align-items: stretch; }
+.copy input, .copy textarea { flex: 1; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat { border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; }
+.stat b { font-family: var(--font-display); font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.8rem; color: var(--muted); }
+.spin { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--accent); animation: sp 0.9s linear infinite; display: inline-block; }
+@keyframes sp { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+@media (max-width: 560px) { .row, .stats { grid-template-columns: 1fr; } .card { padding: 16px; } .copy { flex-direction: column; } }
+</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+  <a class="logo" href="#formations"><span class="logo-mark">PdP</span>Prise de poste</a>
+  <div class="actions" id="bar-actions" hidden>
+    <a class="btn small" href="#nouvelle">Nouvelle vidéo</a>
+    <button class="btn ghost small" id="logout" type="button">Déconnexion</button>
+  </div>
+</div></header>
+
+<main>
+  <p id="loading" class="muted"><span class="spin"></span> Chargement…</p>
+
+  <!-- Connexion / inscription -->
+  <section id="v-connexion" hidden>
+    <div class="card">
+      <h1>Votre espace formation</h1>
+      <p class="muted">Déposez vos vidéos, validez les formations et suivez vos recrues.</p>
+      <div class="tabs" role="group" aria-label="Choix"><button type="button" id="t-login" aria-pressed="true">Se connecter</button><button type="button" id="t-signup" aria-pressed="false">Créer un compte</button></div>
+      <form id="f-auth" novalidate style="display:flex;flex-direction:column;gap:12px">
+        <label>Email<input id="a-email" type="email" autocomplete="email"></label>
+        <label>Mot de passe <small id="a-pass-hint">(8 caractères minimum)</small><input id="a-pass" type="password" autocomplete="current-password"></label>
+        <p class="msg err" id="a-err" role="alert" hidden></p>
+        <button class="btn" id="a-submit" type="submit">Se connecter</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Profil -->
+  <section id="v-profil" hidden>
+    <form class="card" id="f-profil" novalidate>
+      <h1>Votre commerce</h1>
+      <p class="muted">Ces informations apparaissent sur les formations de vos recrues.</p>
+      <div class="row">
+        <label>Votre prénom<input id="p-prenom" autocomplete="given-name"></label>
+        <label>Nom du commerce<input id="p-commerce" autocomplete="organization"></label>
+      </div>
+      <label>Secteur
+        <select id="p-secteur">
+          <option value="boulangerie">Boulangerie, pâtisserie</option><option value="cafe">Café, restaurant</option>
+          <option value="commerce">Commerce de détail</option><option value="coiffure">Coiffure, beauté</option>
+          <option value="hotellerie">Hôtellerie</option><option value="logistique">Logistique, propreté</option>
+          <option value="commun">Autre</option>
+        </select>
+      </label>
+      <p class="msg err" id="p-err" role="alert" hidden></p>
+      <button class="btn" type="submit">Enregistrer</button>
+    </form>
+  </section>
+
+  <!-- Liste des formations -->
+  <section id="v-formations" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
+      <div><p class="mono muted" id="l-commerce"></p><h1>Mes formations</h1></div>
+      <a class="btn" href="#nouvelle">Déposer une vidéo</a>
+    </div>
+    <p class="msg ok" id="l-flash" hidden></p>
+    <div class="list" id="l-list"></div>
+    <div class="empty" id="l-empty" hidden>
+      <h2>Aucune formation pour l'instant</h2>
+      <p class="muted">Filmez une tâche en 1 à 2 minutes, en l'expliquant comme à un nouveau, puis déposez la vidéo.</p>
+      <div class="actions" style="justify-content:center"><a class="btn" href="#nouvelle">Déposer ma première vidéo</a>
+      <a class="btn ghost" href="/f/?c=5d9750e8" target="_blank" rel="noopener">Voir un exemple</a></div>
+    </div>
+    <p class="small muted">Les vidéos sont transformées en formation en général dans la journée. Vous recevez un email quand c'est prêt.</p>
+    <div id="l-parcours"></div>
+    <div id="l-recrues"></div>
+  </section>
+
+  <!-- Nouvelle vidéo -->
+  <section id="v-nouvelle" hidden style="display:flex;flex-direction:column;gap:16px">
+    <a href="#formations" class="small">← Mes formations</a>
+    <h1>Nouvelle formation</h1>
+    <div class="tabs" role="group" aria-label="Comment créer la formation">
+      <button type="button" id="m-video" aria-pressed="true">Filmer une vidéo</button>
+      <button type="button" id="m-consignes" aria-pressed="false">Écrire mes consignes</button>
+    </div>
+    <form class="card" id="f-consignes" novalidate hidden>
+      <p class="muted small">Écrivez la tâche étape par étape, comme vous l'expliqueriez à un nouveau. Nous en faisons une vidéo avec une voix, une image par étape et des sous-titres, puis le quiz. Ajoutez des photos de votre boutique ou de vos machines pour une vidéo plus parlante.</p>
+      <label>Tâche<input id="c-tache" placeholder="Ex. : fermer la boutique le soir" maxlength="120"></label>
+      <label>Vos consignes <small>(étape par étape, avec les chiffres et les interdits)</small>
+        <textarea id="c-texte" maxlength="4000" style="min-height:220px" placeholder="1. À 19 h pile, retourner le panneau sur Fermé et fermer la porte à clé.&#10;2. Mettre les pains invendus dans les sacs de l'association. Les viennoiseries se jettent : ne jamais les garder pour le lendemain.&#10;3. Faire le Z, compter la caisse, laisser 200 € de fond de caisse. Le reste va au coffre avec le ticket."></textarea>
+      </label>
+      <p class="small muted" id="c-compte">0 / 4000 caractères</p>
+      <label class="drop" id="c-drop" for="c-photos">
+        <strong id="c-drop-title">Ajouter des photos (facultatif)</strong>
+        <span class="muted small" id="c-drop-sub">JPG ou PNG, 6 photos maximum, 10 Mo chacune</span>
+        <input id="c-photos" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+      </label>
+      <label class="check" id="c-accord-l" hidden><input type="checkbox" id="c-accord">Les personnes visibles sur les photos sont d'accord pour qu'elles servent à former l'équipe.</label>
+      <div class="progress" id="c-progress" hidden><span id="c-progress-fill"></span></div>
+      <p class="msg err" id="c-err" role="alert" hidden></p>
+      <button class="btn" id="c-submit" type="submit">Créer la formation</button>
+    </form>
+    <form class="card" id="f-video" novalidate>
+      <label>Tâche filmée<input id="n-tache" placeholder="Ex. : ouvrir la caisse le matin" maxlength="120"></label>
+      <label class="drop" id="n-drop" for="n-file">
+        <strong id="n-drop-title">Choisir la vidéo</strong>
+        <span class="muted small" id="n-drop-sub">MP4 ou MOV, 50 Mo maximum, 1 à 3 minutes</span>
+        <input id="n-file" type="file" accept="video/*" hidden>
+      </label>
+      <details class="small"><summary><strong>Conseils pour bien filmer</strong></summary>
+        <ul style="margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px">
+          <li>Une seule tâche par vidéo, de 1 à 3 minutes.</li>
+          <li>Filmez au calme et parlez près du téléphone : le son compte plus que l'image.</li>
+          <li>Expliquez comme à un nouveau, en tutoyant : « D'abord tu… ensuite tu… ».</li>
+          <li>Dites les chiffres à voix haute : horaires, quantités, températures, montants.</li>
+          <li>Dites aussi les interdits : « Ne fais jamais… ». Ce sont eux que le quiz vérifie.</li>
+          <li>Montrez chaque geste de près, sans couper au milieu.</li>
+        </ul>
+      </details>
+      <label class="check"><input type="checkbox" id="n-accord">Les personnes filmées sont d'accord pour que cette vidéo serve à former l'équipe.</label>
+      <div class="progress" id="n-progress" hidden><span id="n-progress-fill"></span></div>
+      <p class="msg err" id="n-err" role="alert" hidden></p>
+      <button class="btn" id="n-submit" type="submit">Envoyer la vidéo</button>
+    </form>
+  </section>
+
+  <!-- Détail d'une formation -->
+  <section id="v-detail" hidden style="display:flex;flex-direction:column;gap:16px">
+    <a href="#formations" class="small">← Mes formations</a>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+      <h1 id="d-titre"></h1><span class="pill" id="d-pill"></span>
+    </div>
+    <p class="msg ok" id="d-flash" hidden></p>
+    <div id="d-body" style="display:flex;flex-direction:column;gap:16px"></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  var SB_URL = "https://ydrcqevotcddnpigpawm.supabase.co";
+  var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkcmNxZXZvdGNkZG5waWdwYXdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ5NDE4NTYsImV4cCI6MjExMDUxNzg1Nn0.Kt22b4FXzX7LWsuyXXvQ50zkMdYjbx-kzp-EAkosxhE";
+  var RECRUE = location.origin + "/f/?c=";
+  var MAX = 50 * 1024 * 1024;
+  var sb = supabase.createClient(SB_URL, SB_ANON);
+  var $ = function (id) { return document.getElementById(id); };
+  var me = null, prof = null, signup = false;
+  var STATUTS = {
+    nouvelle: ["En préparation", "prep"], en_preparation: ["En préparation", "prep"], a_valider: ["À valider", "todo"],
+    a_finaliser: ["Finalisation", "prep"], a_regenerer: ["Nouveau quiz en cours", "prep"],
+    publiee: ["En ligne", "live"], erreur: ["Problème", "ko"]
+  };
+  var VIEWS = ["v-connexion", "v-profil", "v-formations", "v-nouvelle", "v-detail"];
+  var vueActuelle = "";
+  function view(id) {
+    $("loading").hidden = true; VIEWS.forEach(function (v) { $(v).hidden = v !== id; });
+    if (id + location.hash !== vueActuelle) window.scrollTo(0, 0);  // pas de saut en haut lors des mises à jour automatiques
+    vueActuelle = id + location.hash;
+  }
+  function el(tag, attrs, text) { var e = document.createElement(tag); if (attrs) Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (text != null) e.textContent = text; return e; }
+  function pill(node, statut) { var s = STATUTS[statut] || [statut, ""]; node.textContent = s[0]; node.className = "pill " + s[1]; }
+  function flash(id, text) { var f = $(id); f.textContent = text; f.hidden = !text; }
+  function fmtDate(iso) { try { return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); } catch (e) { return ""; } }
+  function copyBtn(getText, label) {
+    var b = el("button", { type: "button", class: "btn ghost small" }, label || "Copier");
+    b.addEventListener("click", function () {
+      var t = getText();
+      var done = function () { b.textContent = "Copié"; setTimeout(function () { b.textContent = label || "Copier"; }, 1500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {}); else done();
+    });
+    return b;
+  }
+
+  // ---------- Connexion ----------
+  function setMode(s) {
+    signup = s; $("t-login").setAttribute("aria-pressed", String(!s)); $("t-signup").setAttribute("aria-pressed", String(s));
+    $("a-submit").textContent = s ? "Créer mon compte" : "Se connecter";
+    $("a-pass").setAttribute("autocomplete", s ? "new-password" : "current-password"); $("a-err").hidden = true;
+  }
+  $("t-login").addEventListener("click", function () { setMode(false); });
+  $("t-signup").addEventListener("click", function () { setMode(true); });
+  $("f-auth").addEventListener("submit", async function (e) {
+    e.preventDefault(); $("a-err").hidden = true;
+    var email = $("a-email").value.trim(), pass = $("a-pass").value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("a-err").textContent = "Entrez une adresse email valide."; $("a-err").hidden = false; return; }
+    if (pass.length < 8) { $("a-err").textContent = "Le mot de passe doit faire au moins 8 caractères."; $("a-err").hidden = false; return; }
+    $("a-submit").disabled = true;
+    var r = signup ? await sb.auth.signUp({ email: email, password: pass }) : await sb.auth.signInWithPassword({ email: email, password: pass });
+    $("a-submit").disabled = false;
+    if (r.error) {
+      var m = r.error.message || "";
+      $("a-err").textContent = /Invalid login/i.test(m) ? "Email ou mot de passe incorrect." :
+        /already registered/i.test(m) ? "Un compte existe déjà avec cet email : connectez-vous." :
+        /rate limit/i.test(m) ? "Trop d'essais. Réessayez dans quelques minutes." : "Connexion impossible : " + m;
+      $("a-err").hidden = false; return;
+    }
+    route();
+  });
+  $("logout").addEventListener("click", async function () { await sb.auth.signOut(); me = null; prof = null; location.hash = ""; route(); });
+
+  // ---------- Profil ----------
+  $("f-profil").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var prenom = $("p-prenom").value.trim(), commerce = $("p-commerce").value.trim();
+    if (!prenom || !commerce) { $("p-err").textContent = "Indiquez votre prénom et le nom du commerce."; $("p-err").hidden = false; return; }
+    var r = await sb.from("profils").upsert({ id: me.id, email: me.email, prenom: prenom, commerce: commerce, secteur: $("p-secteur").value });
+    if (r.error) { $("p-err").textContent = "Enregistrement impossible : " + r.error.message; $("p-err").hidden = false; return; }
+    prof = { prenom: prenom, commerce: commerce, secteur: $("p-secteur").value };
+    location.hash = "formations"; route();
+  });
+
+  // ---------- Liste ----------
+  async function showList(leger) {
+    view("v-formations"); $("l-commerce").textContent = (prof.commerce || "").toUpperCase();
+    var r = await sb.from("formations").select("id,code,titre,tache,statut,created_at").order("created_at", { ascending: false });
+    var list = $("l-list"); list.innerHTML = "";
+    var rows = r.data || [];
+    $("l-empty").hidden = rows.length > 0;
+    rows.forEach(function (f) {
+      var a = el("a", { class: "item", href: "#f-" + f.id });
+      var t = el("span", { class: "t" }); t.appendChild(el("strong", null, f.titre || f.tache || "Formation sans titre"));
+      t.appendChild(el("span", { class: "small muted" }, "Déposée le " + fmtDate(f.created_at)));
+      var p = el("span"); pill(p, f.statut);
+      a.appendChild(t); a.appendChild(p); list.appendChild(a);
+    });
+    var enLigne = rows.filter(function (f) { return f.statut === "publiee"; });
+    if (leger) return;  // mise à jour automatique : on ne touche pas aux formulaires en cours de saisie
+    await renderParcours(enLigne);
+    await renderRecrues(enLigne);
+  }
+
+  // ---------- Parcours ----------
+  async function renderParcours(enLigne) {
+    var zone = $("l-parcours"); zone.innerHTML = "";
+    var r = await sb.from("parcours").select("*").order("created_at", { ascending: false });
+    if (r.error) return;  // fonction pas encore disponible
+    var c = el("div", { class: "card" }); zone.appendChild(c);
+    c.appendChild(el("h2", null, "Parcours d'intégration"));
+    c.appendChild(el("p", { class: "small muted" }, "Regroupez plusieurs formations sous un seul lien, par exemple « Première semaine ». La recrue les suit dans l'ordre et voit son avancement."));
+    var titres = {}; enLigne.forEach(function (f) { titres[f.id] = f.titre || f.tache; });
+    (r.data || []).forEach(function (pa) {
+      var link = location.origin + "/p/?c=" + pa.code;
+      var msg = "Bonjour, bienvenue chez " + (prof.commerce || "nous") + " ! Avant ton premier jour, suis ton parcours « " + pa.titre + " » : " + link;
+      var box = el("div", { class: "q" });
+      box.appendChild(el("strong", null, pa.titre));
+      box.appendChild(el("p", { class: "small muted" }, pa.formations.map(function (id, i) { return (i + 1) + ". " + (titres[id] || "formation pas encore en ligne"); }).join("  ·  ")));
+      var acts = el("div", { class: "actions" });
+      acts.appendChild(copyBtn(function () { return msg; }, "Copier le message"));
+      acts.appendChild(copyBtn(function () { return link; }, "Copier le lien"));
+      var voir = el("a", { class: "btn ghost small", href: link, target: "_blank", rel: "noopener" }, "Voir comme la recrue"); acts.appendChild(voir);
+      var del = el("button", { type: "button", class: "btn danger small" }, "Supprimer");
+      del.addEventListener("click", async function () {
+        if (del.dataset.sure !== "1") { del.dataset.sure = "1"; del.textContent = "Confirmer la suppression"; return; }
+        await sb.from("parcours").delete().eq("id", pa.id); renderParcours(enLigne);
+      });
+      acts.appendChild(del); box.appendChild(acts); c.appendChild(box);
+    });
+    if (enLigne.length < 2) { c.appendChild(el("p", { class: "small muted" }, "Il faut au moins 2 formations en ligne pour créer un parcours.")); return; }
+    var f = el("div", { class: "q" });
+    f.appendChild(el("strong", null, "Nouveau parcours"));
+    var lt = el("label", null, "Nom du parcours"); var ti = el("input", { id: "pa-titre", maxlength: "120", placeholder: "Ex. : Première semaine" }); lt.appendChild(ti); f.appendChild(lt);
+    f.appendChild(el("p", { class: "small muted" }, "Cochez les formations dans l'ordre où la recrue doit les suivre."));
+    var ordre = [], etiquettes = {};
+    enLigne.forEach(function (fo) {
+      var l = el("label", { class: "check" }); var cb = el("input", { type: "checkbox" }); var num = el("span", { class: "mono" }, "");
+      cb.addEventListener("change", function () {
+        if (cb.checked) ordre.push(fo.id); else ordre = ordre.filter(function (x) { return x !== fo.id; });
+        Object.keys(etiquettes).forEach(function (k) { var i = ordre.indexOf(k); etiquettes[k].textContent = i >= 0 ? (i + 1) + "." : ""; });
+      });
+      etiquettes[fo.id] = num; l.appendChild(cb); l.appendChild(num); l.appendChild(document.createTextNode(" " + (fo.titre || fo.tache))); f.appendChild(l);
+    });
+    var err = el("p", { class: "msg err", role: "alert" }); err.hidden = true; f.appendChild(err);
+    var go = el("button", { type: "button", class: "btn" }, "Créer le parcours"); go.style.alignSelf = "flex-start";
+    go.addEventListener("click", async function () {
+      if (!ti.value.trim()) { err.textContent = "Donnez un nom au parcours."; err.hidden = false; return; }
+      if (ordre.length < 2) { err.textContent = "Choisissez au moins 2 formations."; err.hidden = false; return; }
+      var ins = await sb.from("parcours").insert({ titre: ti.value.trim(), formations: ordre });
+      if (ins.error) { err.textContent = "Création impossible : " + ins.error.message; err.hidden = false; return; }
+      renderParcours(enLigne);
+    });
+    f.appendChild(go); c.appendChild(f);
+  }
+
+  // ---------- Suivi des recrues ----------
+  async function renderRecrues(enLigne) {
+    var zone = $("l-recrues"); zone.innerHTML = "";
+    if (!enLigne.length) return;
+    var r = await sb.from("resultats").select("prenom,statut,score,total,essai,created_at,formation_id").order("created_at", { ascending: false });
+    if (r.error || !(r.data || []).length) return;
+    var parRecrue = {};
+    r.data.forEach(function (x) {
+      var k = x.prenom.trim().toLowerCase();
+      parRecrue[k] = parRecrue[k] || { prenom: x.prenom, dernier: x.created_at, formations: {} };
+      if (!parRecrue[k].formations[x.formation_id]) parRecrue[k].formations[x.formation_id] = x;  // le plus récent
+    });
+    var titres = {}, codes = {}; enLigne.forEach(function (f) { titres[f.id] = f.titre || f.tache; codes[f.id] = f.code; });
+    var c = el("div", { class: "card" }); zone.appendChild(c);
+    c.appendChild(el("h2", null, "Suivi des recrues"));
+    c.appendChild(el("p", { class: "small muted" }, "Pour chaque recrue (selon le prénom saisi), son dernier résultat sur chaque formation."));
+    var box = el("div", { class: "table-box" }); var t = el("table");
+    var h = el("tr"); ["Recrue", "Validées", "À revoir", "Dernière activité", ""].forEach(function (x) { h.appendChild(el("th", null, x)); }); t.appendChild(h);
+    Object.keys(parRecrue).forEach(function (k) {
+      var rc = parRecrue[k], ids = Object.keys(rc.formations);
+      var ok = ids.filter(function (id) { return rc.formations[id].statut === "valide"; }).length;
+      var arevoir = ids.filter(function (id) { return rc.formations[id].statut !== "valide" && titres[id]; }).map(function (id) { return titres[id] + (rc.formations[id].statut === "a_accompagner" ? " (à accompagner)" : ""); });
+      var restantes = enLigne.filter(function (f) { return !rc.formations[f.id] || rc.formations[f.id].statut !== "valide"; });
+      var tr = el("tr"); tr.appendChild(el("td", null, rc.prenom));
+      var td = el("td"); td.appendChild(el("span", { class: "pill " + (ok === enLigne.length ? "live" : "todo") }, ok + "/" + enLigne.length)); tr.appendChild(td);
+      tr.appendChild(el("td", null, arevoir.join(" · ") || "—")); tr.appendChild(el("td", null, fmtDate(rc.dernier)));
+      var tdr = el("td");
+      if (restantes.length) {
+        var msg = "Bonjour " + rc.prenom + ", pense à terminer ta formation « " + (restantes[0].titre || restantes[0].tache) + " » : " + RECRUE + restantes[0].code;
+        tdr.appendChild(copyBtn(function () { return msg; }, "Relancer"));
+      }
+      tr.appendChild(tdr); t.appendChild(tr);
+    });
+    box.appendChild(t); c.appendChild(box);
+    c.appendChild(el("p", { class: "small muted" }, "« Relancer » copie un message à envoyer à la recrue par SMS ou WhatsApp."));
+  }
+
+  // ---------- Formation écrite (consignes + photos) ----------
+  function mode(consignes) {
+    $("m-video").setAttribute("aria-pressed", String(!consignes)); $("m-consignes").setAttribute("aria-pressed", String(consignes));
+    $("f-video").hidden = consignes; $("f-consignes").hidden = !consignes;
+  }
+  $("m-video").addEventListener("click", function () { mode(false); });
+  $("m-consignes").addEventListener("click", function () { mode(true); });
+  $("c-texte").addEventListener("input", function () { $("c-compte").textContent = $("c-texte").value.length + " / 4000 caractères"; });
+  $("c-photos").addEventListener("change", function () {
+    var fs = Array.prototype.slice.call($("c-photos").files), d = $("c-drop"); d.classList.remove("ok", "ko"); $("c-err").hidden = true;
+    $("c-accord-l").hidden = !fs.length;
+    if (!fs.length) { $("c-drop-title").textContent = "Ajouter des photos (facultatif)"; return; }
+    var trop = fs.length > 6 || fs.some(function (f) { return f.size > 10 * 1048576 || !/^image\/(jpeg|png|webp)$/.test(f.type); });
+    $("c-drop-title").textContent = fs.length + " photo" + (fs.length > 1 ? "s" : "") + " choisie" + (fs.length > 1 ? "s" : "");
+    d.classList.add(trop ? "ko" : "ok");
+    $("c-drop-sub").textContent = trop ? "6 photos maximum, JPG, PNG ou WebP de 10 Mo maximum." : "Elles illustreront les étapes concernées.";
+  });
+  $("f-consignes").addEventListener("submit", async function (e) {
+    e.preventDefault(); var err = $("c-err"); err.hidden = true;
+    var stop = function (m) { err.textContent = m; err.hidden = false; };
+    var tache = $("c-tache").value.trim(), texte = $("c-texte").value.trim();
+    var fs = Array.prototype.slice.call($("c-photos").files);
+    if (!tache) return stop("Indiquez la tâche.");
+    if (texte.length < 30) return stop("Décrivez la tâche étape par étape (30 caractères minimum).");
+    if (fs.length > 6) return stop("6 photos maximum.");
+    if (fs.some(function (f) { return f.size > 10 * 1048576 || !/^image\/(jpeg|png|webp)$/.test(f.type); })) return stop("Les photos doivent être en JPG, PNG ou WebP, 10 Mo maximum chacune.");
+    if (fs.length && !$("c-accord").checked) return stop("Cochez la case d'accord des personnes visibles sur les photos.");
+    var depuis = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
+    var nb = await sb.from("formations").select("id", { count: "exact", head: true }).gte("created_at", depuis);
+    if (!nb.error && nb.count >= 5) return stop("Vous avez déjà créé 5 formations ces dernières 24 heures. Réessayez demain.");
+    $("c-submit").disabled = true; $("c-submit").textContent = "Envoi en cours…"; $("c-progress").hidden = !fs.length;
+    var chemins = [];
+    for (var i = 0; i < fs.length; i++) {
+      var ext = fs[i].type === "image/png" ? "png" : fs[i].type === "image/webp" ? "webp" : "jpg";
+      var chemin = me.id + "/" + (crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + i)) + "." + ext;
+      var up = await sb.storage.from("videos").upload(chemin, fs[i], { contentType: fs[i].type });
+      if (up.error) { await sb.storage.from("videos").remove(chemins); $("c-submit").disabled = false; $("c-submit").textContent = "Créer la formation"; $("c-progress").hidden = true; return stop("L'envoi d'une photo a échoué. Vérifiez votre connexion puis réessayez."); }
+      chemins.push(chemin); $("c-progress-fill").style.width = Math.round((i + 1) / fs.length * 100) + "%";
+    }
+    var r = await sb.from("formations").insert({ source: "consignes", tache: tache, consignes: texte, photos: chemins }).select("id").single();
+    $("c-submit").disabled = false; $("c-submit").textContent = "Créer la formation"; $("c-progress").hidden = true;
+    if (r.error) {
+      await sb.storage.from("videos").remove(chemins);
+      return stop(/limite atteinte/.test(r.error.message) ? "Vous avez déjà créé 5 formations ces dernières 24 heures. Réessayez demain." : "Création impossible : " + r.error.message);
+    }
+    $("f-consignes").reset(); $("c-accord-l").hidden = true; $("c-drop").classList.remove("ok", "ko"); $("c-drop-title").textContent = "Ajouter des photos (facultatif)"; $("c-compte").textContent = "0 / 4000 caractères";
+    location.hash = "formations"; await route();
+    flash("l-flash", "Consignes reçues. Nous préparons la vidéo et le quiz ; vous recevrez un email quand la formation sera prête à valider.");
+  });
+
+  // ---------- Dépôt ----------
+  function dureeVideo(file) {
+    return new Promise(function (resolve) {
+      try {
+        var v = document.createElement("video"), url = URL.createObjectURL(file), fini = false;
+        var fin = function (d) { if (fini) return; fini = true; URL.revokeObjectURL(url); resolve(d); };
+        v.preload = "metadata"; v.muted = true;
+        v.onloadedmetadata = function () { fin(isFinite(v.duration) ? v.duration : null); };
+        v.onerror = function () { fin(null); };  // format non lisible ici : le moteur vérifiera la durée
+        setTimeout(function () { fin(null); }, 8000);
+        v.src = url;
+      } catch (e) { resolve(null); }
+    });
+  }
+  $("n-file").addEventListener("change", function () {
+    var f = $("n-file").files[0], d = $("n-drop"); d.classList.remove("ok", "ko"); $("n-err").hidden = true;
+    if (!f) return;
+    var mo = (f.size / 1048576).toFixed(1).replace(".", ",");
+    $("n-drop-title").textContent = f.name;
+    if (f.size > MAX) { d.classList.add("ko"); $("n-drop-sub").textContent = mo + " Mo : trop lourde (50 Mo maximum)."; }
+    else if (f.type && f.type.indexOf("video/") !== 0) { d.classList.add("ko"); $("n-drop-sub").textContent = "Ce fichier n'est pas une vidéo."; }
+    else { d.classList.add("ok"); $("n-drop-sub").textContent = mo + " Mo · prête à envoyer"; }
+  });
+  $("f-video").addEventListener("submit", async function (e) {
+    e.preventDefault(); var err = $("n-err"); err.hidden = true;
+    var f = $("n-file").files[0], tache = $("n-tache").value.trim();
+    var stop = function (m) { err.textContent = m; err.hidden = false; };
+    if (!tache) return stop("Indiquez la tâche filmée.");
+    if (!f) return stop("Choisissez une vidéo.");
+    if (f.size > MAX) return stop("La vidéo dépasse 50 Mo. Filmez moins longtemps ou réduisez sa qualité.");
+    if (f.type && f.type.indexOf("video/") !== 0) return stop("Le fichier choisi n'est pas une vidéo.");
+    if (!$("n-accord").checked) return stop("Cochez la case d'accord des personnes filmées.");
+    var duree = await dureeVideo(f);
+    if (duree && duree > 185) return stop("La vidéo dure " + Math.floor(duree / 60) + " min " + Math.round(duree % 60) + " s : 3 minutes maximum. Filmez une seule tâche, plus courte.");
+    var depuis = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
+    var nb = await sb.from("formations").select("id", { count: "exact", head: true }).gte("created_at", depuis);
+    if (!nb.error && nb.count >= 5) return stop("Vous avez déjà déposé 5 vidéos ces dernières 24 heures. Réessayez demain.");
+    var ext = (f.name.split(".").pop() || "mp4").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 5) || "mp4";
+    var path = me.id + "/" + (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())) + "." + ext;
+    var sess = (await sb.auth.getSession()).data.session;
+    $("n-submit").disabled = true; $("n-submit").textContent = "Envoi en cours…"; $("n-progress").hidden = false;
+    var ok = await new Promise(function (resolve) {
+      var x = new XMLHttpRequest();
+      x.open("POST", SB_URL + "/storage/v1/object/videos/" + path);
+      x.setRequestHeader("Authorization", "Bearer " + sess.access_token);
+      x.setRequestHeader("apikey", SB_ANON);
+      x.setRequestHeader("Content-Type", f.type || "video/mp4");
+      x.upload.onprogress = function (ev) { if (ev.lengthComputable) $("n-progress-fill").style.width = Math.round(ev.loaded / ev.total * 100) + "%"; };
+      x.onload = function () { resolve(x.status < 300 ? true : x.responseText); };
+      x.onerror = function () { resolve("réseau"); };
+      x.send(f);
+    });
+    if (ok !== true) { $("n-submit").disabled = false; $("n-submit").textContent = "Envoyer la vidéo"; $("n-progress").hidden = true; return stop("L'envoi a échoué. Vérifiez votre connexion puis réessayez."); }
+    var r = await sb.from("formations").insert({ tache: tache, video_path: path }).select("id").single();
+    $("n-submit").disabled = false; $("n-submit").textContent = "Envoyer la vidéo"; $("n-progress").hidden = true;
+    if (r.error) {
+      await sb.storage.from("videos").remove([path]);
+      return stop(/limite atteinte/.test(r.error.message) ? "Vous avez déjà déposé 5 vidéos ces dernières 24 heures. Réessayez demain." : "Enregistrement impossible : " + r.error.message);
+    }
+    $("f-video").reset(); $("n-drop").classList.remove("ok"); $("n-drop-title").textContent = "Choisir la vidéo"; $("n-drop-sub").textContent = "MP4 ou MOV, 50 Mo maximum, 1 à 3 minutes";
+    location.hash = "formations"; await route();
+    flash("l-flash", "Vidéo reçue. Vous recevrez un email quand la formation sera prête à valider.");
+  });
+
+  // ---------- Détail ----------
+  async function showDetail(id) {
+    view("v-detail"); flash("d-flash", "");
+    var r = await sb.from("formations").select("*").eq("id", id).single();
+    if (r.error || !r.data) { $("d-titre").textContent = "Formation introuvable"; $("d-body").innerHTML = ""; return; }
+    var f = r.data, body = $("d-body"); body.innerHTML = "";
+    $("d-titre").textContent = f.titre || f.tache || "Formation"; pill($("d-pill"), f.statut);
+    var card = function () { var c = el("div", { class: "card" }); body.appendChild(c); return c; };
+    if (f.statut === "nouvelle" || f.statut === "en_preparation") {
+      var ecrite = f.source === "consignes";
+      var c = card(); c.appendChild(el("h2", null, ecrite ? "Votre formation est en préparation" : "Votre vidéo est en préparation"));
+      c.appendChild(el("p", { class: "muted" }, (ecrite ? "Nous fabriquons la vidéo à partir de vos consignes (voix, images, sous-titres), puis les étapes et le quiz." : "Nous la transformons en formation : étapes, quiz, questions à vérifier.") + " En général dans la journée. Vous recevrez un email."));
+    } else if (f.statut === "a_regenerer") {
+      var c4 = card(); c4.appendChild(el("h2", null, "Un nouveau quiz est en préparation"));
+      c4.appendChild(el("p", { class: "muted" }, "Nous rédigeons d'autres questions à partir de la même vidéo. La formation reviendra « à valider » dans votre espace."));
+    } else if (f.statut === "a_finaliser") {
+      var c2 = card(); c2.appendChild(el("h2", null, "Merci, c'est validé"));
+      c2.appendChild(el("p", { class: "muted" }, "Nous intégrons vos réponses dans la formation. Elle sera en ligne très bientôt, et vous recevrez le lien à envoyer à vos recrues."));
+    } else if (f.statut === "erreur") {
+      var c3 = card(); c3.appendChild(el("h2", null, "Cette vidéo n'a pas pu être traitée"));
+      c3.appendChild(el("p", { class: "muted" }, f.erreur || "Erreur inconnue.")); c3.appendChild(el("p", { class: "muted" }, "Supprimez-la et déposez-en une autre."));
+    } else if (f.statut === "a_valider") {
+      renderValidation(f, body);
+    } else if (f.statut === "publiee") {
+      await renderPubliee(f, body);
+    }
+    var del = card(); var b = el("button", { type: "button", class: "btn danger small" }, "Supprimer cette formation");
+    var conf = el("p", { class: "small" }); conf.hidden = true;
+    b.addEventListener("click", async function () {
+      if (b.dataset.sure !== "1") { b.dataset.sure = "1"; b.textContent = "Confirmer la suppression (définitif)"; return; }
+      await sb.storage.from("videos").remove([f.video_path]);
+      var d = await sb.from("formations").delete().eq("id", f.id);
+      if (d.error) { conf.textContent = "Suppression impossible : " + d.error.message; conf.hidden = false; return; }
+      location.hash = "formations";
+    });
+    del.appendChild(b); del.appendChild(conf);
+  }
+
+  function renderValidation(f, body) {
+    var m = JSON.parse(JSON.stringify(f.module || { etapes: [], quiz: [] }));
+    var intro = el("div", { class: "card" });
+    intro.appendChild(el("h2", null, "Votre formation est prête : vérifiez-la"));
+    intro.appendChild(el("p", { class: "muted" }, "Regardez-la comme le fera votre recrue, corrigez si besoin, répondez aux questions puis publiez."));
+    var acts = el("div", { class: "actions" });
+    var see = el("a", { class: "btn ghost small", href: RECRUE + f.code, target: "_blank", rel: "noopener" }, "Voir comme la recrue");
+    acts.appendChild(see); intro.appendChild(acts); body.appendChild(intro);
+
+    var qa = [];
+    if ((f.a_verifier || []).length) {
+      var cq = el("div", { class: "card" });
+      cq.appendChild(el("h2", null, "Questions pour compléter la formation"));
+      cq.appendChild(el("p", { class: "small muted" }, "La vidéo ne précisait pas ces points. Vos réponses seront ajoutées aux étapes et au quiz. Laissez vide si non concerné."));
+      f.a_verifier.forEach(function (q, i) {
+        var l = el("label", null, (i + 1) + ". " + q); var t = el("textarea", { id: "qa-" + i }); l.appendChild(t); cq.appendChild(l); qa.push([q, t]);
+      });
+      body.appendChild(cq);
+    }
+
+    var cs = el("div", { class: "card" }); cs.appendChild(el("h2", null, "Étapes"));
+    m.etapes.forEach(function (e, i) {
+      var row = el("div", { class: "edit-step" }); row.appendChild(el("span", { class: "n" }, String(e.n)));
+      var t = el("textarea", { id: "st-" + i, "aria-label": "Étape " + e.n }); t.value = e.texte; t.style.minHeight = "52px";
+      t.addEventListener("input", function () { m.etapes[i].texte = t.value; });
+      row.appendChild(t); cs.appendChild(row);
+    });
+    body.appendChild(cs);
+
+    var cz = el("div", { class: "card" }); cz.appendChild(el("h2", null, "Quiz (" + m.quiz.length + " questions)"));
+    if (m.questions_par_essai && m.questions_par_essai < m.quiz.length) cz.appendChild(el("p", { class: "small muted" }, "Chaque recrue en reçoit " + m.questions_par_essai + ", tirées au hasard à chaque essai : impossible d'apprendre les réponses par cœur."));
+    m.quiz.forEach(function (q, i) {
+      var box = el("div", { class: "q" });
+      box.appendChild(el("span", { class: "mono muted" }, (q.type === "ordre" ? "GESTES À REMETTRE DANS L'ORDRE" : "QUESTION " + (i + 1)) + " · ÉTAPE " + q.etape));
+      var qt = el("textarea", { id: "q-" + i, "aria-label": "Question " + (i + 1) }); qt.value = q.question; qt.style.minHeight = "52px";
+      qt.addEventListener("input", function () { m.quiz[i].question = qt.value; }); box.appendChild(qt);
+      if (q.type === "ordre") box.appendChild(el("p", { class: "small muted" }, "Écrivez les gestes dans le bon ordre : ils seront mélangés pour la recrue."));
+      q.reponses.forEach(function (r, j) {
+        var a = el("div", { class: "ans" });
+        if (q.type === "choix") {
+          var rb = el("input", { type: "radio", name: "good-" + i, "aria-label": "Bonne réponse" }); rb.checked = q.bonne === j;
+          rb.addEventListener("change", function () { m.quiz[i].bonne = j; }); a.appendChild(rb);
+        } else { a.appendChild(el("span", { class: "mono muted" }, (j + 1) + ".")); }
+        var at = el("input", { id: "a-" + i + "-" + j, "aria-label": "Réponse " + (j + 1) }); at.value = r;
+        at.addEventListener("input", function () { m.quiz[i].reponses[j] = at.value; }); a.appendChild(at); box.appendChild(a);
+      });
+      if (q.type === "choix") box.appendChild(el("p", { class: "small muted" }, "Le bouton rond indique la bonne réponse."));
+      cz.appendChild(box);
+    });
+    body.appendChild(cz);
+
+    var cp = el("div", { class: "card" });
+    var err = el("p", { class: "msg err", role: "alert" }); err.hidden = true;
+    var save = el("button", { type: "button", class: "btn ghost" }, "Enregistrer sans publier");
+    var regen = el("button", { type: "button", class: "btn ghost" }, "Proposer un autre quiz");
+    regen.addEventListener("click", async function () {
+      if (regen.dataset.sure !== "1") { regen.dataset.sure = "1"; regen.textContent = "Confirmer : remplacer les questions"; return; }
+      var r = await sb.from("formations").update({ statut: "a_regenerer" }).eq("id", f.id);
+      if (r.error) { err.textContent = "Demande impossible : " + r.error.message; err.hidden = false; return; }
+      await showDetail(f.id); flash("d-flash", "C'est noté : un nouveau quiz arrive dans votre espace.");
+    });
+    var pub = el("button", { type: "button", class: "btn" }, "Valider et publier");
+    var a2 = el("div", { class: "actions" }); a2.appendChild(save); a2.appendChild(regen); a2.appendChild(pub);
+    cp.appendChild(err); cp.appendChild(a2); body.appendChild(cp);
+    function check() {
+      var vide = m.etapes.some(function (e) { return !e.texte.trim(); }) || m.quiz.some(function (q) { return !q.question.trim() || q.reponses.some(function (r) { return !r.trim(); }); });
+      if (vide) { err.textContent = "Une étape, une question ou une réponse est vide."; err.hidden = false; return false; }
+      err.hidden = true; return true;
+    }
+    save.addEventListener("click", async function () {
+      if (!check()) return;
+      var r = await sb.from("formations").update({ module: m }).eq("id", f.id);
+      if (r.error) { err.textContent = "Enregistrement impossible : " + r.error.message; err.hidden = false; return; }
+      flash("d-flash", "Modifications enregistrées.");
+    });
+    pub.addEventListener("click", async function () {
+      if (!check()) return;
+      var rep = qa.filter(function (x) { return x[1].value.trim(); }).map(function (x) { return "Q : " + x[0] + "\nR : " + x[1].value.trim(); }).join("\n\n");
+      pub.disabled = true;
+      var r = await sb.from("formations").update({ module: m, reponses: rep, statut: rep ? "a_finaliser" : "publiee" }).eq("id", f.id);
+      pub.disabled = false;
+      if (r.error) { err.textContent = "Publication impossible : " + r.error.message; err.hidden = false; return; }
+      await showDetail(f.id);
+      flash("d-flash", rep ? "Merci ! Nous intégrons vos réponses, puis la formation sera en ligne." : "C'est en ligne. Envoyez le lien à vos recrues.");
+    });
+  }
+
+  async function renderPubliee(f, body) {
+    var link = RECRUE + f.code;
+    var dur = (f.module && f.module.duree_lecture_min) || 3;
+    var msg = "Bonjour, bienvenue chez " + (prof.commerce || "nous") + " ! Avant ton premier jour, suis ta formation « " + (f.titre || f.tache) + " » (" + dur + " min) : " + link;
+    var c = el("div", { class: "card" });
+    c.appendChild(el("h2", null, "Envoyez-la à vos recrues"));
+    c.appendChild(el("p", { class: "small muted" }, "Copiez ce message et envoyez-le par SMS ou WhatsApp. Chaque recrue tape son prénom : vous voyez son résultat ici."));
+    var cp1 = el("div", { class: "copy" }); var ta = el("textarea", { id: "msg-recrue", readonly: "" }); ta.value = msg; cp1.appendChild(ta); cp1.appendChild(copyBtn(function () { return msg; }, "Copier le message")); c.appendChild(cp1);
+    var cp2 = el("div", { class: "copy" }); var li = el("input", { id: "lien-recrue", readonly: "" }); li.value = link; cp2.appendChild(li); cp2.appendChild(copyBtn(function () { return link; }, "Copier le lien")); c.appendChild(cp2);
+    var row = el("div", { class: "actions" });
+    var see = el("a", { class: "btn ghost small", href: link, target: "_blank", rel: "noopener" }, "Voir comme la recrue"); row.appendChild(see);
+    var edit = el("button", { type: "button", class: "btn ghost small" }, "Modifier la formation"); row.appendChild(edit);
+    var editInfo = el("p", { class: "small muted" }); editInfo.hidden = true;
+    edit.addEventListener("click", async function () {
+      if (edit.dataset.sure !== "1") {
+        edit.dataset.sure = "1"; edit.textContent = "Confirmer la modification";
+        editInfo.textContent = "Pendant la modification, vos recrues verront un aperçu et leurs résultats ne seront pas enregistrés. Les résultats déjà obtenus sont gardés.";
+        editInfo.hidden = false; return;
+      }
+      var r = await sb.from("formations").update({ statut: "a_valider" }).eq("id", f.id);
+      if (r.error) { editInfo.textContent = "Modification impossible : " + r.error.message; return; }
+      await showDetail(f.id); flash("d-flash", "Vous pouvez modifier la formation, puis la republier.");
+    });
+    c.appendChild(row); c.appendChild(editInfo);
+    body.appendChild(c);
+
+    var r = await sb.from("resultats").select("*").eq("formation_id", f.id).order("created_at", { ascending: false });
+    var rows = r.data || [];
+    var cr = el("div", { class: "card" }); cr.appendChild(el("h2", null, "Résultats des recrues"));
+    var last = {}; rows.forEach(function (x) { var k = x.prenom.toLowerCase(); if (!last[k]) last[k] = x; });
+    var people = Object.keys(last).map(function (k) { return last[k]; });
+    var st = el("div", { class: "stats" });
+    [["valide", "validées"], ["alerte", "en révision"], ["a_accompagner", "à accompagner"]].forEach(function (s) {
+      var n = people.filter(function (p) { return p.statut === s[0]; }).length;
+      var d = el("div", { class: "stat" }); d.appendChild(el("b", null, String(n))); d.appendChild(el("span", null, s[1])); st.appendChild(d);
+    });
+    cr.appendChild(st);
+    if (!rows.length) { cr.appendChild(el("p", { class: "muted" }, "Aucun résultat pour l'instant. Ils apparaîtront ici dès qu'une recrue aura terminé le quiz.")); }
+    else {
+      var etapes = {}; ((f.module || {}).etapes || []).forEach(function (e) { etapes[e.n] = e.texte; });
+      var box = el("div", { class: "table-box" }); var t = el("table");
+      var h = el("tr"); ["Recrue", "Score", "Essai", "Résultat", "À revoir", "Date"].forEach(function (x) { h.appendChild(el("th", null, x)); }); t.appendChild(h);
+      var lab = { valide: ["Validé", "live"], alerte: ["Révision", "todo"], a_accompagner: ["À accompagner", "ko"] };
+      rows.forEach(function (x) {
+        var tr = el("tr"); tr.appendChild(el("td", null, x.prenom)); tr.appendChild(el("td", null, x.score + "/" + x.total)); tr.appendChild(el("td", null, String(x.essai)));
+        var td = el("td"); var p = el("span", { class: "pill " + (lab[x.statut] || ["", ""])[1] }, (lab[x.statut] || [x.statut])[0]); td.appendChild(p); tr.appendChild(td);
+        tr.appendChild(el("td", null, x.etapes_ratees ? x.etapes_ratees.split(",").map(function (n) { return "Étape " + n + (etapes[n] ? " : " + etapes[n] : ""); }).join(" · ") : "—"));
+        tr.appendChild(el("td", null, fmtDate(x.created_at))); t.appendChild(tr);
+      });
+      box.appendChild(t); cr.appendChild(box);
+    }
+    body.appendChild(cr);
+
+    var quiz = (f.module || {}).quiz || [];
+    var stats = quiz.map(function (q, i) { return { i: i, q: q, n: 0, ok: 0 }; });
+    rows.forEach(function (x) { (x.details || []).forEach(function (d) { var s2 = stats[d.q]; if (s2) { s2.n++; if (d.ok) s2.ok++; } }); });
+    var vus = stats.filter(function (s2) { return s2.n > 0; });
+    if (vus.length) {
+      var cs = el("div", { class: "card" }); cs.appendChild(el("h2", null, "Questions les plus ratées"));
+      cs.appendChild(el("p", { class: "small muted" }, "Une question souvent ratée montre un geste à mieux expliquer, dans la vidéo ou en vrai."));
+      var box2 = el("div", { class: "table-box" }); var t2 = el("table");
+      var h2 = el("tr"); ["Question", "Réussite", "Réponses", "Étape"].forEach(function (x) { h2.appendChild(el("th", null, x)); }); t2.appendChild(h2);
+      vus.sort(function (a, b) { return a.ok / a.n - b.ok / b.n; }).forEach(function (s2) {
+        var tr = el("tr"); tr.appendChild(el("td", null, s2.q.question));
+        var pct = Math.round(s2.ok / s2.n * 100); var td = el("td"); td.appendChild(el("span", { class: "pill " + (pct >= 80 ? "live" : pct >= 50 ? "todo" : "ko") }, pct + " %")); tr.appendChild(td);
+        tr.appendChild(el("td", null, String(s2.n))); tr.appendChild(el("td", null, String(s2.q.etape))); t2.appendChild(tr);
+      });
+      box2.appendChild(t2); cs.appendChild(box2); body.appendChild(cs);
+    }
+  }
+
+  // ---------- Routage ----------
+  async function route() {
+    var s = (await sb.auth.getSession()).data.session;
+    me = s ? s.user : null;
+    $("bar-actions").hidden = !me;
+    if (!me) { view("v-connexion"); return; }
+    if (!prof) {
+      var p = await sb.from("profils").select("*").eq("id", me.id).maybeSingle();
+      prof = p.data;
+    }
+    if (!prof || !prof.commerce) { view("v-profil"); return; }
+    var h = location.hash.replace("#", "");
+    if (h === "nouvelle") { view("v-nouvelle"); return; }
+    if (h.indexOf("f-") === 0) { await showDetail(h.slice(2)); return; }
+    await showList();
+  }
+  window.addEventListener("hashchange", function () { route(); });
+  // Statuts en direct : la liste et les formations en cours de préparation se mettent à jour toutes les 30 s
+  var EN_COURS = ["nouvelle", "en_preparation", "a_finaliser", "a_regenerer"];
+  setInterval(function () {
+    if (document.visibilityState !== "visible" || !me || !prof) return;
+    if (!$("v-formations").hidden) { showList(true); return; }
+    if (!$("v-detail").hidden) {
+      var p = $("d-pill").textContent, enCours = EN_COURS.some(function (k) { return STATUTS[k][0] === p; });
+      var h = location.hash.replace("#", "");
+      if (enCours && h.indexOf("f-") === 0) showDetail(h.slice(2));
+    }
+  }, 30000);
+  sb.auth.onAuthStateChange(function (ev) { if (ev === "SIGNED_OUT") { me = null; prof = null; } });
+  route();
+})();
+</script>
+</body>
+</html>
