@@ -5,253 +5,191 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Prise de poste · Formez vos nouveaux en quelques jours</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Filmez votre meilleur employé, l'IA en fait une formation. Vos nouveaux sont opérationnels en 3 jours.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<meta name="description" content="Filmez une tâche ou écrivez-la : Prise de poste en fait une petite formation avec vidéo sous-titrée, étapes et quiz, que vous envoyez à vos nouveaux par SMS.">
 <style>
-/* Layout: marketing one-pager; full-width bands with an inner 1120px container; the new-employee name badge is the recurring motif. */
+/* Direction : « le comptoir ». Papier chaud, encre presque noire, un seul vert. Police du système (celle du téléphone),
+   mise en page éditoriale alignée à gauche, pas de libellés techniques. Le seul visuel est le vrai produit. */
 :root {
-  --bg: #f5f7f6;
-  --surface: #ffffff;
-  --ink: #13201c;
-  --muted: #56645f;
-  --line: #d9e1de;
-  --accent: #1f6f5c;
+  --bg: #f6f4ef;
+  --paper: #fffdf9;
+  --ink: #1b1c19;
+  --muted: #5f625b;
+  --line: #e2ded4;
+  --accent: #1d5c4c;
   --accent-ink: #ffffff;
-  --accent-soft: #e1f0ea;
-  --badge: #f2b33d;
-  --badge-ink: #362500;
-  --band: #13201c;
-  --band-ink: #eef4f1;
-  --band-muted: #a7b8b1;
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  --radius: 12px;
+  --accent-soft: #e3eee9;
+  --warn: #9a5b12;
+  --warn-soft: #f6ead9;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --r: 14px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1412; --surface: #161e1b; --ink: #e7efec; --muted: #9baaa4; --line: #27322e;
-    --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029;
-    --badge: #f2b33d; --badge-ink: #2a1c00;
-    --band: #0a100e; --band-ink: #e7efec; --band-muted: #93a49d;
+    --bg: #121311; --paper: #1b1c1a; --ink: #eceae4; --muted: #a3a59d; --line: #2c2e2a;
+    --accent: #6cc3a6; --accent-ink: #0d1a15; --accent-soft: #1b2c26; --warn: #e3a95c; --warn-soft: #2e2416;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e1412; --surface: #161e1b; --ink: #e7efec; --muted: #9baaa4; --line: #27322e;
-  --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029;
-  --badge: #f2b33d; --badge-ink: #2a1c00;
-  --band: #0a100e; --band-ink: #e7efec; --band-muted: #93a49d;
+  --bg: #121311; --paper: #1b1c1a; --ink: #eceae4; --muted: #a3a59d; --line: #2c2e2a;
+  --accent: #6cc3a6; --accent-ink: #0d1a15; --accent-soft: #1b2c26; --warn: #e3a95c; --warn-soft: #2e2416;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
-body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
-.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.inner { max-width: 1120px; margin: 0 auto; }
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; }
-h1 { font-size: clamp(2.4rem, 6.4vw, 4.4rem); font-weight: 800; letter-spacing: -0.025em; }
-h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.015em; }
-h3 { font-size: 1.15rem; font-weight: 700; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--ink); font: 1.0625rem/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: max(20px, env(safe-area-inset-left, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.5rem, 6.2vw, 4.5rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 700; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); line-height: 1.06; letter-spacing: -0.028em; font-weight: 700; }
+h3 { font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.01em; font-weight: 650; }
 p { margin: 0; }
 a { color: inherit; }
-.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
-.lead { font-size: 1.15rem; color: var(--muted); max-width: 58ch; }
-.sec { padding-block: 88px; }
-.sec-head { display: flex; flex-direction: column; gap: 12px; max-width: 720px; margin-bottom: 40px; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.muted { color: var(--muted); }
+.lead { font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.5; color: var(--muted); max-width: 36em; text-wrap: pretty; }
+section { padding-block: clamp(72px, 11vw, 132px); }
+main [id] { scroll-margin-top: 72px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 0.95rem var(--font-body); padding: 12px 20px; border-radius: 999px; border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: transform .15s ease, background .15s ease; }
-.btn:hover { transform: translateY(-1px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent; font: 600 1rem var(--font); text-decoration: none; cursor: pointer; transition: transform 120ms ease-out, background-color 160ms ease; -webkit-tap-highlight-color: transparent; }
+.btn:active { transform: scale(0.97); }
 .btn-primary { background: var(--accent); color: var(--accent-ink); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn-badge { background: var(--badge); color: var(--badge-ink); }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+.btn-quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-quiet:hover { border-color: var(--muted); }
+.link { color: var(--accent); font-weight: 600; text-decoration: none; }
+.link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* Nav */
-.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.nav .inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
-.logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; text-decoration: none; }
-.logo-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--badge); color: var(--badge-ink); display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; }
-.nav-links { display: flex; gap: 24px; font-size: 0.92rem; }
-.nav-links a { text-decoration: none; color: var(--muted); }
-.nav-links a:hover { color: var(--ink); }
-.nav .btn { padding: 9px 16px; font-size: 0.88rem; }
+/* Barre du haut : matière translucide, la page défile dessous */
+.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px); }
+.top::after { content: ""; position: absolute; inset: auto 0 -12px; height: 12px; pointer-events: none; background: linear-gradient(var(--bg), transparent); opacity: .6; }
+.top .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
+.brand { font-weight: 700; letter-spacing: -0.02em; font-size: 1.05rem; text-decoration: none; margin-right: auto; display: flex; align-items: center; gap: 9px; }
+.brand i { width: 22px; height: 22px; border-radius: 7px; background: var(--accent); display: inline-block; position: relative; }
+.brand i::after { content: ""; position: absolute; left: 6px; top: 5px; width: 10px; height: 7px; border-left: 2.5px solid var(--accent-ink); border-bottom: 2.5px solid var(--accent-ink); transform: rotate(-45deg); }
+.top nav { display: flex; gap: 26px; font-size: 0.95rem; }
+.top nav a { text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--ink); }
+.top .btn { min-height: 38px; padding: 0 16px; font-size: 0.92rem; }
+@media (prefers-reduced-transparency: reduce) { .top { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; } }
 
-/* Hero */
-.hero { padding-block: 72px 88px; }
-.hero .inner { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
-.hero-copy { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
-.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--badge) 62%, var(--badge) 92%, transparent 92%); padding: 0 4px; }
-.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero-proof { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.88rem; color: var(--muted); }
-.hero-proof span::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+/* Ouverture */
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(72px, 10vw, 120px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 88px); align-items: center; }
+.hero-copy { display: flex; flex-direction: column; gap: 28px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hero-note { font-size: 0.95rem; color: var(--muted); }
 
-.stage { position: relative; display: flex; flex-direction: column; align-items: center; }
-.name-badge { position: relative; align-self: flex-start; margin: 0 0 -2px max(-4px, calc(50% - 190px)); transform: rotate(-6deg); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; width: 170px; box-shadow: 0 16px 30px -18px rgba(0,0,0,.35); overflow: hidden; z-index: 2; }
-.name-badge .clip { height: 10px; background: var(--badge); }
-.name-badge .b-body { padding: 10px 14px 14px; display: flex; flex-direction: column; gap: 2px; }
-.name-badge .b-role { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.name-badge .b-name { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; }
-.name-badge .b-day { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); }
+/* Le téléphone : le vrai produit */
+.phone { width: 100%; max-width: 330px; justify-self: center; background: var(--paper); border-radius: 40px; padding: 10px; box-shadow: 0 1px 0 var(--line), 0 0 0 1px var(--line), 0 40px 80px -40px rgba(30, 28, 20, .35); }
+.screen { border-radius: 31px; background: var(--paper); overflow: hidden; border: 1px solid var(--line); }
+.scr-head { padding: 22px 20px 14px; display: flex; flex-direction: column; gap: 4px; }
+.scr-head small { color: var(--muted); font-size: 0.78rem; }
+.scr-head strong { font-size: 1.15rem; letter-spacing: -0.015em; }
+.scr-video { margin: 0 14px; aspect-ratio: 16 / 10; border-radius: 16px; background: linear-gradient(160deg, #3b3127, #1e1914); position: relative; display: flex; align-items: flex-end; padding: 12px; }
+.scr-video span { background: rgba(0,0,0,.55); color: #fff; font-size: 0.74rem; padding: 4px 8px; border-radius: 6px; line-height: 1.35; }
+.scr-video::before { content: ""; position: absolute; left: 50%; top: 42%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: rgba(255,255,255,.88); }
+.scr-video::after { content: ""; position: absolute; left: 50%; top: 42%; margin: -8px 0 0 -4px; border-left: 14px solid #2a231c; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+.scr-steps { list-style: none; margin: 0; padding: 16px 20px 22px; display: flex; flex-direction: column; gap: 11px; font-size: 0.86rem; line-height: 1.4; }
+.scr-steps li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; }
+.scr-steps b { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.72rem; background: var(--accent-soft); color: var(--accent); font-variant-numeric: tabular-nums; }
+.scr-steps .t { color: var(--muted); font-size: 0.74rem; font-variant-numeric: tabular-nums; display: block; }
+.caption { margin-top: 18px; font-size: 0.85rem; color: var(--muted); text-align: center; }
 
-.phone { width: 100%; max-width: 300px; background: var(--surface); border: 1px solid var(--line); border-radius: 32px; padding: 20px 18px 24px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); display: flex; flex-direction: column; gap: 12px; }
-.ph-bar { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
-.ph-prog { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
-.ph-prog span { display: block; height: 100%; background: var(--accent); }
-.ph-title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
-.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 0.86rem; }
-.steps li { display: flex; gap: 10px; align-items: flex-start; }
-.steps .n { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.7rem; background: var(--accent-soft); color: var(--accent); }
-.steps li.done .n { background: var(--accent); color: var(--accent-ink); }
-.quiz { border-top: 1px dashed var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; font-size: 0.83rem; }
-.quiz .opt { border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
-.quiz .opt.ok { border-color: var(--accent); background: var(--accent-soft); }
+/* Récit en trois temps */
+.story { display: grid; gap: clamp(48px, 7vw, 80px); margin-top: clamp(40px, 6vw, 64px); }
+.beat { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 8px 24px; max-width: 760px; }
+.beat .num { font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.9; color: var(--accent); font-variant-numeric: tabular-nums; }
+.beat h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); margin-bottom: 10px; }
+.beat p { color: var(--muted); max-width: 34em; }
 
-/* Sectors strip */
-.strip { border-block: 1px solid var(--line); padding-block: 22px; }
-.strip .inner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; color: var(--muted); font-size: 0.92rem; }
-.strip strong { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); font-weight: 500; }
-
-/* Problem */
-.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.problem-grid > div { display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--ink); padding-top: 18px; min-width: 0; }
-.problem-grid p { color: var(--muted); }
-.big { font-family: var(--font-display); font-weight: 800; font-size: 2.4rem; line-height: 1; }
-
-/* How */
-.how { background: var(--band); color: var(--band-ink); }
-.how .eyebrow { color: var(--badge); }
-.how .lead { color: var(--band-muted); }
-.how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
-.how-grid > div { display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid color-mix(in srgb, var(--band-ink) 16%, transparent); border-radius: var(--radius); min-width: 0; }
-.how-grid > div::before { counter-increment: s; content: "Étape " counter(s); font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--badge); }
-.how-grid p { color: var(--band-muted); font-size: 0.95rem; }
-.how-time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--band-ink); opacity: .8; margin-top: auto; }
-
-/* Demo */
-.demo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-.choices { display: flex; flex-direction: column; gap: 10px; }
-.choice { display: flex; gap: 14px; align-items: center; text-align: left; width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; font: inherit; color: inherit; }
-.choice[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
-.thumb { flex: none; width: 52px; height: 52px; border-radius: 8px; background: var(--band); color: var(--band-ink); display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.7rem; position: relative; }
-.thumb::after { content: ""; position: absolute; width: 0; height: 0; border-left: 10px solid var(--badge); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
-.choice small { display: block; color: var(--muted); font-size: 0.82rem; }
-.gen-log { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); min-height: 72px; }
-.gen-log li.ok::before { content: "✓ "; color: var(--accent); }
-.gen-log li.run::before { content: "… "; color: var(--badge); }
-.langs { display: flex; gap: 6px; flex-wrap: wrap; }
-.lang { font: 500 0.78rem var(--font-mono); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
-.lang[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.result-empty { color: var(--muted); font-size: 0.95rem; border: 1px dashed var(--line); border-radius: 10px; padding: 28px; text-align: center; }
-.result .ph-title { font-size: 1.25rem; }
-.result .steps { font-size: 0.95rem; gap: 12px; }
-.qopt { display: block; width: 100%; text-align: left; font: inherit; font-size: 0.9rem; color: inherit; background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; cursor: pointer; }
-.qopt.right { border-color: var(--accent); background: var(--accent-soft); }
-.qopt.wrong { border-color: var(--badge); }
-.qfeedback { font-size: 0.88rem; color: var(--muted); min-height: 1.4em; }
-
-/* Features */
-.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.feat-grid > div { padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.feat-grid p { color: var(--muted); font-size: 0.95rem; }
-.feat-tag.soon { background: var(--badge); color: var(--badge-ink); }
-.soon-inline { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-left: 4px; }
-.plans-note { margin-top: 20px; color: var(--muted); font-size: 0.95rem; }
-.plans-note a { color: var(--accent); font-weight: 600; }
-.form-legal { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-.form-legal a, footer span a { color: var(--accent); }
-.roi-rows small { color: var(--band-muted); font-size: 0.78rem; }
+/* Le quiz */
+.quiz-sec { background: var(--paper); border-block: 1px solid var(--line); }
+.quiz-sec .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 88px); align-items: center; }
+.rules { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.rules li { display: grid; grid-template-columns: 5.6rem 1fr; gap: 16px; align-items: baseline; }
+.rules b { white-space: nowrap; font-size: 1.35rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.rules span { color: var(--muted); }
+.qcard { background: var(--bg); border: 1px solid var(--line); border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+.qcard small { color: var(--muted); font-size: 0.82rem; }
+.qcard strong { font-size: 1.08rem; line-height: 1.4; letter-spacing: -0.01em; }
+.qopt { display: block; width: 100%; text-align: left; font: inherit; font-size: 0.97rem; line-height: 1.4; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; cursor: pointer; transition: transform 120ms ease-out, border-color 160ms ease, background-color 160ms ease; -webkit-tap-highlight-color: transparent; }
+.qopt:active:not(:disabled) { transform: scale(0.985); }
+.qopt:hover:not(:disabled) { border-color: var(--muted); }
 .qopt:disabled { cursor: default; color: inherit; opacity: 1; }
-main [id] { scroll-margin-top: 84px; }
-.feat-tag { align-self: flex-start; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.qopt.right { border-color: var(--accent); background: var(--accent-soft); }
+.qopt.wrong { border-color: var(--warn); background: var(--warn-soft); }
+.qfb { font-size: 0.93rem; color: var(--muted); min-height: 1.4em; }
+.qfb[hidden] { display: none; }
+.again { align-self: flex-start; background: none; border: 0; padding: 0; font: 600 0.93rem var(--font); color: var(--accent); cursor: pointer; }
 
-/* ROI */
-.roi { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.field label { font-weight: 600; font-size: 0.95rem; display: flex; justify-content: space-between; gap: 12px; }
-.field output { font-family: var(--font-mono); font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; }
-input[type="range"] { width: 100%; accent-color: var(--accent); }
-.roi-out { background: var(--band); color: var(--band-ink); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.roi-out .label { color: var(--band-muted); }
-.roi-big { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.4rem, 6vw, 3.4rem); line-height: 1; color: var(--badge); font-variant-numeric: tabular-nums; }
-.roi-rows { display: flex; flex-direction: column; gap: 8px; font-size: 0.92rem; }
-.roi-rows div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid color-mix(in srgb, var(--band-ink) 14%, transparent); padding-bottom: 8px; }
-.roi-rows b { font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.roi-note { font-size: 0.8rem; color: var(--band-muted); }
+/* Deux façons de créer */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: clamp(36px, 5vw, 56px); }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 30px; display: flex; flex-direction: column; gap: 12px; }
+.card p { color: var(--muted); }
 
-/* Pricing */
-.billing { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; align-self: flex-start; }
-.billing button { font: 600 0.85rem var(--font-body); border: 0; background: transparent; color: var(--muted); padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+/* Tarifs */
+.billing { display: inline-flex; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 2px; margin-top: 28px; }
+.billing button { font: 600 0.92rem var(--font); border: 0; background: transparent; color: var(--muted); padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: background-color 160ms ease, color 160ms ease; }
 .billing button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-.billing .save { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); margin-left: 4px; }
-.billing button[aria-pressed="true"] .save { color: var(--badge); }
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
-.plan { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 16px; position: relative; min-width: 0; }
-.plan.featured { border: 2px solid var(--accent); }
-.plan .flag { position: absolute; top: -12px; left: 24px; background: var(--badge); color: var(--badge-ink); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; }
-.price { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; line-height: 1; font-variant-numeric: tabular-nums; }
-.price small { font-family: var(--font-body); font-weight: 500; font-size: 0.9rem; color: var(--muted); }
-.plan ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.93rem; }
-.plan li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
-.plan .btn { margin-top: auto; }
-.plan-for { color: var(--muted); font-size: 0.92rem; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+.plan { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+.price { font-family: var(--font-display); font-size: 3rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.price small { display: inline-block; font: 500 1rem var(--font); letter-spacing: 0; color: var(--muted); }
+.plan ul { margin: 0; padding: 0 0 0 1.1em; display: flex; flex-direction: column; gap: 8px; color: var(--muted); }
+.plan .btn { margin-top: auto; align-self: flex-start; }
+.pilot { margin-top: 20px; border-radius: var(--r); padding: 30px 32px; background: var(--accent); color: var(--accent-ink); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 40px; align-items: center; }
+.pilot p { opacity: .88; max-width: 40em; margin-top: 6px; }
+.pilot .btn { background: var(--accent-ink); color: var(--accent); }
+.fine { margin-top: 18px; font-size: 0.92rem; color: var(--muted); }
 
-/* Pilot */
-.pilot { background: var(--badge); color: var(--badge-ink); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
-.pilot h2 { color: var(--badge-ink); }
-.pilot p { max-width: 54ch; }
-.pilot ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-weight: 500; }
-.pilot .eyebrow { color: var(--badge-ink); opacity: .75; }
-
-/* FAQ */
-.faq { display: flex; flex-direction: column; border-top: 1px solid var(--line); max-width: 820px; }
-.faq details { border-bottom: 1px solid var(--line); padding-block: 18px; }
-.faq summary { cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+/* Questions */
+.faq { margin-top: clamp(32px, 5vw, 48px); border-top: 1px solid var(--line); max-width: 780px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 22px; font-weight: 600; font-size: 1.08rem; letter-spacing: -0.01em; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-family: var(--font-mono); color: var(--accent); }
-.faq details[open] summary::after { content: "–"; }
-.faq details p { color: var(--muted); margin-top: 10px; max-width: 65ch; }
+.faq summary::after { content: ""; flex: none; width: 10px; height: 10px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg) translateY(-3px); transition: transform 220ms cubic-bezier(.2, .8, .2, 1); }
+.faq details[open] summary::after { transform: rotate(225deg) translateY(-3px); }
+.faq details p { color: var(--muted); padding-bottom: 22px; max-width: 40em; }
 
 /* Contact */
-.contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
-.contact-copy { display: flex; flex-direction: column; gap: 16px; }
-.form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; min-width: 0; }
+.contact .wrap { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 80px); align-items: start; }
+.contact-copy { display: flex; flex-direction: column; gap: 18px; }
+.form { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form .full { grid-column: 1 / -1; }
-.form label { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; font-weight: 600; }
-.form input, .form select, .form textarea { font: inherit; font-weight: 400; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; width: 100%; }
-.form textarea { min-height: 90px; resize: vertical; }
-.form .err { color: var(--badge-ink); background: var(--badge); border-radius: 6px; padding: 8px 10px; font-size: 0.85rem; }
+.form label { display: flex; flex-direction: column; gap: 7px; font-size: 0.9rem; font-weight: 600; }
+.form input, .form select, .form textarea { font: inherit; font-size: 1rem; font-weight: 400; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px; width: 100%; min-height: 48px; }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.form textarea { min-height: 96px; resize: vertical; }
+.form .err { color: var(--warn); background: var(--warn-soft); border-radius: 10px; padding: 10px 12px; font-size: 0.92rem; }
+.form-legal { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+.form-legal a { color: var(--accent); }
 .sent { display: flex; flex-direction: column; gap: 10px; }
 
-/* Footer */
-footer { border-top: 1px solid var(--line); padding-block: 36px 88px; color: var(--muted); font-size: 0.88rem; }
-footer .inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
-footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
+footer { border-top: 1px solid var(--line); padding-block: 36px max(48px, env(safe-area-inset-bottom, 0px)); font-size: 0.9rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
 footer a { text-decoration: none; }
+footer a:hover { color: var(--ink); }
 
-@media (max-width: 900px) {
-  .hero .inner, .demo, .roi, .contact, .pilot { grid-template-columns: 1fr; }
-  .how-grid { grid-template-columns: 1fr 1fr; }
-  .feat-grid, .plans, .problem-grid { grid-template-columns: 1fr; }
-  .nav .inner { flex-wrap: wrap; row-gap: 6px; }
-  .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 20px; white-space: nowrap; padding-bottom: 4px; scrollbar-width: none; }
-  main [id] { scroll-margin-top: 112px; }
-  .stage { margin-top: 12px; }
+@media (max-width: 860px) {
+  .hero .wrap, .quiz-sec .wrap, .contact .wrap, .two, .plans { grid-template-columns: 1fr; }
+  .top nav { display: none; }
+  .phone { max-width: 300px; }
+  .pilot { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
-  .how-grid { grid-template-columns: 1fr; }
-  .form { grid-template-columns: 1fr; }
-  .pilot { padding: 28px 22px; }
-  .name-badge { width: 140px; }
-  .sec { padding-block: 64px; }
-  .nav .btn-ghost { display: none; }
+  .beat { grid-template-columns: 1fr; }
+  .beat .num { font-size: 2.2rem; margin-bottom: 4px; }
+  .form { grid-template-columns: 1fr; padding: 22px; }
+  .plan, .card { padding: 24px; }
+  .pilot { padding: 26px 22px; }
+  .rules li { grid-template-columns: 4.8rem 1fr; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 </style>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f2b33d'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' text-anchor='middle' fill='%23362500'%3EP%3C/text%3E%3C/svg%3E">
@@ -269,313 +207,195 @@ footer a { text-decoration: none; }
 </head>
 <body>
 
-<header class="nav band">
-  <div class="inner">
-    <a class="logo" href="#top"><span class="logo-mark">PdP</span>Prise de poste</a>
-    <nav class="nav-links" aria-label="Navigation principale">
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><i aria-hidden="true"></i>Prise de poste</a>
+    <nav aria-label="Navigation principale">
       <a href="#comment">Comment ça marche</a>
-      <a href="#demo">Démo</a>
       <a href="#tarifs">Tarifs</a>
-      <a href="#faq">FAQ</a>
-      <a href="app/">Mon espace</a>
+      <a href="#questions">Questions</a>
+      <a href="app/">Se connecter</a>
     </nav>
-    <div style="display:flex;gap:8px">
-      <a class="btn btn-ghost" href="#tarifs">Tarifs</a>
-      <a class="btn btn-primary" href="#contact">Essayer</a>
-    </div>
+    <a class="btn btn-primary" href="app/">Essayer</a>
   </div>
 </header>
 
 <main id="top">
 
-  <section class="hero band">
-    <div class="inner">
+  <section class="hero">
+    <div class="wrap">
       <div class="hero-copy">
-        <span class="eyebrow">Formation des équipes de terrain · Pré‑lancement, 10 places pilotes</span>
-        <h1>Vos nouveaux <em>opérationnels</em> en quelques jours.</h1>
-        <p class="lead">Filmez votre meilleur employé pendant 2 minutes. Prise de poste en fait une formation courte, avec quiz, envoyée par SMS. Pas d'application à installer, pas de contenu à écrire.</p>
+        <h1>Le nouveau arrive lundi. Sa formation est prête avant.</h1>
+        <p class="lead">Filmez une tâche avec votre téléphone, ou écrivez-la. Prise de poste en fait une petite formation : la vidéo sous-titrée, les étapes et un quiz. Vous l'envoyez par SMS ou WhatsApp, vous voyez qui a compris.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#contact" data-plan="Pilote">Rejoindre le programme pilote</a>
-          <a class="btn btn-ghost" href="app/">Déposer une vidéo</a>
+          <a class="btn btn-primary" href="app/">Créer ma première formation</a>
+          <a class="btn btn-quiet" href="#comment">Voir comment ça marche</a>
         </div>
-        <div class="hero-proof">
-          <span>Mise en place faite avec vous</span>
-          <span>Sans engagement</span>
-          <span>Sous-titres automatiques</span>
-        </div>
+        <p class="hero-note">Gratuit pendant un mois pour les 10 premiers commerces. Sans engagement.</p>
       </div>
-      <div class="stage" aria-hidden="true">
-        <div class="name-badge">
-          <div class="clip"></div>
-          <div class="b-body">
-            <span class="b-role">Nouvelle recrue</span>
-            <span class="b-name">Inès</span>
-            <span class="b-day">J1 · en formation</span>
+      <figure style="margin:0">
+        <div class="phone" aria-hidden="true">
+          <div class="screen">
+            <div class="scr-head"><small>Formation · 30 s de vidéo</small><strong>Préparer un espresso</strong></div>
+            <div class="scr-video"><span>Répartis 18 g de café moulu de façon égale.</span></div>
+            <ol class="scr-steps">
+              <li><b>1</b><span>Purger le groupe 2 secondes avant de mettre le porte-filtre.<span class="t">0:00</span></span></li>
+              <li><b>2</b><span>Répartir 18 g de café moulu de façon égale.<span class="t">0:03</span></span></li>
+              <li><b>3</b><span>Tasser en gardant le tasseur bien droit.<span class="t">0:09</span></span></li>
+              <li><b>4</b><span>Verrouiller, placer la tasse, lancer l'extraction.<span class="t">0:11</span></span></li>
+            </ol>
           </div>
         </div>
-        <div class="phone">
-          <div class="ph-bar"><span>Café des Halles</span><span>Module 2/5</span></div>
-          <div class="ph-prog"><span style="width:58%"></span></div>
-          <div class="ph-title">Faire un cappuccino</div>
-          <ol class="steps">
-            <li class="done"><span class="n">✓</span>Purger la buse vapeur 2 secondes</li>
-            <li class="done"><span class="n">✓</span>Lait froid jusqu'au bec du pichet</li>
-            <li><span class="n">3</span>Chauffer jusqu'à 60–65 °C, pas plus</li>
-            <li><span class="n">4</span>Verser au centre, tasse inclinée</li>
-          </ol>
-          <div class="quiz">
-            <strong>Quiz · Le lait siffle et dépasse 70 °C ?</strong>
-            <span class="opt">Je le sers quand même</span>
-            <span class="opt ok">Je recommence avec du lait froid</span>
+        <figcaption class="caption">Une vraie formation sortie de l'appli, à partir d'une vidéo de 30 secondes.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="comment" style="padding-top:0">
+    <div class="wrap">
+      <h2>Vous montrez une fois.<br>L'appli répète à chaque nouveau.</h2>
+      <div class="story">
+        <div class="beat">
+          <span class="num">1</span>
+          <div>
+            <h3>Vous filmez la tâche, ou vous l'écrivez</h3>
+            <p>Une à trois minutes au téléphone, pendant que vous faites le geste. Pas envie de filmer ? Écrivez vos consignes, ajoutez quelques photos, l'appli fabrique la vidéo avec une voix.</p>
+          </div>
+        </div>
+        <div class="beat">
+          <span class="num">2</span>
+          <div>
+            <h3>Vous relisez avant d'envoyer</h3>
+            <p>En général dans la journée, la formation vous attend dans votre espace : la vidéo sous-titrée, les étapes minutées et le quiz. Vous corrigez un mot, une réponse, ou vous demandez un autre quiz. Rien ne part sans votre accord.</p>
+          </div>
+        </div>
+        <div class="beat">
+          <span class="num">3</span>
+          <div>
+            <h3>Votre recrue l'ouvre sur son téléphone</h3>
+            <p>Un lien par SMS ou WhatsApp, sans application ni mot de passe. Elle regarde la vidéo, passe le quiz, et vous voyez son résultat. Si elle bloque, vous êtes prévenu.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="strip band">
-    <div class="inner">
-      <strong>Pensé pour</strong>
-      <span>Boulangeries</span><span>Cafés et restaurants</span><span>Commerces de détail</span><span>Salons de coiffure</span><span>Hôtels</span><span>Logistique</span><span>Propreté</span>
-    </div>
-  </div>
-
-  <section class="sec band" id="probleme">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Le problème</span>
-        <h2>Former « sur le tas » coûte plus cher qu'on ne le croit.</h2>
+  <section class="quiz-sec" id="quiz">
+    <div class="wrap">
+      <div>
+        <h2>Pas un quiz pour la forme.</h2>
+        <p class="lead" style="margin-top:20px">Les questions mettent la recrue en situation, comme au comptoir. Essayez celle-ci, tirée de la formation espresso.</p>
+        <ul class="rules">
+          <li><b>80 %</b><span>de bonnes réponses pour valider. En dessous, elle revoit la vidéo.</span></li>
+          <li><b>2 essais</b><span>Après deux échecs, elle est marquée « à accompagner » et vous recevez un email.</span></li>
+          <li><b>Vidéo</b><span>Le quiz ne s'ouvre qu'une fois la vidéo vraiment regardée.</span></li>
+        </ul>
       </div>
-      <div class="problem-grid">
-        <div>
-          <span class="big">10–15 h</span>
-          <h3>de manager par nouvelle recrue</h3>
-          <p>Montrer la caisse, les produits, les procédures, répéter. Pendant ce temps, personne ne s'occupe des clients.</p>
-        </div>
-        <div>
-          <span class="big">Chacun</span>
-          <h3>formé à sa façon</h3>
-          <p>Chacun apprend selon qui est là ce jour-là. Les erreurs se répètent et la qualité varie d'un employé à l'autre.</p>
-        </div>
-        <div>
-          <span class="big">0</span>
-          <h3>trace des formations obligatoires</h3>
-          <p>Hygiène, sécurité, gestes et postures : en cas de contrôle, il faut prouver que l'équipe a été formée.</p>
-        </div>
-      </div>
-      <p class="lead" style="margin-top:28px;font-size:.85rem">Ordres de grandeur indicatifs, à affiner avec nos premiers clients pilotes.</p>
-    </div>
-  </section>
-
-  <section class="sec band how" id="comment">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Comment ça marche</span>
-        <h2>De votre téléphone à une équipe formée.</h2>
-        <p class="lead">Vous savez déjà tout ce qu'il faut transmettre. Prise de poste s'occupe de le mettre en forme.</p>
-      </div>
-      <div class="how-grid">
-        <div><h3>Vous filmez</h3><p>2 minutes de démonstration, une photo de votre fiche procédure ou un simple message vocal.</p><span class="how-time">≈ 2 min</span></div>
-        <div><h3>L'IA prépare le module</h3><p>Étapes claires, vidéo découpée, quiz de vérification. Vous relisez et ajustez si besoin.</p><span class="how-time">≈ 1 min</span></div>
-        <div><h3>Votre recrue reçoit un lien</h3><p>Par SMS ou WhatsApp. Elle suit la formation sur son téléphone, sans compte ni application.</p><span class="how-time">3 min par module</span></div>
-        <div><h3>Vous suivez les progrès</h3><p>Qui a terminé et qui bloque sur quel quiz. Les attestations pour les formations obligatoires arrivent bientôt.</p><span class="how-time">en temps réel</span></div>
+      <div class="qcard" id="qcard">
+        <small>Question 4 sur 6</small>
+        <strong>Ton double espresso est terminé en 12 secondes et la tasse est déjà pleine. Que fais-tu ?</strong>
+        <div id="qopts" style="display:flex;flex-direction:column;gap:10px"></div>
+        <p class="qfb" id="qfb" role="status" hidden></p>
+        <button class="again" id="qagain" type="button" hidden>Recommencer</button>
       </div>
     </div>
   </section>
 
-  <section class="sec band" id="demo">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Démo</span>
-        <h2>Essayez : choisissez une vidéo, générez la formation.</h2>
-        <p class="lead">Exemples préparés pour la démo. Avec votre compte, c'est votre propre vidéo qui sert de base.</p>
-      </div>
-      <div class="demo">
-        <div class="panel">
-          <span class="label">1 · Choisissez une vidéo exemple</span>
-          <div class="choices" id="choices"></div>
-          <button class="btn btn-primary" id="genBtn" type="button">Générer la formation</button>
-          <span class="label">Préparation</span>
-          <ul class="gen-log" id="genLog" aria-live="polite"><li>En attente d'une vidéo.</li></ul>
+  <section>
+    <div class="wrap">
+      <h2>Ce que vous gardez en main</h2>
+      <div class="two">
+        <div class="card">
+          <h3>Le suivi de chaque recrue</h3>
+          <p>Qui a fini, qui a réussi, qui doit être accompagné, et les questions les plus ratées. Vous savez quoi reprendre avec qui.</p>
         </div>
-        <div class="panel" id="resultPanel">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-            <span class="label">2 · Le module reçu par la recrue</span>
-            <div class="langs" id="langs" role="group" aria-label="Langue du module"></div>
-          </div>
-          <div id="result"><div class="result-empty">Le module apparaîtra ici : étapes, quiz et traduction.</div></div>
+        <div class="card">
+          <h3>Des parcours pour la première semaine</h3>
+          <p>Mettez plusieurs formations dans l'ordre : l'ouverture, la caisse, l'hygiène. Un seul lien pour tout, la recrue avance à son rythme.</p>
+        </div>
+        <div class="card">
+          <h3>Vos vidéos restent les vôtres</h3>
+          <p>Une formation n'est visible qu'avec son lien. Supprimez-la, la vidéo est effacée. Hébergement des données en Europe.</p>
+        </div>
+        <div class="card">
+          <h3>Bientôt</h3>
+          <p>La traduction pour les recrues qui lisent mal le français, et une attestation datée pour les formations obligatoires.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec band" id="fonctions" style="padding-top:0">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Fonctionnalités</span>
-        <h2>Tout ce qu'il faut, rien de compliqué.</h2>
-      </div>
-      <div class="feat-grid">
-        <div><span class="feat-tag">Création</span><h3>Zéro contenu à écrire</h3><p>Vidéo, photo ou vocal : l'IA rédige les étapes et le quiz. Vous gardez la main pour corriger.</p></div>
-        <div><span class="feat-tag soon">Bientôt</span><h3>Bibliothèque par métier</h3><p>Des modèles prêts pour la boulangerie, le café, la coiffure ou le magasin, à personnaliser en un clic.</p></div>
-        <div><span class="feat-tag">Diffusion</span><h3>Un lien, pas une app</h3><p>Envoyé par SMS ou WhatsApp. Fonctionne sur n'importe quel téléphone.</p></div>
-        <div><span class="feat-tag soon">Bientôt</span><h3>Traduction automatique</h3><p>Chaque recrue suivra la formation dans sa langue. En attendant, chaque vidéo a ses sous-titres en français.</p></div>
-        <div><span class="feat-tag">Suivi</span><h3>Tableau de bord simple</h3><p>Résultat de chaque recrue, questions les plus ratées, alerte par email quand quelqu'un bloque.</p></div>
-        <div><span class="feat-tag soon">Bientôt</span><h3>Attestations</h3><p>Un justificatif daté pour chaque formation obligatoire, prêt à montrer en cas de contrôle.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec band" id="roi" style="padding-top:0">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Calculateur</span>
-        <h2>Combien vous coûte la formation aujourd'hui ?</h2>
-      </div>
-      <div class="roi">
-        <div class="panel">
-          <div class="field">
-            <label for="hires">Recrutements par an <output id="hiresOut">12</output></label>
-            <input type="range" id="hires" min="1" max="200" value="12">
-          </div>
-          <div class="field">
-            <label for="hours">Heures de manager pour former une recrue <output id="hoursOut">12 h</output></label>
-            <input type="range" id="hours" min="2" max="40" value="12">
-          </div>
-          <div class="field">
-            <label for="rate">Coût horaire chargé du manager <output id="rateOut">25 €</output></label>
-            <input type="range" id="rate" min="15" max="60" value="25">
-          </div>
-          <div class="field">
-            <label for="sites">Nombre de sites <output id="sitesOut">1</output></label>
-            <input type="range" id="sites" min="1" max="50" value="1">
-          </div>
-        </div>
-        <div class="roi-out" aria-live="polite">
-          <span class="label">Économie nette estimée par an</span>
-          <span class="roi-big" id="roiNet">—</span>
-          <div class="roi-rows">
-            <div><span>Coût actuel de la formation</span><b id="roiNow">—</b></div>
-            <div><span>Temps manager économisé</span><b id="roiHours">—</b></div>
-            <div><span>Abonnement Prise de poste <small id="roiPlan"></small></span><b id="roiCost">—</b></div>
-          </div>
-          <p class="roi-note">Hypothèse : 60 % du temps de formation du manager est remplacé par les modules. Abonnement calculé sur l'offre adaptée à votre nombre de sites, en paiement annuel.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec band" id="tarifs" style="padding-top:0">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Tarifs</span>
-        <h2>Un prix clair, sans devis.</h2>
-        <p class="lead">Tarifs de lancement, sans engagement. Les premiers commerces démarrent avec le programme pilote : réservez votre place dès maintenant.</p>
-      </div>
+  <section id="tarifs" style="padding-top:0">
+    <div class="wrap">
+      <h2>Un prix simple</h2>
+      <p class="lead" style="margin-top:16px">Tarifs de lancement, sans engagement. Formations illimitées.</p>
       <div class="billing" role="group" aria-label="Période de facturation">
-        <button type="button" id="billM" aria-pressed="true">Mensuel</button>
-        <button type="button" id="billY" aria-pressed="false">Annuel <span class="save">2 mois offerts</span></button>
+        <button type="button" id="billM" aria-pressed="true">Au mois</button>
+        <button type="button" id="billY" aria-pressed="false">À l'année, 2 mois offerts</button>
       </div>
       <div class="plans">
         <div class="plan">
-          <h3>Solo</h3>
-          <p class="plan-for">Un commerce, jusqu'à 20 employés.</p>
-          <div class="price" data-m="35" data-y="29"><span class="v">35 €</span> <small>/ mois</small></div>
+          <h3>Un commerce</h3>
+          <div class="price" data-m="35" data-y="29"><span class="v">35 €</span> <small>par mois</small></div>
           <ul>
-            <li>Modules illimités</li>
-            <li>Message prêt à envoyer par SMS ou WhatsApp</li>
-            <li>Bibliothèque par métier <small class="soon-inline">bientôt</small></li>
-            <li>Suivi de progression</li>
+            <li>Jusqu'à 20 employés</li>
+            <li>Formations et recrues illimitées</li>
+            <li>Suivi des résultats et alertes par email</li>
           </ul>
-          <a class="btn btn-ghost" href="#contact" data-plan="Solo">Réserver ma place</a>
-        </div>
-        <div class="plan featured">
-          <span class="flag">Réseaux et franchises</span>
-          <h3>Réseau</h3>
-          <p class="plan-for">De 2 à 50 points de vente.</p>
-          <div class="price" data-m="19" data-y="16"><span class="v">19 €</span> <small>/ site / mois</small></div>
-          <ul>
-            <li>Tout Solo, sur chaque site</li>
-            <li>Parcours de plusieurs formations</li>
-            <li>Tableau de bord par site <small class="soon-inline">bientôt</small></li>
-            <li>Traduction automatique <small class="soon-inline">bientôt</small></li>
-            <li>Attestations de formation <small class="soon-inline">bientôt</small></li>
-          </ul>
-          <a class="btn btn-primary" href="#contact" data-plan="Réseau">Réserver ma place</a>
+          <a class="btn btn-quiet" href="#contact" data-plan="Solo">Choisir cette offre</a>
         </div>
         <div class="plan">
-          <h3>Entreprise</h3>
-          <p class="plan-for">PME de 50 à 500 salariés.</p>
-          <div class="price"><span class="v">Dès 4 €</span> <small>/ employé / mois</small></div>
+          <h3>Plusieurs boutiques</h3>
+          <div class="price" data-m="19" data-y="16"><span class="v">19 €</span> <small>par boutique et par mois</small></div>
           <ul>
-            <li>Tout Réseau</li>
-            <li>Connexion SSO <small class="soon-inline">bientôt</small></li>
-            <li>Intégration SIRH et planning <small class="soon-inline">bientôt</small></li>
-            <li>Accompagnement au lancement</li>
+            <li>De 2 à 50 points de vente</li>
+            <li>Tout ce qu'il y a dans l'offre un commerce</li>
+            <li>Parcours de plusieurs formations</li>
           </ul>
-          <a class="btn btn-ghost" href="#contact" data-plan="Entreprise">Parler à l'équipe</a>
+          <a class="btn btn-quiet" href="#contact" data-plan="Réseau">Choisir cette offre</a>
         </div>
       </div>
-      <p class="plans-note">Un seul commerce avec plus de 20 employés ? <a href="#contact" data-plan="Entreprise">Parlons-en</a>, on adapte l'offre.</p>
-    </div>
-  </section>
-
-  <section class="sec band" style="padding-top:0">
-    <div class="inner">
       <div class="pilot">
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <span class="eyebrow">Programme pilote</span>
-          <h2>Nous cherchons 10 commerces pionniers.</h2>
-          <p>On crée avec vous vos premières formations, gratuitement pendant 1 mois. En échange, vous nous dites ce qui marche et ce qui ne marche pas.</p>
+        <div>
+          <h3>Les 10 premiers commerces : un mois offert</h3>
+          <p>On prépare avec vous vos premières formations. En échange, vous nous dites ce qui marche et ce qui ne marche pas. Le tarif de départ vous reste acquis.</p>
         </div>
-        <div style="display:flex;flex-direction:column;gap:16px">
-          <ul>
-            <li>Mise en place faite par nous</li>
-            <li>5 modules créés avec vous</li>
-            <li>Tarif fondateur garanti à vie</li>
-          </ul>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn btn-primary" href="app/">Déposer ma première vidéo</a>
-            <a class="btn btn-ghost" href="#contact" data-plan="Pilote" style="border-color:var(--badge-ink);color:var(--badge-ink)">Être rappelé</a>
-          </div>
-        </div>
+        <a class="btn" href="#contact" data-plan="Pilote">Je veux une place</a>
       </div>
+      <p class="fine">Plus de 20 employés ou plus de 50 boutiques ? <a class="link" href="#contact" data-plan="Autre">Écrivez-nous</a>, on trouvera la bonne formule.</p>
     </div>
   </section>
 
-  <section class="sec band" id="faq" style="padding-top:0">
-    <div class="inner">
-      <div class="sec-head">
-        <span class="eyebrow">Questions fréquentes</span>
-        <h2>Ce qu'on nous demande le plus.</h2>
-      </div>
+  <section id="questions" style="padding-top:0">
+    <div class="wrap">
+      <h2>Vos questions</h2>
       <div class="faq">
-        <details><summary>Comment déposer ma première vidéo ?</summary><p>Créez votre espace en une minute sur la page « Mon espace » (email et mot de passe), filmez une tâche de 1 à 3 minutes et déposez-la. La formation arrive dans votre espace, en général dans la journée, pour que vous la vérifiiez avant de l'envoyer.</p></details>
+        <details><summary>Comment je crée ma première formation ?</summary><p>Créez votre espace en une minute sur la page « Se connecter » (email et mot de passe). Filmez une tâche de 1 à 3 minutes, ou écrivez vos consignes, puis déposez. La formation arrive dans votre espace, en général dans la journée, pour que vous la vérifiiez avant de l'envoyer.</p></details>
         <details><summary>Mes employés doivent-ils installer une application ?</summary><p>Non. Ils reçoivent un lien par SMS ou WhatsApp et suivent la formation dans leur navigateur. Pas de compte, pas de mot de passe.</p></details>
-        <details><summary>Je ne suis pas à l'aise avec la technologie. C'est compliqué ?</summary><p>Si vous savez envoyer une vidéo sur WhatsApp, vous savez utiliser Prise de poste. Et pendant le programme pilote, on fait la mise en place avec vous.</p></details>
-        <details><summary>Que se passe-t-il si l'IA se trompe ?</summary><p>Chaque module vous est présenté avant l'envoi. Vous pouvez modifier une étape, une réponse de quiz ou un mot en quelques secondes.</p></details>
-        <details><summary>Mes vidéos restent-elles privées ?</summary><p>Vos vidéos d'origine restent privées. Une formation publiée n'est accessible qu'avec son lien, que vous transmettez à vos recrues. Elle n'apparaît dans aucune liste publique, et sa vidéo est effacée si vous supprimez la formation.</p></details>
-        <details><summary>Est-ce que ça remplace une formation obligatoire certifiée ?</summary><p>Prise de poste vous aide à former et à garder une trace. Pour certaines formations réglementaires, un organisme certifié reste nécessaire. Nous vous indiquons lesquelles.</p></details>
-        <details><summary>Puis-je arrêter quand je veux ?</summary><p>Oui. L'abonnement est sans engagement. Vous pourrez récupérer vos modules avant de partir.</p></details>
+        <details><summary>Je ne suis pas à l'aise avec la technologie. C'est compliqué ?</summary><p>Si vous savez envoyer une vidéo sur WhatsApp, vous savez utiliser Prise de poste. Pendant le mois offert, on fait la mise en place avec vous.</p></details>
+        <details><summary>Et si l'IA se trompe ?</summary><p>Chaque formation vous est présentée avant l'envoi. Vous pouvez modifier une étape, une réponse du quiz ou un mot. Rien n'est envoyé sans votre accord.</p></details>
+        <details><summary>Mes vidéos restent-elles privées ?</summary><p>Vos vidéos d'origine restent privées. Une formation publiée n'est accessible qu'avec son lien, que vous donnez à vos recrues. Elle n'apparaît dans aucune liste publique, et sa vidéo est effacée si vous supprimez la formation.</p></details>
+        <details><summary>Est-ce que ça remplace une formation obligatoire certifiée ?</summary><p>Non. Prise de poste vous aide à former et à garder une trace. Pour certaines formations réglementaires, un organisme certifié reste nécessaire.</p></details>
+        <details><summary>Puis-je arrêter quand je veux ?</summary><p>Oui. L'abonnement est sans engagement. Vous pourrez récupérer vos formations avant de partir.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="sec band" id="contact" style="padding-top:0">
-    <div class="inner contact">
+  <section class="contact" id="contact" style="padding-top:0">
+    <div class="wrap">
       <div class="contact-copy">
-        <span class="eyebrow">Commencer</span>
-        <h2>Créez votre première formation cette semaine.</h2>
-        <p class="lead">Laissez-nous vos coordonnées. On vous répond par email, en général sous 24 à 48 h, pour préparer ensemble votre premier module.</p>
+        <h2>On en parle ?</h2>
+        <p class="lead">Dites-nous ce que vous voulez apprendre à vos nouveaux. On vous répond par email, en général sous 24 à 48 h.</p>
+        <p class="muted">Vous préférez essayer seul ? <a class="link" href="app/">Créez votre espace</a> et déposez une première vidéo.</p>
       </div>
       <form class="form" id="leadForm" novalidate>
         <p hidden><label>Ne pas remplir<input id="f-bot" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div id="formFields" style="display:contents">
           <label>Prénom et nom<input id="f-name" name="name" autocomplete="name" required></label>
           <label>Nom du commerce<input id="f-shop" name="shop" autocomplete="organization" required></label>
-          <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
-          <label>Téléphone<input id="f-phone" name="phone" type="tel" autocomplete="tel"></label>
-          <label>Secteur
+          <label>Email<input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></label>
+          <label>Téléphone (facultatif)<input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>
+          <label>Votre métier
             <select id="f-sector" name="sector">
               <option>Boulangerie, pâtisserie</option>
               <option>Café, restaurant</option>
@@ -586,22 +406,22 @@ footer a { text-decoration: none; }
               <option>Autre</option>
             </select>
           </label>
-          <label>Offre qui vous intéresse
+          <label>Ce qui vous intéresse
             <select id="f-plan" name="plan">
-              <option>Pilote</option>
-              <option>Solo</option>
-              <option>Réseau</option>
-              <option>Entreprise</option>
+              <option value="Pilote">Le mois offert</option>
+              <option value="Solo">Un commerce</option>
+              <option value="Réseau">Plusieurs boutiques</option>
+              <option value="Autre">Autre chose</option>
             </select>
           </label>
-          <label class="full">Ce que vous voulez former en premier (facultatif)<textarea id="f-msg" name="msg" placeholder="Ex. : ouverture de caisse, préparation des commandes, accueil client…"></textarea></label>
+          <label class="full">La première chose à apprendre à vos nouveaux (facultatif)<textarea id="f-msg" name="msg" placeholder="L'ouverture de la caisse, la préparation des commandes, l'accueil…"></textarea></label>
           <p class="err full" id="formErr" role="alert" hidden></p>
-          <button class="btn btn-primary full" type="submit" id="f-submit">Envoyer ma demande</button>
+          <button class="btn btn-primary full" type="submit" id="f-submit">Envoyer</button>
           <p class="full form-legal">Vos coordonnées servent uniquement à vous répondre au sujet de Prise de poste (3 emails au maximum si vous ne répondez pas). Elles ne sont jamais revendues. Détails dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
         </div>
         <div class="sent full" id="formSent" hidden>
-          <h3 id="sentTitle">Demande envoyée.</h3>
-          <p class="lead" style="font-size:1rem" id="sentText">Merci ! On vous répond par email, en général sous 24 à 48 h, pour préparer votre premier module.</p>
+          <h3 id="sentTitle">C'est envoyé.</h3>
+          <p class="muted" id="sentText">Merci ! On vous répond par email, en général sous 24 à 48 h.</p>
         </div>
       </form>
     </div>
@@ -609,142 +429,47 @@ footer a { text-decoration: none; }
 
 </main>
 
-<footer class="band">
-  <div class="inner">
-    <a class="logo" href="#top"><span class="logo-mark">PdP</span>Prise de poste</a>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Prise de poste</span>
     <nav aria-label="Pied de page">
       <a href="#comment">Comment ça marche</a>
       <a href="#tarifs">Tarifs</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <a href="app/">Déposer une vidéo</a>
+      <a href="#questions">Questions</a>
+      <a href="app/">Se connecter</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
     </nav>
-    <span>© 2026 Prise de poste · <a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
   </div>
 </footer>
 
 <script>
 (function () {
-  // ---------- Demo ----------
-  var LANGS = [["fr", "FR"], ["en", "EN"], ["es", "ES"]];
-  var MODULES = {
-    cafe: {
-      shop: "Café des Halles", dur: "1 min 48", label: "Faire un cappuccino", sub: "Café · filmé par Karim, barista",
-      fr: { t: "Faire un cappuccino", s: ["Purger la buse vapeur 2 secondes", "Remplir le pichet de lait froid jusqu'au bec", "Chauffer jusqu'à 60–65 °C, pas plus", "Verser au centre, tasse inclinée"], q: "Le lait siffle et dépasse 70 °C. Que faites-vous ?", a: ["Je le sers quand même", "Je recommence avec du lait froid"], ok: 1, good: "Exact. Au-delà de 70 °C, le lait brûle et la mousse retombe.", bad: "Pas tout à fait. Au-delà de 70 °C, le lait a un goût de brûlé : on recommence." },
-      en: { t: "Making a cappuccino", s: ["Purge the steam wand for 2 seconds", "Fill the jug with cold milk up to the spout", "Heat to 60–65 °C, no more", "Pour into the centre with the cup tilted"], q: "The milk is squealing and above 70 °C. What do you do?", a: ["Serve it anyway", "Start again with cold milk"], ok: 1, good: "Correct. Above 70 °C the milk burns and the foam collapses.", bad: "Not quite. Above 70 °C the milk tastes burnt, so start again." },
-      es: { t: "Preparar un capuchino", s: ["Purgar el vaporizador 2 segundos", "Llenar la jarra con leche fría hasta el pico", "Calentar a 60–65 °C, no más", "Verter en el centro con la taza inclinada"], q: "La leche silba y pasa de 70 °C. ¿Qué haces?", a: ["La sirvo igual", "Empiezo de nuevo con leche fría"], ok: 1, good: "Correcto. Por encima de 70 °C la leche se quema y la espuma se baja.", bad: "No del todo. Por encima de 70 °C la leche sabe a quemado: se empieza de nuevo." }
-    },
-    caisse: {
-      shop: "Boulangerie Martin", dur: "2 min 05", label: "Ouvrir la caisse le matin", sub: "Boulangerie · filmé par la gérante",
-      fr: { t: "Ouvrir la caisse le matin", s: ["Allumer la caisse et le terminal de paiement", "Compter le fond de caisse : 150 €", "Noter le montant sur la fiche du jour", "Vérifier le rouleau de tickets"], q: "Il manque 20 € dans le fond de caisse. Que faites-vous ?", a: ["Je complète avec mon argent", "Je préviens la responsable avant d'ouvrir"], ok: 1, good: "Exact. Tout écart est signalé avant l'ouverture.", bad: "Non. On ne complète jamais soi-même : on prévient la responsable." },
-      en: { t: "Opening the till in the morning", s: ["Switch on the till and card terminal", "Count the float: €150", "Write the amount on the daily sheet", "Check the receipt roll"], q: "The float is €20 short. What do you do?", a: ["Top it up with my own money", "Tell the manager before opening"], ok: 1, good: "Correct. Any difference is reported before opening.", bad: "No. Never top it up yourself: tell the manager." },
-      es: { t: "Abrir la caja por la mañana", s: ["Encender la caja y el datáfono", "Contar el fondo de caja: 150 €", "Anotar el importe en la hoja del día", "Comprobar el rollo de tickets"], q: "Faltan 20 € en el fondo de caja. ¿Qué haces?", a: ["Lo completo con mi dinero", "Aviso a la encargada antes de abrir"], ok: 1, good: "Correcto. Cualquier diferencia se avisa antes de abrir.", bad: "No. Nunca se completa uno mismo: se avisa a la encargada." }
-    },
-    livraison: {
-      shop: "Épicerie Le Panier", dur: "2 min 30", label: "Réceptionner une livraison", sub: "Commerce · filmé par le chef de rayon",
-      fr: { t: "Réceptionner une livraison", s: ["Compter les colis devant le livreur", "Contrôler les dates sur les produits frais", "Noter toute anomalie sur le bon de livraison", "Ranger le froid en premier, en moins de 15 min"], q: "Un carton est abîmé. Que faites-vous ?", a: ["Je l'écris sur le bon avant de signer", "Je signe et je préviens plus tard"], ok: 0, good: "Exact. Une réserve écrite avant signature permet d'être remboursé.", bad: "Non. Une fois signé sans réserve, le fournisseur ne rembourse plus." },
-      en: { t: "Receiving a delivery", s: ["Count the boxes in front of the driver", "Check dates on fresh products", "Write any issue on the delivery note", "Put chilled goods away first, within 15 min"], q: "One box is damaged. What do you do?", a: ["Write it on the note before signing", "Sign and report it later"], ok: 0, good: "Correct. A written note before signing lets you get refunded.", bad: "No. Once signed without remarks, the supplier won't refund." },
-      es: { t: "Recibir una entrega", s: ["Contar los bultos delante del repartidor", "Revisar las fechas de los productos frescos", "Anotar cualquier incidencia en el albarán", "Guardar primero el frío, en menos de 15 min"], q: "Una caja está dañada. ¿Qué haces?", a: ["Lo anoto en el albarán antes de firmar", "Firmo y aviso más tarde"], ok: 0, good: "Correcto. Una reserva escrita antes de firmar permite el reembolso.", bad: "No. Una vez firmado sin reservas, el proveedor no reembolsa." }
-    }
+  // ---------- Question d'exemple (vraie question de la formation espresso) ----------
+  var Q = {
+    a: ["Je le sers : il est plein, c'est l'essentiel", "Je relance une extraction par-dessus pour le corser",
+        "Je ne le sers pas et je préviens le responsable pour moudre plus fin", "Je tasse plus fort la prochaine fois sans rien dire"],
+    ok: 2,
+    good: "Exact. 12 secondes, c'est bien trop court : le café est trop gros, on ne sert pas et on prévient.",
+    bad: "Pas tout à fait. Un espresso se fait en 25 à 30 secondes. À 12 secondes, il est raté : on ne le sert pas et on prévient pour moudre plus fin."
   };
-  var state = { pick: "cafe", lang: "fr", generated: false, answered: null };
-  var choicesEl = document.getElementById("choices");
-  var langsEl = document.getElementById("langs");
-  var resultEl = document.getElementById("result");
-  var logEl = document.getElementById("genLog");
-  var genBtn = document.getElementById("genBtn");
-
-  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-
-  Object.keys(MODULES).forEach(function (k) {
-    var m = MODULES[k];
-    var b = el("button", "choice"); b.type = "button"; b.dataset.key = k;
-    var th = el("span", "thumb"); b.appendChild(th);
-    var t = el("span"); t.appendChild(el("strong", null, m.label)); t.appendChild(el("small", null, m.sub + " · " + m.dur)); b.appendChild(t);
-    b.addEventListener("click", function () { if (state.pick === k) return; state.pick = k; state.generated = false; state.answered = null; renderChoices(); renderResult(); logEl.innerHTML = "<li>Vidéo prête. Cliquez sur Générer.</li>"; });
-    choicesEl.appendChild(b);
-  });
-  LANGS.forEach(function (l) {
-    var b = el("button", "lang", l[1]); b.type = "button"; b.dataset.lang = l[0];
-    b.addEventListener("click", function () { state.lang = l[0]; renderLangs(); renderResult(); });
-    langsEl.appendChild(b);
-  });
-  function renderChoices() { choicesEl.querySelectorAll(".choice").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.key === state.pick)); }); }
-  function renderLangs() { langsEl.querySelectorAll(".lang").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)); }); }
-
-  function renderResult() {
-    resultEl.innerHTML = "";
-    if (!state.generated) { resultEl.appendChild(el("div", "result-empty", "Le module apparaîtra ici : étapes, quiz et traduction.")); return; }
-    var m = MODULES[state.pick], c = m[state.lang];
-    var wrap = el("div", "result"); wrap.style.display = "flex"; wrap.style.flexDirection = "column"; wrap.style.gap = "14px";
-    var bar = el("div", "ph-bar"); bar.appendChild(el("span", null, m.shop)); bar.appendChild(el("span", null, "≈ 3 min")); wrap.appendChild(bar);
-    wrap.appendChild(el("div", "ph-title", c.t));
-    var ol = el("ol", "steps");
-    c.s.forEach(function (s, i) { var li = el("li"); li.appendChild(el("span", "n", String(i + 1))); li.appendChild(el("span", null, s)); ol.appendChild(li); });
-    wrap.appendChild(ol);
-    var qz = el("div", "quiz"); qz.style.gap = "8px";
-    qz.appendChild(el("strong", null, "Quiz · " + c.q));
-    var fb = el("p", "qfeedback");
-    c.a.forEach(function (ans, i) {
-      var b = el("button", "qopt", ans); b.type = "button";
-      if (state.answered !== null) { if (i === c.ok) b.classList.add("right"); else if (i === state.answered) b.classList.add("wrong"); }
-      if (state.answered !== null) b.disabled = true;
-      b.addEventListener("click", function () { if (state.answered !== null) return; state.answered = i; renderResult(); });
-      qz.appendChild(b);
+  var opts = document.getElementById("qopts"), fb = document.getElementById("qfb"), again = document.getElementById("qagain");
+  function renderQ(picked) {
+    opts.innerHTML = "";
+    Q.a.forEach(function (txt, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "qopt"; b.textContent = txt;
+      if (picked != null) { b.disabled = true; if (i === Q.ok) b.classList.add("right"); else if (i === picked) b.classList.add("wrong"); }
+      b.addEventListener("click", function () { renderQ(i); });
+      opts.appendChild(b);
     });
-    if (state.answered !== null) fb.textContent = state.answered === c.ok ? c.good : c.bad;
-    qz.appendChild(fb);
-    wrap.appendChild(qz);
-    resultEl.appendChild(wrap);
+    fb.hidden = picked == null; again.hidden = picked == null;
+    if (picked != null) fb.textContent = picked === Q.ok ? Q.good : Q.bad;
   }
+  again.addEventListener("click", function () { renderQ(null); opts.querySelector("button").focus(); });
+  renderQ(null);
 
-  var timers = [];
-  genBtn.addEventListener("click", function () {
-    timers.forEach(clearTimeout); timers = [];
-    state.generated = false; state.answered = null; renderResult();
-    genBtn.disabled = true;
-    var stepsLog = ["Transcription de la vidéo", "Découpage en étapes", "Rédaction du quiz", "Traductions EN et ES (bientôt)"];
-    logEl.innerHTML = "";
-    stepsLog.forEach(function (txt, i) {
-      timers.push(setTimeout(function () {
-        var prev = logEl.querySelector("li.run"); if (prev) prev.className = "ok";
-        logEl.appendChild(el("li", "run", txt));
-      }, i * 450));
-    });
-    timers.push(setTimeout(function () {
-      var prev = logEl.querySelector("li.run"); if (prev) prev.className = "ok";
-      logEl.appendChild(el("li", "ok", "Module prêt à envoyer"));
-      state.generated = true; renderResult(); genBtn.disabled = false;
-    }, stepsLog.length * 450));
-  });
-  renderChoices(); renderLangs();
-  // Show a finished example at rest so the panel is never empty on first view.
-  state.generated = true; renderResult();
-  logEl.innerHTML = "<li class=\"ok\">Exemple déjà généré. Choisissez une autre vidéo ou relancez.</li>";
-
-  // ---------- ROI ----------
-  var ids = ["hires", "hours", "rate", "sites"];
-  var fmt = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 });
-  function eur(n) { return fmt.format(Math.round(n)) + " €"; }
-  function annualCost(sites) { return sites <= 1 ? 29 * 12 : sites * 16 * 12; }
-  function roi() {
-    var h = +document.getElementById("hires").value, hr = +document.getElementById("hours").value,
-        r = +document.getElementById("rate").value, s = +document.getElementById("sites").value;
-    document.getElementById("hiresOut").textContent = h;
-    document.getElementById("hoursOut").textContent = hr + " h";
-    document.getElementById("rateOut").textContent = r + " €";
-    document.getElementById("sitesOut").textContent = s;
-    var now = h * hr * r, savedH = h * hr * 0.6, cost = annualCost(s), net = savedH * r - cost;
-    document.getElementById("roiNow").textContent = eur(now);
-    document.getElementById("roiHours").textContent = fmt.format(Math.round(savedH)) + " h";
-    document.getElementById("roiCost").textContent = "– " + eur(cost);
-    document.getElementById("roiPlan").textContent = s <= 1 ? "(Solo annuel, 29 €/mois)" : "(Réseau annuel, 16 €/site/mois)";
-    document.getElementById("roiNet").textContent = (net >= 0 ? "+ " : "– ") + eur(Math.abs(net));
-  }
-  ids.forEach(function (id) { document.getElementById(id).addEventListener("input", roi); });
-  roi();
-
-  // ---------- Pricing toggle ----------
+  // ---------- Tarifs ----------
   var bm = document.getElementById("billM"), by = document.getElementById("billY");
   function setBill(yearly) {
     bm.setAttribute("aria-pressed", String(!yearly)); by.setAttribute("aria-pressed", String(yearly));
@@ -753,12 +478,12 @@ footer a { text-decoration: none; }
   bm.addEventListener("click", function () { setBill(false); });
   by.addEventListener("click", function () { setBill(true); });
 
-  // ---------- Plan buttons preselect form ----------
+  // ---------- Les boutons d'offre présélectionnent le formulaire ----------
   document.querySelectorAll("[data-plan]").forEach(function (a) {
-    a.addEventListener("click", function () { var s = document.getElementById("f-plan"); s.value = a.dataset.plan; });
+    a.addEventListener("click", function () { document.getElementById("f-plan").value = a.dataset.plan; });
   });
 
-  // ---------- Form ----------
+  // ---------- Formulaire ----------
   var form = document.getElementById("leadForm");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -781,9 +506,8 @@ footer a { text-decoration: none; }
       if (text) document.getElementById("sentText").textContent = text;
       document.getElementById("formSent").hidden = false;
     }
-    // Inside the claude.ai preview, no submission can leave the page: show a demo confirmation.
     if (typeof window.claude !== "undefined") {
-      done("Demande prête à être envoyée.", "Aperçu claude.ai : l'envoi réel fonctionne sur le site en ligne.");
+      done("Demande prête à être envoyée.", "Aperçu : l'envoi réel fonctionne sur le site en ligne.");
       return;
     }
     var btn = document.getElementById("f-submit");
@@ -800,7 +524,7 @@ footer a { text-decoration: none; }
       if (ok !== true) throw new Error("refus");
       done();
     }).catch(function () {
-      btn.disabled = false; btn.textContent = "Envoyer ma demande";
+      btn.disabled = false; btn.textContent = "Envoyer";
       err.textContent = "L'envoi n'a pas abouti. Vérifiez votre connexion puis réessayez.";
       err.hidden = false;
     });
