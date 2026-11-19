@@ -13,37 +13,37 @@
 <style>
 /* Layout: one phone-width column (max 440px) walking the recruit through SMS → video → quiz → result (pass, retry or escalate to the manager). */
 :root {
-  --bg: #eef2f0;
+  --bg: #f4f6fb;
   --screen: #ffffff;
-  --ink: #13201c;
-  --muted: #5b6863;
-  --line: #dbe3df;
-  --accent: #1f6f5c;
+  --ink: #101a2d;
+  --muted: #4f5d75;
+  --line: #d6deeb;
+  --accent: #244ab0;
   --accent-ink: #ffffff;
-  --accent-soft: #e1f0ea;
-  --badge: #f2b33d;
-  --badge-ink: #362500;
-  --wrong: #b5482f;
-  --wrong-soft: #fbeae5;
-  --video-bg: #0d1311;
-  --notif: #1b2421;
-  --notif-ink: #eef4f1;
+  --accent-soft: #e4ebff;
+  --badge: #e4ebff;
+  --badge-ink: #244ab0;
+  --wrong: #8d452b;
+  --wrong-soft: #f8ede5;
+  --video-bg: #0b1730;
+  --notif: #101a2d;
+  --notif-ink: #f2f5fd;
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0b100e; --screen: #151c19; --ink: #e7efec; --muted: #9aa8a2; --line: #27322e;
-    --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029;
-    --wrong: #f08a70; --wrong-soft: #3a1f18; --video-bg: #000000; --notif: #232e2a; --notif-ink: #eef4f1;
+    --bg: #080c16; --screen: #131c2c; --ink: #f2f5fd; --muted: #a0aec7; --line: #253248;
+    --accent: #a9c1ff; --accent-ink: #101a2d; --accent-soft: #202f50;
+    --wrong: #efa889; --wrong-soft: #422d27; --video-bg: #000000; --notif: #202f50; --notif-ink: #f2f5fd;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0b100e; --screen: #151c19; --ink: #e7efec; --muted: #9aa8a2; --line: #27322e;
-  --accent: #5cc5a6; --accent-ink: #0b1a15; --accent-soft: #163029;
-  --wrong: #f08a70; --wrong-soft: #3a1f18; --video-bg: #000000; --notif: #232e2a; --notif-ink: #eef4f1;
+  --bg: #080c16; --screen: #131c2c; --ink: #f2f5fd; --muted: #a0aec7; --line: #253248;
+  --accent: #a9c1ff; --accent-ink: #101a2d; --accent-soft: #202f50;
+  --wrong: #efa889; --wrong-soft: #422d27; --video-bg: #000000; --notif: #202f50; --notif-ink: #f2f5fd;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
