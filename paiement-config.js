@@ -20,5 +20,8 @@
     reseau_an: "https://buy.stripe.com/test_8x25kw1l176bb5s9iRa3u03",
     portail: "https://billing.stripe.com/p/login/test_7sY28k6Fl1LRddAgLja3u00"
   };
-  window.FF_PAIEMENT = local ? test : reel;
+  // Paiement en ligne coupé sur le site public en attendant le SIRET de la micro-entreprise.
+  // Pour le réactiver : remplacer false par true (les liens réels ci-dessus sont prêts).
+  var PAIEMENT_EN_LIGNE = false;
+  window.FF_PAIEMENT = local ? test : (PAIEMENT_EN_LIGNE ? reel : {});
 })();
