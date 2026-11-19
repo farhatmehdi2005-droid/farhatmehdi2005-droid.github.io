@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" data-default-theme="dark">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -16,11 +16,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FieldFluent · La formation des équipes terrain">
 <meta name="twitter:description" content="FieldFluent transforme vos consignes ou vos vidéos en courtes formations avec étapes et quiz pour vos équipes de terrain. Partagez-les par SMS ou WhatsApp.">
-<meta name="theme-color" content="#080c16" data-light="#f4f6fb" data-dark="#080c16">
+<meta name="theme-color" content="#f6f7fa" data-light="#f6f7fa" data-dark="#121626">
 <script src="theme.js?v=nuit"></script>
 <link rel="icon" href="fieldfluent.svg" type="image/svg+xml">
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="identite.css?v=parcours">
+<link rel="stylesheet" href="design.css">
 <link rel="stylesheet" href="theme.css">
 <script src="interactions.js?v=parcours" defer></script>
 <style>.skip-link{position:absolute;left:12px;top:-60px;z-index:1000;padding:12px 16px;border-radius:8px;background:var(--ink);color:var(--bg);font-weight:600;text-decoration:none}.skip-link:focus{top:12px}</style>
@@ -101,29 +101,17 @@
           </p>
           <p class="lang-note" id="langNote" data-i18n="lang.note" hidden></p>
         </div>
-        <div class="workflow">
-          <p class="workflow-label" data-i18n="flow.label">Exemple interactif</p>
-          <p class="workflow-title" data-i18n="flow.title">Préparer une commande</p>
-          <div class="workflow-body">
-            <div class="workflow-scene" data-stage="0" aria-hidden="true">
-              <div class="workflow-stack"><span></span><span></span><span></span></div>
-              <canvas class="workflow-canvas"></canvas>
-              <span class="workflow-drag" data-i18n="flow.rotate">Faites glisser pour tourner</span>
-            </div>
-            <ol class="workflow-steps" role="list">
-              <li><button type="button" aria-pressed="true" disabled>
-                <strong data-i18n="flow.input">La consigne</strong>
-                <span data-i18n="flow.task">Vérifier la référence avant d’emballer le produit.</span>
-              </button></li>
-              <li><button type="button" aria-pressed="false" disabled>
-                <strong data-i18n="flow.training">La formation</strong>
-                <span data-i18n="flow.output">Une vidéo, des étapes et un quiz.</span>
-              </button></li>
-              <li><button type="button" aria-pressed="false" disabled>
-                <strong data-i18n="flow.share">Le partage</strong>
-                <span data-i18n="flow.link">Un lien envoyé par SMS ou WhatsApp.</span>
-              </button></li>
-            </ol>
+        <div class="ff-badge-wrap" aria-hidden="true">
+          <div class="ff-badge">
+            <span class="ff-clip"></span>
+            <div class="ff-band"><img src="fieldfluent.svg" alt="" width="28" height="28"><span>FieldFluent</span></div>
+            <div class="ff-id"><strong class="ff-name">Lucas</strong><span class="ff-role" data-i18n="badge.role">En formation, jour 1</span></div>
+            <ul class="ff-tasks">
+              <li class="done"><span data-i18n="badge.t1">Ouvrir la caisse</span></li>
+              <li class="done"><span data-i18n="badge.t2">Préparer un espresso</span></li>
+              <li class="todo"><span data-i18n="badge.t3">Accueillir un client</span></li>
+            </ul>
+            <p class="ff-status" data-i18n="badge.status">2 formations validées sur 3</p>
           </div>
         </div>
       </div>
@@ -529,7 +517,7 @@
       "f.msg": "The first thing to teach your new hires (optional)", "f.msgph": "Opening the till, preparing orders, welcoming customers…",
       "f.send": "Send", "f.legal": "Your details are only used to reply to you about FieldFluent (3 emails at most if you don't reply). They are never sold. Details in our <a href=\"confidentialite.html\">privacy policy</a> (in French).",
       "sent.h": "Sent.", "sent.p": "Thank you! We'll reply by email, usually within 24 to 48 hours.",
-      "ft.legal": "Legal notice", "ft.privacy": "Privacy", "skip": "Skip to content", "ft.terms": "Terms", "ft.refunds": "Refunds", "ft.cookies": "Cookies",
+      "ft.legal": "Legal notice", "ft.privacy": "Privacy", "badge.role": "In training, day 1", "badge.t1": "Open the till", "badge.t2": "Make an espresso", "badge.t3": "Greet a customer", "badge.status": "2 of 3 trainings passed", "skip": "Skip to content", "ft.terms": "Terms", "ft.refunds": "Refunds", "ft.cookies": "Cookies",
       "err.miss": "Missing: ", "err.name": "your name", "err.shop": "the business name", "err.mail": "your email", "err.bad": "The email address is not valid.",
       "err.net": "Sending failed. Check your connection and try again.", "f.sending": "Sending…",
       "meta.title": "FieldFluent · Train your new hires in a few days"
@@ -618,7 +606,7 @@
       "f.msg": "Das Erste, was Ihre Neuen lernen sollen (optional)", "f.msgph": "Kasse öffnen, Bestellungen vorbereiten, Kunden empfangen…",
       "f.send": "Senden", "f.legal": "Ihre Daten dienen nur dazu, Ihnen zu FieldFluent zu antworten (höchstens 3 E-Mails, wenn Sie nicht antworten). Sie werden nie verkauft. Mehr in unserer <a href=\"confidentialite.html\">Datenschutzerklärung</a> (auf Französisch).",
       "sent.h": "Gesendet.", "sent.p": "Danke! Wir antworten per E-Mail, meist innerhalb von 24 bis 48 Stunden.",
-      "ft.legal": "Impressum", "ft.privacy": "Datenschutz", "skip": "Zum Inhalt springen", "ft.terms": "AGB", "ft.refunds": "Rückerstattung", "ft.cookies": "Cookies",
+      "ft.legal": "Impressum", "ft.privacy": "Datenschutz", "badge.role": "In Einarbeitung, Tag 1", "badge.t1": "Die Kasse öffnen", "badge.t2": "Einen Espresso zubereiten", "badge.t3": "Kundschaft begrüßen", "badge.status": "2 von 3 Schulungen bestanden", "skip": "Zum Inhalt springen", "ft.terms": "AGB", "ft.refunds": "Rückerstattung", "ft.cookies": "Cookies",
       "err.miss": "Es fehlt: ", "err.name": "Ihr Name", "err.shop": "der Name des Betriebs", "err.mail": "Ihre E-Mail", "err.bad": "Die E-Mail-Adresse ist ungültig.",
       "err.net": "Senden fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.", "f.sending": "Wird gesendet…",
       "meta.title": "FieldFluent · Neue Mitarbeiter in wenigen Tagen einarbeiten"
@@ -707,7 +695,7 @@
       "f.msg": "Lo primero que deben aprender sus nuevos (opcional)", "f.msgph": "Abrir la caja, preparar pedidos, atender a los clientes…",
       "f.send": "Enviar", "f.legal": "Sus datos solo sirven para responderle sobre FieldFluent (3 emails como máximo si no responde). Nunca se venden. Más detalles en nuestra <a href=\"confidentialite.html\">política de privacidad</a> (en francés).",
       "sent.h": "Enviado.", "sent.p": "¡Gracias! Le respondemos por email, normalmente en 24 a 48 horas.",
-      "ft.legal": "Aviso legal", "ft.privacy": "Privacidad", "skip": "Ir al contenido", "ft.terms": "Condiciones generales", "ft.refunds": "Reembolsos", "ft.cookies": "Cookies",
+      "ft.legal": "Aviso legal", "ft.privacy": "Privacidad", "badge.role": "En formación, día 1", "badge.t1": "Abrir la caja", "badge.t2": "Preparar un espresso", "badge.t3": "Recibir a un cliente", "badge.status": "2 de 3 formaciones superadas", "skip": "Ir al contenido", "ft.terms": "Condiciones generales", "ft.refunds": "Reembolsos", "ft.cookies": "Cookies",
       "err.miss": "Falta: ", "err.name": "su nombre", "err.shop": "el nombre del negocio", "err.mail": "su email", "err.bad": "El email no es válido.",
       "err.net": "No se pudo enviar. Compruebe su conexión e inténtelo de nuevo.", "f.sending": "Enviando…",
       "meta.title": "FieldFluent · Forme a sus nuevos empleados en pocos días"
@@ -796,7 +784,7 @@
       "f.msg": "La prima cosa da insegnare ai nuovi (facoltativo)", "f.msgph": "Aprire la cassa, preparare gli ordini, accogliere i clienti…",
       "f.send": "Invia", "f.legal": "I vostri dati servono solo a rispondervi su FieldFluent (al massimo 3 email se non rispondete). Non vengono mai venduti. Dettagli nella nostra <a href=\"confidentialite.html\">informativa sulla privacy</a> (in francese).",
       "sent.h": "Inviato.", "sent.p": "Grazie! Vi rispondiamo via email, di solito entro 24-48 ore.",
-      "ft.legal": "Note legali", "ft.privacy": "Privacy", "skip": "Vai al contenuto", "ft.terms": "Condizioni generali", "ft.refunds": "Rimborsi", "ft.cookies": "Cookie",
+      "ft.legal": "Note legali", "ft.privacy": "Privacy", "badge.role": "In formazione, giorno 1", "badge.t1": "Aprire la cassa", "badge.t2": "Preparare un espresso", "badge.t3": "Accogliere un cliente", "badge.status": "2 corsi superati su 3", "skip": "Vai al contenuto", "ft.terms": "Condizioni generali", "ft.refunds": "Rimborsi", "ft.cookies": "Cookie",
       "err.miss": "Manca: ", "err.name": "il vostro nome", "err.shop": "il nome dell'attività", "err.mail": "la vostra email", "err.bad": "L'email non è valida.",
       "err.net": "Invio non riuscito. Controllate la connessione e riprovate.", "f.sending": "Invio in corso…",
       "meta.title": "FieldFluent · Formate i nuovi arrivati in pochi giorni"
@@ -885,7 +873,7 @@
       "f.msg": "أول ما يجب أن يتعلمه موظفوك الجدد (اختياري)", "f.msgph": "فتح الصندوق، تحضير الطلبات، استقبال الزبائن…",
       "f.send": "إرسال", "f.legal": "تُستخدم بياناتك فقط للرد عليك بخصوص FieldFluent (3 رسائل كحد أقصى إذا لم ترد). ولا تُباع أبدًا. التفاصيل في <a href=\"confidentialite.html\">سياسة الخصوصية</a> (بالفرنسية).",
       "sent.h": "تم الإرسال.", "sent.p": "شكرًا! نردّ عليك بالبريد الإلكتروني، عادةً خلال 24 إلى 48 ساعة.",
-      "ft.legal": "إشعار قانوني", "ft.privacy": "الخصوصية", "skip": "انتقل إلى المحتوى", "ft.terms": "الشروط العامة", "ft.refunds": "الاسترداد", "ft.cookies": "ملفات تعريف الارتباط",
+      "ft.legal": "إشعار قانوني", "ft.privacy": "الخصوصية", "badge.role": "قيد التدريب، اليوم الأول", "badge.t1": "فتح الصندوق", "badge.t2": "تحضير إسبريسو", "badge.t3": "استقبال زبون", "badge.status": "اجتياز تدريبين من 3", "skip": "انتقل إلى المحتوى", "ft.terms": "الشروط العامة", "ft.refunds": "الاسترداد", "ft.cookies": "ملفات تعريف الارتباط",
       "err.miss": "ينقص: ", "err.name": "اسمك", "err.shop": "اسم المحل", "err.mail": "بريدك الإلكتروني", "err.bad": "البريد الإلكتروني غير صالح.",
       "err.net": "تعذّر الإرسال. تحقّق من اتصالك ثم أعد المحاولة.", "f.sending": "جارٍ الإرسال…",
       "meta.title": "FieldFluent · درّب موظفيك الجدد في أيام قليلة"
@@ -974,7 +962,7 @@
       "f.msg": "新员工最先要学的内容（选填）", "f.msgph": "开收银机、准备订单、接待顾客……",
       "f.send": "发送", "f.legal": "您的信息仅用于就 FieldFluent 回复您（如您未回复，最多发送 3 封邮件），绝不出售。详情见我们的<a href=\"confidentialite.html\">隐私政策</a>（法语）。",
       "sent.h": "已发送。", "sent.p": "谢谢！我们会通过邮件回复，通常在 24 到 48 小时内。",
-      "ft.legal": "法律声明", "ft.privacy": "隐私", "skip": "跳到主要内容", "ft.terms": "服务条款", "ft.refunds": "退款", "ft.cookies": "Cookie 政策",
+      "ft.legal": "法律声明", "ft.privacy": "隐私", "badge.role": "培训中，第 1 天", "badge.t1": "打开收银台", "badge.t2": "制作一杯意式浓缩", "badge.t3": "接待顾客", "badge.status": "已通过 2/3 项培训", "skip": "跳到主要内容", "ft.terms": "服务条款", "ft.refunds": "退款", "ft.cookies": "Cookie 政策",
       "err.miss": "缺少：", "err.name": "您的姓名", "err.shop": "店铺名称", "err.mail": "您的邮箱", "err.bad": "邮箱地址无效。",
       "err.net": "发送失败。请检查网络后重试。", "f.sending": "正在发送……",
       "meta.title": "FieldFluent · 几天内培训好您的新员工"

@@ -128,63 +128,6 @@
     element.animate?.(springFrames, { duration: 540, delay, fill: "backwards" });
   }
 
-  reveal(document.querySelector(".hero-copy"));
-  document.querySelectorAll(".workflow-steps li").forEach((row, index) => reveal(row, 60 * index));
-
-  const workflowScene = document.querySelector(".workflow-scene");
-  const workflowButtons = [...document.querySelectorAll(".workflow-steps button")];
-  let activeStage = 0;
-  let workflowRenderer;
-
-  for (const [index, button] of workflowButtons.entries()) {
-    button.disabled = false;
-    button.addEventListener("click", () => {
-      if (index === activeStage) return;
-      workflowButtons[activeStage].setAttribute("aria-pressed", "false");
-      activeStage = index;
-      button.setAttribute("aria-pressed", "true");
-      workflowScene.dataset.stage = String(index);
-      workflowRenderer?.select(index);
-    });
-  }
-
-  async function startWorkflowScene() {
-    const canvas = workflowScene.querySelector("canvas");
-    let context;
-    try {
-      context = canvas.getContext("webgl2", { alpha: true, antialias: true, powerPreference: "low-power" });
-      if (!context) return;
-      const { mountWorkflowScene } = await import("./workflow-scene.js");
-      workflowRenderer = mountWorkflowScene(workflowScene, canvas, context, activeStage, motion);
-    } catch {
-      context?.getExtension("WEBGL_lose_context")?.loseContext();
-    }
-  }
-
-  if ("WebGL2RenderingContext" in window) {
-    if ("IntersectionObserver" in window) {
-      const lazyScene = new IntersectionObserver(entries => {
-        if (!entries.some(entry => entry.isIntersecting)) return;
-        lazyScene.disconnect();
-        startWorkflowScene();
-      }, { rootMargin: "120px 0px" });
-      lazyScene.observe(workflowScene);
-    } else {
-      startWorkflowScene();
-    }
-  }
-
-  if ("IntersectionObserver" in window && !motion.matches) {
-    const observer = new IntersectionObserver(entries => {
-      for (const { isIntersecting, target } of entries) {
-        if (!isIntersecting) continue;
-        observer.unobserve(target);
-        reveal(target);
-      }
-    }, { threshold: .25 });
-    document.querySelectorAll("main section:not(.hero) h2").forEach(heading => observer.observe(heading));
-  }
-
   const feedback = document.getElementById("qfb");
   new MutationObserver(() => {
     if (!feedback.hidden) reveal(feedback);
