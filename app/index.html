@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Mon espace · Prise de poste</title>
+<title>Mon espace · FieldFluent</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="../prise-de-poste.svg" type="image/svg+xml">
+<link rel="icon" href="../fieldfluent.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
@@ -35,7 +35,7 @@ a { color: var(--accent); }
   padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
 .bar-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; text-decoration: none; color: var(--ink); }
-.logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--badge); color: var(--badge-ink); display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.72rem; }
+.logo-mark { width: 28px; height: 28px; border-radius: 8px; display: block; }
 main { max-width: 760px; margin: 0 auto; padding: 28px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 20px; }
 h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 5vw, 2.2rem); line-height: 1.1; margin: 0; text-wrap: balance; }
 h2 { font-family: var(--font-display); font-size: 1.2rem; margin: 0; }
@@ -103,7 +103,7 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
 </head>
 <body>
 <header class="bar"><div class="bar-in">
-  <a class="logo" href="#formations"><span class="logo-mark">PdP</span>Prise de poste</a>
+  <a class="logo" href="#formations"><img class="logo-mark" src="../fieldfluent.svg" alt="">FieldFluent</a>
   <div class="actions" id="bar-actions" hidden>
     <a class="btn small" href="#nouvelle">Nouvelle vidéo</a>
     <button class="btn ghost small" id="logout" type="button">Déconnexion</button>
