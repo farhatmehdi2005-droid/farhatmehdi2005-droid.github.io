@@ -6,7 +6,7 @@
 <title>Confidentialité · FieldFluent</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="fieldfluent.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root { --bg:#f4f6fb; --ink:#101a2d; --muted:#4f5d75; --line:#d6deeb; --accent:#244ab0; --badge:#e4ebff; --badge-ink:#244ab0; color-scheme: light; }
 @media (prefers-color-scheme: dark) { :root { --bg:#080c16; --ink:#f2f5fd; --muted:#a0aec7; --line:#253248; --accent:#a9c1ff; color-scheme: dark; } }
@@ -27,51 +27,62 @@ a { color: var(--accent); }
 <main>
   <a class="back" href="./">← Retour au site</a>
   <h1>Politique de confidentialité</h1>
-  <p class="muted">Dernière mise à jour : 18 novembre 2026</p>
+  <p>Dernière mise à jour : 19 novembre 2026</p>
 
   <h2>Responsable du traitement</h2>
   <p>Mehdi Farhat, porteur du projet FieldFluent (société Farhat Mehdi SAS en cours de création). Contact : farhat.mehdi.2005@gmail.com.</p>
 
   <h2>Données traitées</h2>
+  <p>Nous ne collectons que ce qui sert au service. Nous ne demandons jamais de date de naissance, d'adresse, de numéro de sécurité sociale ni de pièce d'identité.</p>
   <ul>
-    <li>Formulaire de contact du site : prénom et nom, nom du commerce, email, téléphone (facultatif), secteur, offre, message.</li>
-    <li>Espace patron : email et mot de passe du compte (le mot de passe est chiffré, nous ne le voyons jamais), prénom, nom du commerce, secteur.</li>
-    <li>Formations : les vidéos déposées (qui peuvent montrer des personnes et leur voix), leur transcription, les étapes et quiz générés, vos réponses aux questions de validation.</li>
-    <li>Recrues : le prénom saisi au début de la formation, les scores obtenus au quiz, le numéro d'essai, les étapes ratées et la date. Aucun compte, email ni téléphone n'est demandé aux recrues.</li>
+    <li><strong>Formulaire de contact du site :</strong> prénom et nom, nom du commerce, email, téléphone (facultatif), métier, offre qui vous intéresse, message (facultatif).</li>
+    <li><strong>Espace patron :</strong> email et mot de passe du compte (le mot de passe est chiffré, nous ne le voyons jamais), prénom, nom du commerce, métier.</li>
+    <li><strong>Formations :</strong> les vidéos, photos et consignes déposées (qui peuvent montrer des personnes et leur voix), leur transcription, les étapes et quiz générés.</li>
+    <li id="recrues"><strong>Recrues :</strong> uniquement le prénom saisi au début de la formation, les scores obtenus au quiz, le numéro d'essai, les étapes ratées et la date. Aucun compte, email, téléphone ni nom de famille n'est demandé aux recrues.</li>
   </ul>
 
   <h2>Pourquoi nous les utilisons</h2>
   <ul>
     <li>Créer et afficher les formations, et montrer les résultats des recrues au patron qui les forme.</li>
     <li>Envoyer au patron les emails liés à son compte : formation prête, en ligne, résultat d'une recrue.</li>
-    <li>Répondre aux demandes de contact et les relancer au plus 2 fois.</li>
+    <li>Répondre aux demandes de contact et les relancer au plus 2 fois. Chaque relance permet de se désinscrire en répondant « STOP ».</li>
   </ul>
-  <p>Base légale : l'exécution du service demandé par le patron, et notre intérêt légitime à suivre les demandes reçues. Le patron s'engage, en déposant une vidéo, à avoir l'accord des personnes filmées.</p>
+  <p>Base légale : l'exécution du service demandé par le patron (contrat), et notre intérêt légitime à répondre aux demandes reçues. Le patron s'engage, en déposant une vidéo ou des photos, à avoir l'accord des personnes visibles. Vos données ne servent jamais à de la publicité et ne sont jamais vendues ni louées.</p>
+
+  <h2>Recrues mineures</h2>
+  <p>Les recrues peuvent être des apprentis ou des jeunes en stage. Pour elles, nous limitons les données au prénom et aux résultats du quiz. Pour une recrue de moins de 15 ans, le patron s'engage, dans nos <a href="conditions-generales.html">conditions générales</a>, à informer ses parents et à obtenir leur accord avant de lui envoyer le lien ; la page de formation le rappelle à la recrue. Un parent peut demander l'effacement des résultats de son enfant au patron ou en nous écrivant.</p>
 
   <h2>Traitement automatisé</h2>
   <p>Les vidéos sont transcrites automatiquement, puis les étapes, le quiz et nos emails sont rédigés à l'aide d'un outil d'intelligence artificielle. Le patron relit et valide chaque formation avant sa mise en ligne. Le quiz décide seulement si la recrue doit revoir la vidéo : aucune décision ayant un effet juridique n'est prise automatiquement.</p>
 
   <h2>Qui y a accès</h2>
-  <p>Le patron voit uniquement ses propres formations et les résultats de ses recrues. Une formation publiée, y compris sa vidéo, est accessible à toute personne qui possède son lien : ne le transmettez qu'à vos recrues. Vos vidéos d'origine restent privées. Vos données ne sont jamais vendues ni louées. Elles passent par nos prestataires techniques :</p>
+  <p>Le patron voit uniquement ses propres formations et les résultats de ses recrues. Une formation publiée, y compris sa vidéo, est accessible à toute personne qui possède son lien : ne le transmettez qu'à vos recrues. Vos vidéos d'origine restent privées. Les données passent par ces prestataires techniques, et par eux seuls :</p>
   <ul>
-    <li>Supabase (serveurs en Irlande, Union européenne) : comptes, base de données, vidéos, résultats et formulaire de contact.</li>
-    <li>GitHub, Inc. (États-Unis) : hébergement des pages du site (GitHub Pages).</li>
-    <li>Google (Gmail) : envoi et réception des emails.</li>
-    <li>Anthropic (États-Unis) : outil d'intelligence artificielle qui rédige les formations et les emails.</li>
+    <li><strong>Supabase</strong> (serveurs en Irlande, Union européenne) : comptes, base de données, vidéos, résultats et formulaire de contact.</li>
+    <li><strong>GitHub, Inc.</strong> (États-Unis) : hébergement des pages du site (GitHub Pages). GitHub reçoit l'adresse IP des visiteurs pour afficher les pages.</li>
+    <li><strong>Google (Gmail)</strong> : envoi et réception des emails.</li>
+    <li><strong>Anthropic</strong> (États-Unis) : outil d'intelligence artificielle qui rédige les formations et les emails à partir de la transcription.</li>
   </ul>
-  <p>Les transferts hors de l'Union européenne sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou cadre de protection des données UE–États-Unis, selon le prestataire).</p>
+  <p>Le site ne charge aucun script, police ou image depuis d'autres services : les polices et les bibliothèques sont hébergées sur le site lui-même. Les transferts hors de l'Union européenne sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou cadre de protection des données UE–États-Unis, selon le prestataire).</p>
 
   <h2>Combien de temps nous les gardons</h2>
   <ul>
-    <li>Compte, formations et résultats : tant que le compte est actif. Quand vous supprimez une formation, sa vidéo d'origine et sa vidéo publiée sont effacées.</li>
+    <li>Compte, formations et résultats : tant que le compte est actif. Supprimer une formation, ou son compte, efface aussitôt les données de la base ; les fichiers vidéo et photo correspondants sont retirés du stockage sous 7 jours au plus.</li>
+    <li>Résultats d'une recrue : jusqu'à ce que le patron les efface (bouton « Effacer ») ou supprime la formation ou son compte.</li>
+    <li>Copies de sauvegarde : 30 jours, puis effacées automatiquement.</li>
     <li>Demandes de contact sans suite : 3 ans après le dernier échange.</li>
   </ul>
 
-  <h2>Vos droits</h2>
-  <p>Vous pouvez accéder à vos données, les corriger, les supprimer, vous opposer à leur utilisation ou en limiter l'usage, et demander la suppression complète de votre compte, en écrivant à farhat.mehdi.2005@gmail.com. Une recrue peut demander la suppression de ses résultats de la même façon, ou auprès du patron qui l'a formée. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr).</p>
+  <h2 id="droits">Vos droits et la suppression de vos données</h2>
+  <ul>
+    <li><strong>Patron :</strong> vous pouvez supprimer vous-même votre compte et toutes vos données depuis votre espace (« Supprimer mon compte », en bas de la liste des formations).</li>
+    <li><strong>Recrue :</strong> demandez l'effacement de vos résultats à votre responsable (il le fait en un clic) ou écrivez-nous.</li>
+    <li>Vous pouvez aussi accéder à vos données, les corriger, en demander une copie, vous opposer à leur utilisation ou en limiter l'usage en écrivant à farhat.mehdi.2005@gmail.com. Nous répondons sous un mois au plus.</li>
+    <li>Vous pouvez adresser une réclamation à la CNIL (www.cnil.fr).</li>
+  </ul>
 
   <h2>Cookies</h2>
-  <p>Ce site n'utilise pas de cookies publicitaires ni de mesure d'audience. L'espace patron garde votre session de connexion dans votre navigateur, uniquement pour vous éviter de vous reconnecter.</p>
+  <p>Aucun cookie publicitaire ni mesure d'audience. Le détail de ce qui est gardé dans votre navigateur est sur la page <a href="cookies.html">cookies</a>.</p>
 </main>
 </body>
 </html>

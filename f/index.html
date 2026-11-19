@@ -7,9 +7,7 @@
 <title>Ta formation · FieldFluent</title>
 <meta name="robots" content="noindex">
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../fonts/fonts.css">
 <style>
 /* Layout: one phone-width column (max 440px) walking the recruit through SMS → video → quiz → result (pass, retry or escalate to the manager). */
 :root {
@@ -150,6 +148,7 @@ video { display: block; width: 100%; max-width: 100%; max-height: 52vh; aspect-r
     <label class="mono muted" for="prenom">TON PRÉNOM</label>
     <input class="input" id="prenom" autocomplete="given-name" placeholder="Ex. : Lucas">
     <p class="err" id="prenom-err" hidden>Écris ton prénom pour commencer.</p>
+    <p class="small muted">Seul ton responsable voit ton prénom et tes résultats. Tu peux lui demander de les effacer à tout moment. Si tu as moins de 15 ans, montre ce lien à un parent avant de commencer. <a href="../confidentialite.html#recrues">En savoir plus</a></p>
     <div class="spacer"></div>
     <button class="btn" id="open" disabled>Commencer</button>
   </section>

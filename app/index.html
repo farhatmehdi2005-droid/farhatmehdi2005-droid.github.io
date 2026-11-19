@@ -6,9 +6,7 @@
 <title>Mon espace · FieldFluent</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../fieldfluent.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../fonts/fonts.css">
 <style>
 /* Layout: app shell with a top bar and one centered column (max 760px); each view is a section shown by hash route. */
 :root {
@@ -78,6 +76,8 @@ textarea { min-height: 70px; resize: vertical; }
 .drop.ko { border-color: var(--wrong); background: var(--wrong-soft); }
 .check { flex-direction: row; align-items: flex-start; gap: 10px; font-weight: 400; font-size: 0.88rem; }
 .check input { width: auto; margin-top: 3px; }
+.pied { text-align: center; padding: 24px 16px 40px; }
+.pied a { color: inherit; display: inline-block; padding: 12px 2px; }
 .progress { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
 .progress span { display: block; height: 100%; width: 0; background: var(--accent); }
 .edit-step { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
@@ -122,6 +122,7 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
       <form id="f-auth" novalidate style="display:flex;flex-direction:column;gap:12px">
         <label>Email<input id="a-email" type="email" autocomplete="email"></label>
         <label>Mot de passe <small id="a-pass-hint">(8 caractères minimum)</small><input id="a-pass" type="password" autocomplete="current-password"></label>
+        <label class="check" id="a-cgu-l" hidden><input type="checkbox" id="a-cgu"><span>J'accepte les <a href="../conditions-generales.html" target="_blank">conditions générales</a> et j'ai lu la <a href="../confidentialite.html" target="_blank">politique de confidentialité</a>.</span></label>
         <p class="msg err" id="a-err" role="alert" hidden></p>
         <button class="btn" id="a-submit" type="submit">Se connecter</button>
       </form>
@@ -167,6 +168,12 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     <p class="small muted">Les vidéos sont transformées en formation en général dans la journée. Vous recevez un email quand c'est prêt.</p>
     <div id="l-parcours"></div>
     <div id="l-recrues"></div>
+    <div class="card" id="l-compte">
+      <h2>Votre compte</h2>
+      <p class="small muted">Supprimer votre compte efface définitivement vos formations, leurs vidéos, les résultats de vos recrues et vos parcours. Les fichiers vidéo sont retirés du stockage sous 7 jours et les copies de sauvegarde sous 30 jours.</p>
+      <p class="msg err" id="k-err" role="alert" hidden></p>
+      <div><button class="btn danger small" id="k-suppr" type="button">Supprimer mon compte</button></div>
+    </div>
   </section>
 
   <!-- Nouvelle vidéo -->
@@ -228,8 +235,11 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     <div id="d-body" style="display:flex;flex-direction:column;gap:16px"></div>
   </section>
 </main>
+<footer class="pied small muted">
+  <a href="../conditions-generales.html">Conditions générales</a> · <a href="../confidentialite.html">Confidentialité</a> · <a href="../cookies.html">Cookies</a> · <a href="../mentions-legales.html">Mentions légales</a>
+</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="supabase-2.45.4.js"></script>
 <script>
 (function () {
   var SB_URL = "https://ydrcqevotcddnpigpawm.supabase.co";
@@ -270,7 +280,9 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     signup = s; $("t-login").setAttribute("aria-pressed", String(!s)); $("t-signup").setAttribute("aria-pressed", String(s));
     $("a-submit").textContent = s ? "Créer mon compte" : "Se connecter";
     $("a-pass").setAttribute("autocomplete", s ? "new-password" : "current-password"); $("a-err").hidden = true;
+    $("a-cgu-l").hidden = !s;
   }
+  if (/[?&]mode=inscription\b/.test(location.search)) setMode(true);
   $("t-login").addEventListener("click", function () { setMode(false); });
   $("t-signup").addEventListener("click", function () { setMode(true); });
   $("f-auth").addEventListener("submit", async function (e) {
@@ -278,6 +290,7 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     var email = $("a-email").value.trim(), pass = $("a-pass").value;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("a-err").textContent = "Entrez une adresse email valide."; $("a-err").hidden = false; return; }
     if (pass.length < 8) { $("a-err").textContent = "Le mot de passe doit faire au moins 8 caractères."; $("a-err").hidden = false; return; }
+    if (signup && !$("a-cgu").checked) { $("a-err").textContent = "Pour créer un compte, acceptez les conditions générales."; $("a-err").hidden = false; return; }
     $("a-submit").disabled = true;
     var r = signup ? await sb.auth.signUp({ email: email, password: pass }) : await sb.auth.signInWithPassword({ email: email, password: pass });
     $("a-submit").disabled = false;
@@ -289,6 +302,15 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
       $("a-err").hidden = false; return;
     }
     route();
+  });
+  $("k-suppr").addEventListener("click", async function () {
+    if (!confirm("Supprimer définitivement votre compte, toutes vos formations et les résultats de vos recrues ? Cette action est irréversible.")) return;
+    $("k-err").hidden = true; this.disabled = true;
+    var r = await sb.rpc("supprimer_mon_compte");
+    this.disabled = false;
+    if (r.error) { $("k-err").textContent = "La suppression n'a pas pu se faire. Écrivez-nous à farhat.mehdi.2005@gmail.com, nous supprimerons votre compte sous 72 heures."; $("k-err").hidden = false; return; }
+    await sb.auth.signOut(); me = null; prof = null; location.hash = "";
+    alert("Votre compte et toutes vos données ont été supprimés."); route();
   });
   $("logout").addEventListener("click", async function () { await sb.auth.signOut(); me = null; prof = null; location.hash = ""; route(); });
 
@@ -406,10 +428,18 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
         var msg = "Bonjour " + rc.prenom + ", pense à terminer ta formation « " + (restantes[0].titre || restantes[0].tache) + " » : " + RECRUE + restantes[0].code;
         tdr.appendChild(copyBtn(function () { return msg; }, "Relancer"));
       }
+      var del = el("button", { class: "btn ghost small", type: "button", "aria-label": "Effacer les résultats de " + rc.prenom }, "Effacer");
+      del.addEventListener("click", async function () {
+        if (!confirm("Effacer tous les résultats de " + rc.prenom + " ? Cette action est irréversible.")) return;
+        var d = await sb.rpc("supprimer_recrue", { p_prenom: rc.prenom });
+        if (d.error) { alert("L'effacement n'a pas pu se faire. Écrivez-nous à farhat.mehdi.2005@gmail.com."); return; }
+        renderRecrues(enLigne);
+      });
+      tdr.appendChild(del);
       tr.appendChild(tdr); t.appendChild(tr);
     });
     box.appendChild(t); c.appendChild(box);
-    c.appendChild(el("p", { class: "small muted" }, "« Relancer » copie un message à envoyer à la recrue par SMS ou WhatsApp."));
+    c.appendChild(el("p", { class: "small muted" }, "« Relancer » copie un message à envoyer à la recrue par SMS ou WhatsApp. « Effacer » supprime tous ses résultats, par exemple si elle vous le demande ou quand elle quitte l'équipe."));
   }
 
   // ---------- Formation écrite (consignes + photos) ----------
