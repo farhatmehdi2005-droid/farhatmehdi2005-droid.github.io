@@ -1,20 +1,1187 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-default-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prise de poste a déménagé</title>
-<link rel="canonical" href="https://prise-de-poste.infinitemica.chatgpt.site/">
-<meta http-equiv="refresh" content="1; url=https://prise-de-poste.infinitemica.chatgpt.site/">
-<script>
-  const destination = new URL("https://prise-de-poste.infinitemica.chatgpt.site/");
-  const lang = new URLSearchParams(location.search).get("lang");
-  if (lang) destination.searchParams.set("lang", lang);
-  destination.hash = location.hash;
-  location.replace(destination);
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>FieldFluent · La formation des équipes terrain</title>
+<meta name="description" content="FieldFluent transforme vos consignes ou vos vidéos en courtes formations avec étapes et quiz pour vos équipes de terrain. Partagez-les par SMS ou WhatsApp.">
+<link rel="canonical" href="https://farhatmehdi2005-droid.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="FieldFluent">
+<meta property="og:title" content="FieldFluent · La formation des équipes terrain">
+<meta property="og:description" content="FieldFluent transforme vos consignes ou vos vidéos en courtes formations avec étapes et quiz pour vos équipes de terrain. Partagez-les par SMS ou WhatsApp.">
+<meta property="og:url" content="https://farhatmehdi2005-droid.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FieldFluent · La formation des équipes terrain">
+<meta name="twitter:description" content="FieldFluent transforme vos consignes ou vos vidéos en courtes formations avec étapes et quiz pour vos équipes de terrain. Partagez-les par SMS ou WhatsApp.">
+<meta name="theme-color" content="#080c16" data-light="#f4f6fb" data-dark="#080c16">
+<script src="theme.js?v=nuit"></script>
+<link rel="icon" href="fieldfluent.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&amp;family=Inter:wght@400;500;600&amp;family=Noto+Sans+Arabic:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="identite.css?v=parcours">
+<link rel="stylesheet" href="theme.css">
+<script src="interactions.js?v=parcours" defer></script>
 </head>
 <body>
-  <p>Prise de poste a déménagé. <a href="https://prise-de-poste.infinitemica.chatgpt.site/">Ouvrir le nouveau site</a>.</p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="fieldfluent.svg" width="34" height="34" alt="">FieldFluent</a>
+    <nav aria-label="Navigation principale">
+      <a href="#demo" data-i18n="nav.demo">Démo</a>
+      <a href="#comment" data-i18n="nav.how">Comment ça marche</a>
+      <a href="#quiz" data-i18n="nav.quiz">Quiz</a>
+      <a href="#tarifs" data-i18n="nav.price">Tarifs</a>
+      <a href="#questions" data-i18n="nav.faq">Questions</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="top-actions">
+      <button class="btn top-options" type="button" aria-expanded="false" aria-controls="top-utilities" hidden>
+        <span data-i18n="nav.options">Options du site</span>
+      </button>
+      <div class="top-utilities" id="top-utilities">
+        <a class="top-login" href="app/" data-i18n="nav.login">Se connecter</a>
+        <label class="langsel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9M12 3c-2.5 2.6-3.8 5.6-3.8 9s1.3 6.4 3.8 9"/></svg>
+          <select id="lang" aria-label="Langue / Language">
+            <option value="fr" lang="fr">Français</option>
+            <option value="en" lang="en">English</option>
+            <option value="de" lang="de">Deutsch</option>
+            <option value="es" lang="es">Español</option>
+            <option value="it" lang="it">Italiano</option>
+            <option value="ar" lang="ar">العربية</option>
+            <option value="zh" lang="zh">中文</option>
+          </select>
+        </label>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Mode sombre" aria-pressed="false" title="Changer le thème" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path class="theme-icon-moon" d="M20.4 14.8A8.5 8.5 0 0 1 9.2 3.6a8.6 8.6 0 1 0 11.2 11.2Z"/>
+            <path class="theme-icon-sun" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.4-6.4L17 7M7 17l-1.4 1.4m12.8 0L17 17M7 7 5.6 5.6M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+          </svg>
+        </button>
+      </div>
+      <a class="btn btn-primary top-signup" href="app/?mode=inscription" data-i18n="nav.try">Créer un compte</a>
+    </div>
+  </div>
+</header>
+<script>
+(function () {
+  var header = document.querySelector(".top");
+  function updateHeaderClearance() {
+    document.documentElement.style.setProperty("--header-clearance", (header.offsetHeight + 16) + "px");
+  }
+  updateHeaderClearance();
+  if ("ResizeObserver" in window) new ResizeObserver(updateHeaderClearance).observe(header);
+  else window.addEventListener("resize", updateHeaderClearance);
+})();
+</script>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-intro">
+        <div class="hero-copy">
+          <h1 data-i18n="hero.h1">Transformez vos consignes en formations terrain</h1>
+          <p class="lead" data-i18n="hero.lead">À partir de vos consignes écrites ou d’une vidéo, l’IA crée une formation avec étapes et quiz à partager par lien, par SMS ou WhatsApp.</p>
+          <div class="hero-start">
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="app/?mode=inscription" aria-describedby="signup-hint" data-i18n="hero.cta1">Créer ma première formation</a>
+              <a class="btn hero-demo-link" href="#demo" data-i18n="hero.cta2">Voir la démo espresso sans compte</a>
+            </div>
+            <p class="hero-note" id="signup-hint" data-i18n="hero.signup">Créez votre compte avec votre e-mail et un mot de passe.</p>
+          </div>
+          <p class="hero-note">
+            <span data-i18n="hero.note">Un mois offert sans engagement aux 10 premiers commerces.</span>
+            <a class="link" href="#contact" data-plan="Pilote" data-i18n="hero.pilot">Demander une place</a>
+          </p>
+          <p class="lang-note" id="langNote" data-i18n="lang.note" hidden></p>
+        </div>
+        <div class="workflow">
+          <p class="workflow-label" data-i18n="flow.label">Exemple interactif</p>
+          <p class="workflow-title" data-i18n="flow.title">Préparer une commande</p>
+          <div class="workflow-body">
+            <div class="workflow-scene" data-stage="0" aria-hidden="true">
+              <div class="workflow-stack"><span></span><span></span><span></span></div>
+              <canvas class="workflow-canvas"></canvas>
+              <span class="workflow-drag" data-i18n="flow.rotate">Faites glisser pour tourner</span>
+            </div>
+            <ol class="workflow-steps" role="list">
+              <li><button type="button" aria-pressed="true" disabled>
+                <strong data-i18n="flow.input">La consigne</strong>
+                <span data-i18n="flow.task">Vérifier la référence avant d’emballer le produit.</span>
+              </button></li>
+              <li><button type="button" aria-pressed="false" disabled>
+                <strong data-i18n="flow.training">La formation</strong>
+                <span data-i18n="flow.output">Une vidéo, des étapes et un quiz.</span>
+              </button></li>
+              <li><button type="button" aria-pressed="false" disabled>
+                <strong data-i18n="flow.share">Le partage</strong>
+                <span data-i18n="flow.link">Un lien envoyé par SMS ou WhatsApp.</span>
+              </button></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <article class="demo-example" id="demo" tabindex="-1" aria-labelledby="demo-title">
+        <div class="scr-head">
+          <h2 id="demo-title" data-i18n="scr.title">Préparer un espresso</h2>
+          <small data-i18n="scr.meta">Démo filmée · 30 s</small>
+        </div>
+        <div class="demo-stage">
+          <figure class="demo-figure">
+            <div class="demo-player">
+              <video id="demo-video" class="scr-video" controls playsinline preload="none" aria-labelledby="demo-title">
+                <source src="espresso-hls/index.m3u8" type="application/vnd.apple.mpegurl">
+                <source src="espresso-film.mp4" type="video/mp4">
+                <track kind="captions" src="espresso-film.fr.vtt" srclang="fr" label="Français" default>
+              </video>
+              <button class="demo-cover" type="button" aria-controls="demo-video" hidden>
+                <span class="demo-play-icon" aria-hidden="true"></span>
+                <span data-i18n="scr.play">Lancer la vidéo</span>
+              </button>
+            </div>
+            <div class="demo-progress" aria-hidden="true" hidden><span></span></div>
+            <figcaption class="caption">
+              <span data-i18n="scr.caption">Exemple de formation à partir de prises de vue réelles.</span>
+              <small class="video-credit"><a href="https://www.pexels.com/video/a-man-brewing-an-espresso-7699723/">Mikhail Nilov</a> · <a href="https://www.pexels.com/video/close-up-of-espresso-pouring-from-portafilter-36285235/">Will Liu</a> · Pexels</small>
+            </figcaption>
+          </figure>
+          <div class="demo-guide">
+            <h3 data-i18n="scr.steps">Étapes de la formation</h3>
+            <ol class="scr-steps" role="list">
+              <li><button class="demo-step" type="button" aria-controls="demo-video" data-time="0" disabled><span class="t" dir="ltr">0:00</span><span data-i18n="scr.s1">Tasser le café moulu en gardant le tasseur droit.</span></button></li>
+              <li><button class="demo-step" type="button" aria-controls="demo-video" data-time="7" disabled><span class="t" dir="ltr">0:07</span><span data-i18n="scr.s2">Engager le porte-filtre dans le groupe et le verrouiller.</span></button></li>
+              <li><button class="demo-step" type="button" aria-controls="demo-video" data-time="11" disabled><span class="t" dir="ltr">0:11</span><span data-i18n="scr.s3">Observer le débit et faire vérifier la mouture si le café coule trop vite.</span></button></li>
+            </ol>
+            <a class="btn demo-quiz" href="#qcard" data-i18n="scr.quiz">Essayer le quiz</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="comment" tabindex="-1">
+    <div class="wrap section-split">
+      <h2 data-i18n="how.h2">De la procédure à la formation</h2>
+      <ol class="story" role="list">
+        <li class="beat">
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3 data-i18n="how.b1h">Vous filmez un geste ou écrivez vos consignes</h3>
+            <p data-i18n="how.b1p">Filmez le geste pendant une à trois minutes avec votre téléphone. Vous pouvez aussi écrire vos consignes et ajouter quelques photos. L’appli en fait une vidéo avec une voix off.</p>
+          </div>
+        </li>
+        <li class="beat">
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3 data-i18n="how.b2h">Vous relisez avant d'envoyer</h3>
+            <p data-i18n="how.b2p">En général, vous retrouvez la formation dans votre espace le jour même. Elle contient la vidéo sous-titrée, les étapes minutées et le quiz. Vous pouvez corriger un mot ou une réponse, ou demander un autre quiz. Rien ne part sans votre accord.</p>
+          </div>
+        </li>
+        <li class="beat">
+          <span class="num" aria-hidden="true">3</span>
+          <div>
+            <h3 data-i18n="how.b3h">Votre recrue l'ouvre sur son téléphone</h3>
+            <p data-i18n="how.b3p">Envoyez le lien par SMS ou WhatsApp. Votre recrue regarde la vidéo et passe le quiz dans son navigateur, sans application ni mot de passe. Vous voyez son résultat et recevez une alerte si elle bloque.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="quiz-sec" id="quiz" tabindex="-1">
+    <div class="wrap">
+      <div>
+        <h2 data-i18n="quiz.h2">Vérifiez les acquis sur des cas concrets</h2>
+        <p class="lead" data-i18n="quiz.lead">Essayez une question de la démo espresso. Elle porte sur une situation qu’une recrue peut rencontrer au comptoir.</p>
+        <ul class="rules">
+          <li><b>80 %</b><span data-i18n="quiz.r1">de bonnes réponses pour valider. En dessous, elle revoit la vidéo.</span></li>
+          <li><b data-i18n="quiz.r2b">2 essais</b><span data-i18n="quiz.r2">Après deux échecs, elle est marquée « à accompagner » et vous recevez un email.</span></li>
+          <li><b data-i18n="quiz.r3b">Vidéo</b><span data-i18n="quiz.r3">Le quiz ne s'ouvre qu'une fois la vidéo vraiment regardée.</span></li>
+        </ul>
+      </div>
+      <div class="qcard" id="qcard" tabindex="-1">
+        <small data-i18n="q.count">Question de démonstration</small>
+        <strong data-i18n="q.text">Ton double espresso est terminé en 12 secondes et la tasse est déjà pleine. Que fais-tu ?</strong>
+        <div id="qopts"></div>
+        <p class="qfb" id="qfb" role="status" hidden></p>
+        <button class="again" id="qagain" type="button" hidden data-i18n="q.again">Recommencer</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="follow-up">
+    <div class="wrap section-split">
+      <h2 data-i18n="keep.h2">Suivre les recrues et organiser leurs formations</h2>
+      <div class="two">
+        <div class="card">
+          <h3 data-i18n="keep.k1h">Le suivi de chaque recrue</h3>
+          <p data-i18n="keep.k1p">Vous voyez qui a terminé, qui a réussi et qui a besoin d’aide. Les questions les plus souvent ratées vous indiquent quoi reprendre avec les recrues.</p>
+          <figure class="manager-preview" aria-labelledby="manager-title">
+            <figcaption class="manager-heading" id="manager-title">
+              <strong data-i18n="manager.title">Résultats des recrues</strong>
+              <small data-i18n="manager.example">Exemple</small>
+            </figcaption>
+            <table aria-labelledby="manager-title">
+              <thead>
+                <tr>
+                  <th scope="col" data-i18n="manager.trainee">Recrue</th>
+                  <th scope="col" data-i18n="manager.score">Score</th>
+                  <th scope="col" data-i18n="manager.attempt">Essai</th>
+                  <th scope="col" data-i18n="manager.result">Résultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Camille</th><td><bdi>5/5</bdi></td><td>1</td>
+                  <td><span class="manager-status" data-i18n="manager.passed">Validé</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Alex</th><td><bdi>3/5</bdi></td><td>1</td>
+                  <td><span class="manager-status" data-i18n="manager.review">Révision</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Sam</th><td><bdi>2/5</bdi></td><td>2</td>
+                  <td><span class="manager-status" data-i18n="manager.support">À accompagner</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+        </div>
+        <div class="card">
+          <h3 data-i18n="keep.k2h">Des parcours pour la première semaine</h3>
+          <p data-i18n="keep.k2p">Avec l’offre Plusieurs boutiques, rassemblez les formations de la première semaine dans un parcours accessible par un seul lien. Pour un grand réseau, nous définissons avec vous les sites à inclure.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="keep.k3h">Vos vidéos restent les vôtres</h3>
+          <p data-i18n="keep.k3p">Une formation n'est visible qu'avec son lien. Supprimez-la, la vidéo est effacée. Hébergement des données en Europe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifs" tabindex="-1">
+    <div class="wrap">
+      <div class="pricing-intro">
+        <div>
+          <h2 data-i18n="price.h2">Tarifs</h2>
+          <p class="lead" data-i18n="price.lead">Le prix dépend du nombre de sites et du rythme de facturation.</p>
+          <a class="link estimate-jump" href="#estimation" data-i18n="estimate.jump">Estimer le bénéfice pour mon équipe</a>
+        </div>
+        <div class="pricing-controls">
+          <div class="billing" role="group" aria-label="Période de facturation">
+            <button type="button" id="billM" aria-pressed="true" data-i18n="bill.m">Au mois</button>
+            <button type="button" id="billY" aria-pressed="false" data-i18n="bill.y">À l’année</button>
+          </div>
+          <p class="fine" id="annual-note" data-i18n="bill.note" hidden>Prix affichés par mois, facturés à l’année.</p>
+        </div>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3 data-i18n="p1.h">Un commerce</h3>
+          <div class="price" id="solo-price" data-m="35" data-y="29"><span class="v">35 €</span> <small data-i18n="p1.unit">par mois</small></div>
+          <ul>
+            <li data-i18n="p1.l1">Pour une équipe de 20 personnes maximum</li>
+            <li data-i18n="p1.l2">Nombre de formations illimité</li>
+            <li data-i18n="p1.l3">Suivi des résultats et alertes par email</li>
+          </ul>
+          <a class="btn btn-quiet" href="#contact" data-plan="Solo" data-i18n="p.cta">Choisir cette offre</a>
+        </div>
+        <div class="plan">
+          <h3 data-i18n="p2.h">Plusieurs boutiques</h3>
+          <div class="price" id="network-price" data-m="19" data-y="16"><span class="v">19 €</span> <small data-i18n="p2.unit">par boutique et par mois</small></div>
+          <ul>
+            <li data-i18n="p2.l1">De 2 à 50 points de vente</li>
+            <li data-i18n="p2.l2">Tout ce qu'il y a dans l'offre un commerce</li>
+            <li data-i18n="p2.l3">Parcours de plusieurs formations</li>
+          </ul>
+          <a class="btn btn-quiet" href="#contact" data-plan="Réseau" data-i18n="p.cta">Choisir cette offre</a>
+        </div>
+        <article class="plan plan-enterprise" aria-labelledby="enterprise-title">
+          <h3 id="enterprise-title" data-i18n="ent.title">Grandes entreprises</h3>
+          <div class="price" data-m="12" data-y="10"><span class="v">12 €</span> <small data-i18n="ent.unit">par site et par mois à partir du 51ᵉ site</small></div>
+          <p class="enterprise-base"><span data-i18n="ent.base">Pour les 50 premiers sites</span> <strong id="enterprise-base-rate">19 €</strong> <span data-i18n="ent.period">par site et par mois</span></p>
+          <p data-i18n="ent.audience">Pour les grands groupes, franchises et réseaux de plus de 50 sites.</p>
+          <ul>
+            <li data-i18n="ent.scope">Définissez avec nous les enseignes, les régions ou les types de sites à inclure.</li>
+            <li data-i18n="ent.pilot">Testez une procédure sur deux sites et comparez les résultats des recrues avant de la déployer dans le réseau.</li>
+            <li data-i18n="ent.requirements">Faisons le point sur le suivi des formations, la sécurité et les intégrations.</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact" data-plan="Entreprise" data-i18n="ent.cta">Tester sur quelques sites</a>
+        </article>
+      </div>
+      <div class="pilot">
+        <div>
+          <h3 data-i18n="pilot.h">Les 10 premiers commerces : un mois offert</h3>
+          <p data-i18n="pilot.p">On prépare avec vous vos premières formations. En échange, vous nous dites ce qui marche et ce qui ne marche pas. Vous gardez le tarif de départ.</p>
+        </div>
+        <a class="btn" href="#contact" data-plan="Pilote" data-i18n="pilot.cta">Je veux une place</a>
+      </div>
+      <article class="estimate" id="estimation" tabindex="-1" aria-labelledby="estimate-title">
+        <div class="estimate-header">
+          <h3 id="estimate-title" data-i18n="estimate.title">Quel bénéfice pour votre équipe ?</h3>
+          <p data-i18n="estimate.lead">Les valeurs préremplies sont un exemple. Entrez vos chiffres pour estimer le temps d’encadrement gagné et comparer sa valeur au prix de l’abonnement.</p>
+        </div>
+        <div class="estimate-layout">
+          <div class="estimate-inputs">
+            <label><span data-i18n="estimate.sites">Nombre de sites</span><input id="estimate-sites" type="number" min="1" step="1" value="10" inputmode="numeric"></label>
+            <label><span data-i18n="estimate.billing">Facturation</span>
+              <select id="estimate-billing">
+                <option value="monthly" data-i18n="bill.m">Au mois</option>
+                <option value="yearly" data-i18n="bill.y">À l’année</option>
+              </select>
+            </label>
+            <label><span data-i18n="estimate.hires">Recrues par mois, tous sites confondus</span><input id="estimate-hires" type="number" min="0" step="1" value="40" inputmode="numeric"></label>
+            <label><span data-i18n="estimate.minutes">Minutes gagnées par recrue</span><input id="estimate-minutes" type="number" min="0" step="1" value="20" inputmode="numeric"></label>
+            <label><span data-i18n="estimate.wage">Coût horaire chargé de l’encadrant (€)</span><input id="estimate-wage" type="number" min="0" step="0.01" value="25" inputmode="decimal"></label>
+          </div>
+          <dl class="estimate-results" aria-live="polite" aria-atomic="true">
+            <div><dt data-i18n="estimate.time">Temps libéré par mois</dt><dd id="estimate-time">—</dd></div>
+            <div><dt data-i18n="estimate.value">Valeur du temps libéré par mois</dt><dd id="estimate-value">—</dd></div>
+            <div><dt data-i18n="estimate.price">Abonnement par mois</dt><dd id="estimate-price">—</dd></div>
+            <div class="estimate-net"><dt data-i18n="estimate.net">Bénéfice estimé après abonnement</dt><dd id="estimate-net">—</dd></div>
+          </dl>
+        </div>
+        <p class="estimate-note" data-i18n="estimate.note">Simulation indicative à partir de vos hypothèses. Les montants sont des équivalents mensuels, y compris en facturation annuelle. La valeur du temps libéré ne représente pas une économie de trésorerie. Le temps de création et de mise à jour des formations est exclu. Pour un seul site, le prix affiché correspond à l’offre Un commerce, réservée aux équipes de 20 personnes maximum.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="questions" tabindex="-1">
+    <div class="wrap section-split">
+      <h2 data-i18n="faq.h2">Vos questions</h2>
+      <div class="faq">
+        <details><summary data-i18n="faq.q1">Comment créer ma première formation ?</summary><p data-i18n="faq.a1">Cliquez sur « Essayer » et créez votre compte avec votre e-mail et un mot de passe. Déposez une vidéo de 1 à 3 minutes ou saisissez vos consignes. La formation arrive dans votre espace, en général dans la journée, pour que vous la vérifiiez avant de l’envoyer.</p></details>
+        <details><summary data-i18n="faq.q2">Mes employés doivent-ils installer une application ?</summary><p data-i18n="faq.a2">Non. Ils reçoivent un lien par SMS ou WhatsApp et suivent la formation dans leur navigateur. Pas de compte, pas de mot de passe.</p></details>
+        <details><summary data-i18n="faq.q3">Je ne suis pas à l'aise avec la technologie. C'est compliqué ?</summary><p data-i18n="faq.a3">Si vous savez envoyer une vidéo sur WhatsApp, vous savez utiliser FieldFluent. Pendant le mois offert, on fait la mise en place avec vous.</p></details>
+        <details><summary data-i18n="faq.q4">Et si l'IA se trompe ?</summary><p data-i18n="faq.a4">Vous relisez chaque formation avant l’envoi. Vous pouvez modifier une étape, une réponse du quiz ou un mot. Rien n’est envoyé sans votre accord.</p></details>
+        <details><summary data-i18n="faq.q5">Mes vidéos restent-elles privées ?</summary><p data-i18n="faq.a5">Vos vidéos d'origine restent privées. Une formation publiée n'est accessible qu'avec son lien, que vous donnez à vos recrues. Elle n'apparaît dans aucune liste publique, et sa vidéo est effacée si vous supprimez la formation.</p></details>
+        <details><summary data-i18n="faq.q6">Est-ce que ça remplace une formation obligatoire certifiée ?</summary><p data-i18n="faq.a6">Non. FieldFluent vous aide à former et à garder une trace. Pour certaines formations réglementaires, un organisme certifié reste nécessaire.</p></details>
+        <details><summary data-i18n="faq.q7">Puis-je arrêter quand je veux ?</summary><p data-i18n="faq.a7">Oui. L'abonnement est sans engagement. Vous pourrez récupérer vos formations avant de partir.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" tabindex="-1">
+    <div class="wrap section-split">
+      <div class="contact-copy">
+        <h2 data-i18n="c.h2">Contact</h2>
+        <p class="lead" data-i18n="c.lead">Dites-nous ce que vos équipes doivent apprendre. Nous vous répondons par e-mail, en général sous 24 à 48 heures.</p>
+        <p class="muted" data-i18n="c.alt">Pour essayer par vous-même, <a class="link" href="app/?mode=inscription">créez votre espace</a> puis déposez une vidéo ou saisissez vos consignes.</p>
+      </div>
+      <form class="form" id="leadForm" novalidate>
+        <p hidden><label>Ne pas remplir<input id="f-bot" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div id="formFields" style="display:contents">
+          <label><span data-i18n="f.name">Prénom et nom</span><input id="f-name" name="name" autocomplete="name" required></label>
+          <label><span data-i18n="f.shop">Nom de l’entreprise ou du commerce</span><input id="f-shop" name="shop" autocomplete="organization" required></label>
+          <label><span data-i18n="f.email">Email</span><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" dir="ltr" required></label>
+          <label><span data-i18n="f.phone">Téléphone (facultatif)</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" dir="ltr"></label>
+          <label><span data-i18n="f.sector">Votre métier</span>
+            <select id="f-sector" name="sector">
+              <option value="Boulangerie, pâtisserie" data-i18n="sec.1">Boulangerie, pâtisserie</option>
+              <option value="Café, restaurant" data-i18n="sec.2">Café, restaurant</option>
+              <option value="Commerce de détail" data-i18n="sec.3">Commerce de détail</option>
+              <option value="Coiffure, beauté" data-i18n="sec.4">Coiffure, beauté</option>
+              <option value="Hôtellerie" data-i18n="sec.5">Hôtellerie</option>
+              <option value="Logistique, propreté" data-i18n="sec.6">Logistique, propreté</option>
+              <option value="Autre" data-i18n="sec.7">Autre</option>
+            </select>
+          </label>
+          <label><span data-i18n="f.plan">Ce qui vous intéresse</span>
+            <select id="f-plan" name="plan">
+              <option value="Pilote" data-i18n="plan.1">Le mois offert</option>
+              <option value="Solo" data-i18n="plan.2">Un commerce</option>
+              <option value="Réseau" data-i18n="plan.3">Plusieurs boutiques</option>
+              <option value="Entreprise" data-i18n="ent.title">Grandes entreprises</option>
+              <option value="Autre" data-i18n="plan.4">Autre chose</option>
+            </select>
+          </label>
+          <label class="full" id="enterprise-fields" hidden>
+            <span data-i18n="ent.sites">Nombre de sites concernés (facultatif)</span>
+            <select id="f-sites" name="sites" disabled>
+              <option value="" data-i18n="ent.unknown">À définir</option>
+              <option value="51–200">51–200</option>
+              <option value="201–1000">201–1000</option>
+              <option value="1001+">1001+</option>
+            </select>
+          </label>
+          <label class="full"><span data-i18n="f.msg">Que doivent apprendre vos équipes ? (facultatif)</span><textarea id="f-msg" name="msg" data-i18n-ph="f.msgph" placeholder="L'ouverture de la caisse, la préparation des commandes, l'accueil…"></textarea></label>
+          <p class="err full" id="formErr" role="alert" hidden></p>
+          <button class="btn btn-primary full" type="submit" id="f-submit" data-i18n="f.send">Envoyer</button>
+          <p class="full form-legal" data-i18n="f.legal">Vos coordonnées servent uniquement à vous répondre au sujet de FieldFluent (3 emails au maximum si vous ne répondez pas). Elles ne sont jamais revendues. Détails dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        </div>
+        <div class="sent full" id="formSent" hidden>
+          <h3 id="sentTitle" data-i18n="sent.h">C'est envoyé.</h3>
+          <p class="muted" id="sentText" data-i18n="sent.p">Merci ! On vous répond par email, en général sous 24 à 48 h.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 FieldFluent</span>
+    <nav aria-label="Pied de page">
+      <a href="#comment" data-i18n="nav.how">Comment ça marche</a>
+      <a href="#tarifs" data-i18n="nav.price">Tarifs</a>
+      <a href="#questions" data-i18n="nav.faq">Questions</a>
+      <a href="app/" data-i18n="nav.login">Se connecter</a>
+      <a href="mentions-legales.html" data-i18n="ft.legal">Mentions légales</a>
+      <a href="confidentialite.html" data-i18n="ft.privacy">Confidentialité</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---------- Traductions (le français est lu directement dans la page) ----------
+  var T = {
+    en: {
+      "nav.demo": "Demo", "nav.quiz": "Quiz", "nav.contact": "Contact",
+      "nav.how": "How it works", "nav.price": "Pricing", "nav.faq": "Questions", "nav.login": "Log in", "nav.try": "Create an account",
+      "hero.h1": "Turn your instructions into frontline training",
+      "hero.lead": "AI turns your written instructions or video into training with steps and a quiz, ready to share by link, text or WhatsApp.",
+      "hero.cta1": "Create my first training", "hero.cta2": "Watch the espresso demo without an account",
+      "hero.note": "One month free for the first 10 businesses. No commitment.",
+      "lang.note": "For now, the owner's space and the trainings themselves are in French.",
+      "nav.options": "Site options",
+      "hero.signup": "Create your account with your email and a password.",
+      "hero.pilot": "Request a spot",
+      "flow.label": "Interactive example",
+      "manager.title": "New hire results",
+      "manager.example": "Example",
+      "manager.trainee": "New hire",
+      "manager.score": "Score",
+      "manager.attempt": "Attempt",
+      "manager.result": "Result",
+      "manager.passed": "Passed",
+      "manager.review": "Review",
+      "manager.support": "Needs support",
+      "flow.title": "Prepare an order",
+      "flow.input": "The instruction",
+      "flow.task": "Check the item reference before packing.",
+      "flow.training": "The training",
+      "flow.output": "A video, steps and a quiz.",
+      "flow.share": "Sharing",
+      "flow.link": "A link sent by text or WhatsApp.",
+      "scr.play": "Play the video",
+      "flow.rotate": "Drag to rotate",
+      "scr.meta": "Filmed demo · 30 s", "scr.title": "Making an espresso", "scr.sub": "Spread 18 g of ground coffee evenly.",
+      "scr.steps": "Training steps",
+      "scr.s1": "Tamp the ground coffee, keeping the tamper level.", "scr.s2": "Insert the portafilter into the group head and lock it in place.",
+      "scr.s3": "Watch the flow and ask for the grind to be checked if the coffee runs too quickly.",
+      "scr.quiz": "Try the quiz", "scr.caption": "A training example using real footage.",
+      "how.h2": "You show it once.<br>The app repeats it for every new hire.",
+      "how.b1h": "You film the task, or you write it down",
+      "how.b1p": "One to three minutes on your phone, while you do the job. Don't feel like filming? Write your instructions, add a few photos, and the app makes the video with a voice-over.",
+      "how.b2h": "You review it before sending",
+      "how.b2p": "Usually within the day, the training is waiting in your space: the subtitled video, the timed steps and the quiz. Fix a word or an answer, or ask for a new quiz. Nothing goes out without your approval.",
+      "how.b3h": "Your new hire opens it on their phone",
+      "how.b3p": "A link by text or WhatsApp, no app and no password. They watch the video, take the quiz, and you see the result. If they get stuck, you are notified.",
+      "quiz.h2": "Not a quiz for show.",
+      "quiz.lead": "The questions put your new hire in real situations, just like behind the counter. Try this one, taken from the espresso training.",
+      "quiz.r1": "correct answers to pass. Below that, they watch the video again.",
+      "quiz.r2b": "2 tries", "quiz.r2": "After two failures, they are flagged \"needs support\" and you get an email.",
+      "quiz.r3b": "Video", "quiz.r3": "The quiz only opens once the video has really been watched.",
+      "q.count": "Demo question",
+      "q.text": "Your double espresso finished in 12 seconds and the cup is already full. What do you do?",
+      "q.a0": "I serve it: the cup is full, that's what matters", "q.a1": "I run another extraction on top to make it stronger",
+      "q.a2": "I don't serve it and I tell the manager to grind finer", "q.a3": "I tamp harder next time without telling anyone",
+      "q.good": "Correct. 12 seconds is far too short: the grind is too coarse, so you don't serve it and you tell someone.",
+      "q.bad": "Not quite. An espresso takes 25 to 30 seconds. At 12 seconds it's ruined: don't serve it, and ask for a finer grind.",
+      "q.again": "Try again",
+      "keep.h2": "What stays in your hands",
+      "keep.k1h": "Tracking for every new hire", "keep.k1p": "Who finished, who passed, who needs support, and the most-missed questions. You know what to go over with whom.",
+      "keep.k2h": "First-week paths", "keep.k2p": "With the Multiple locations plan, put several trainings in order: opening, the till, hygiene. One link for everything, and they go at their own pace.",
+      "keep.k3h": "Your videos stay yours", "keep.k3p": "A training can only be seen with its link. Delete it and the video is erased. Data hosted in Europe.",
+      "price.h2": "A plan for your organization", "price.lead": "From independent shops to nationwide networks, choose the right plan for your teams.",
+      "bill.m": "Monthly", "bill.y": "Yearly", "bill.note": "Prices shown per month, billed annually.",
+      "estimate.jump": "Estimate the benefit for my team", "estimate.title": "What could your team gain?", "estimate.lead": "The prefilled values are an example. Change them to estimate the time freed up for supervisors and its value after subscription costs.", "estimate.sites": "Number of sites", "estimate.billing": "Billing", "estimate.hires": "Monthly hires across all sites", "estimate.minutes": "Minutes saved per hire", "estimate.wage": "Supervisor hourly cost including payroll charges (€)", "estimate.time": "Time freed up per month", "estimate.value": "Value of time freed up per month", "estimate.price": "Subscription per month", "estimate.net": "Estimated benefit after subscription", "estimate.note": "This estimate uses your assumptions. Amounts are monthly equivalents, including on annual billing. Time freed up is not a cash saving. Training creation and updates are excluded. The one-site price uses the One business plan for teams of up to 20.",
+      "ent.title": "Enterprise", "ent.unit": "per site per month from the 51st site onward", "ent.base": "For each of the first 50 sites", "ent.period": "per site per month", "ent.audience": "For large organizations, franchises and networks with more than 50 sites.", "ent.scope": "Define the scope by brand, region or site type", "ent.pilot": "Trial one procedure at two sites and compare new hires’ results before rolling it out across your network.", "ent.cta": "Trial it at a few sites", "ent.requirements": "Discuss reporting, security and integration requirements", "ent.sites": "Number of sites (optional)", "ent.unknown": "To be determined",
+      "p1.h": "One business", "p1.unit": "per month", "p1.l1": "For teams of up to 20 people", "p1.l2": "Unlimited training modules", "p1.l3": "Results tracking and email alerts",
+      "p.cta": "Choose this plan",
+      "p2.h": "Several shops", "p2.unit": "per shop, per month", "p2.l1": "From 2 to 50 locations", "p2.l2": "Everything in the one-business plan", "p2.l3": "Paths of several trainings",
+      "pilot.h": "The first 10 businesses: one month free",
+      "pilot.p": "We build your first trainings with you. In return, you tell us what works and what doesn't. Your starting price is locked in.",
+      "pilot.cta": "I want a spot",
+      "faq.h2": "Your questions",
+      "faq.q1": "How do I create my first training?", "faq.a1": "Create your space in a minute on the \"Log in\" page (email and password). Film a 1 to 3 minute task, or write your instructions, then upload. The training arrives in your space, usually within the day, so you can check it before sending.",
+      "faq.q2": "Do my employees need to install an app?", "faq.a2": "No. They get a link by text or WhatsApp and follow the training in their browser. No account, no password.",
+      "faq.q3": "I'm not comfortable with technology. Is it complicated?", "faq.a3": "If you can send a video on WhatsApp, you can use FieldFluent. During the free month, we set it up with you.",
+      "faq.q4": "What if the AI gets it wrong?", "faq.a4": "Every training is shown to you before it's sent. You can edit a step, a quiz answer or a word. Nothing is sent without your approval.",
+      "faq.q5": "Do my videos stay private?", "faq.a5": "Your original videos stay private. A published training can only be opened with its link, which you give to your new hires. It never appears in any public list, and its video is erased if you delete the training.",
+      "faq.q6": "Does it replace a certified mandatory training?", "faq.a6": "No. FieldFluent helps you train and keep a record. For some regulated trainings, a certified provider is still required.",
+      "faq.q7": "Can I stop whenever I want?", "faq.a7": "Yes. There is no commitment. You can download your trainings before you leave.",
+      "c.h2": "Shall we talk?", "c.lead": "Tell us what you want to teach your new hires. We reply by email, usually within 24 to 48 hours.",
+      "c.alt": "Prefer to try on your own? <a class=\"link\" href=\"app/?mode=inscription\">Create your space</a> and upload a first video.",
+      "f.name": "First and last name", "f.shop": "Company or business name", "f.email": "Email", "f.phone": "Phone (optional)", "f.sector": "Your trade",
+      "sec.1": "Bakery, pastry", "sec.2": "Café, restaurant", "sec.3": "Retail", "sec.4": "Hairdressing, beauty", "sec.5": "Hotels", "sec.6": "Logistics, cleaning", "sec.7": "Other",
+      "f.plan": "What interests you", "plan.1": "The free month", "plan.2": "One business", "plan.3": "Several shops", "plan.4": "Something else",
+      "f.msg": "The first thing to teach your new hires (optional)", "f.msgph": "Opening the till, preparing orders, welcoming customers…",
+      "f.send": "Send", "f.legal": "Your details are only used to reply to you about FieldFluent (3 emails at most if you don't reply). They are never sold. Details in our <a href=\"confidentialite.html\">privacy policy</a> (in French).",
+      "sent.h": "Sent.", "sent.p": "Thank you! We'll reply by email, usually within 24 to 48 hours.",
+      "ft.legal": "Legal notice", "ft.privacy": "Privacy",
+      "err.miss": "Missing: ", "err.name": "your name", "err.shop": "the business name", "err.mail": "your email", "err.bad": "The email address is not valid.",
+      "err.net": "Sending failed. Check your connection and try again.", "f.sending": "Sending…",
+      "meta.title": "FieldFluent · Train your new hires in a few days"
+    },
+    de: {
+      "nav.demo": "Demo", "nav.quiz": "Quiz", "nav.contact": "Kontakt",
+      "nav.how": "So funktioniert's", "nav.price": "Preise", "nav.faq": "Fragen", "nav.login": "Anmelden", "nav.try": "Konto erstellen",
+      "hero.h1": "Machen Sie aus Anweisungen Schulungen für Ihr Team",
+      "hero.lead": "Die KI erstellt aus Ihren schriftlichen Anweisungen oder einem Video eine Schulung mit Schritten und Quiz, die Sie per Link, SMS oder WhatsApp teilen können.",
+      "hero.cta1": "Meine erste Schulung erstellen", "hero.cta2": "Espresso-Demo ohne Konto ansehen",
+      "hero.note": "Für die ersten 10 Betriebe einen Monat kostenlos. Ohne Vertragsbindung.",
+      "lang.note": "Der Bereich für Inhaber und die Schulungen selbst sind vorerst auf Französisch.",
+      "nav.options": "Website-Optionen",
+      "hero.signup": "Erstellen Sie Ihr Konto mit E-Mail-Adresse und Passwort.",
+      "hero.pilot": "Platz anfragen",
+      "flow.label": "Interaktives Beispiel",
+      "manager.title": "Ergebnisse neuer Mitarbeiter",
+      "manager.example": "Beispiel",
+      "manager.trainee": "Mitarbeiter",
+      "manager.score": "Punkte",
+      "manager.attempt": "Versuch",
+      "manager.result": "Ergebnis",
+      "manager.passed": "Bestanden",
+      "manager.review": "Wiederholen",
+      "manager.support": "Unterstützung nötig",
+      "flow.title": "Eine Bestellung vorbereiten",
+      "flow.input": "Die Anweisung",
+      "flow.task": "Vor dem Verpacken die Artikelnummer prüfen.",
+      "flow.training": "Die Schulung",
+      "flow.output": "Ein Video, Schritte und ein Quiz.",
+      "flow.share": "Weitergabe",
+      "flow.link": "Ein Link per SMS oder WhatsApp.",
+      "scr.play": "Video abspielen",
+      "flow.rotate": "Zum Drehen ziehen",
+      "scr.meta": "Gefilmte Demo · 30 s", "scr.title": "Einen Espresso zubereiten", "scr.sub": "18 g gemahlenen Kaffee gleichmäßig verteilen.",
+      "scr.steps": "Schritte der Schulung",
+      "scr.s1": "Das Kaffeemehl mit geradem Tamper andrücken.", "scr.s2": "Den Siebträger in die Brühgruppe einsetzen und verriegeln.",
+      "scr.s3": "Den Durchfluss beobachten und bei zu schnellem Durchfluss den Mahlgrad prüfen lassen.",
+      "scr.quiz": "Quiz ausprobieren", "scr.caption": "Ein Schulungsbeispiel mit echten Aufnahmen.",
+      "how.h2": "Sie zeigen es einmal.<br>Die App wiederholt es für jeden Neuen.",
+      "how.b1h": "Sie filmen die Aufgabe oder schreiben sie auf",
+      "how.b1p": "Eine bis drei Minuten mit dem Handy, während Sie die Arbeit machen. Keine Lust zu filmen? Schreiben Sie Ihre Anweisungen, fügen Sie ein paar Fotos hinzu, und die App erstellt das Video mit Sprecherstimme.",
+      "how.b2h": "Sie prüfen alles vor dem Versand",
+      "how.b2p": "Meist noch am selben Tag liegt die Schulung in Ihrem Bereich bereit: das Video mit Untertiteln, die Schritte mit Zeitangaben und das Quiz. Sie korrigieren ein Wort, eine Antwort oder verlangen ein neues Quiz. Nichts geht ohne Ihre Zustimmung raus.",
+      "how.b3h": "Ihr neuer Mitarbeiter öffnet sie auf dem Handy",
+      "how.b3p": "Ein Link per SMS oder WhatsApp, ohne App und ohne Passwort. Video ansehen, Quiz machen, und Sie sehen das Ergebnis. Kommt jemand nicht weiter, werden Sie benachrichtigt.",
+      "quiz.h2": "Kein Quiz nur zum Schein.",
+      "quiz.lead": "Die Fragen versetzen den Neuen in echte Situationen, wie hinter der Theke. Probieren Sie diese aus, aus der Espresso-Schulung.",
+      "quiz.r1": "richtige Antworten zum Bestehen. Darunter wird das Video noch einmal angesehen.",
+      "quiz.r2b": "2 Versuche", "quiz.r2": "Nach zwei Fehlversuchen wird die Person als „braucht Begleitung“ markiert und Sie bekommen eine E-Mail.",
+      "quiz.r3b": "Video", "quiz.r3": "Das Quiz öffnet sich erst, wenn das Video wirklich angesehen wurde.",
+      "q.count": "Demofrage",
+      "q.text": "Dein doppelter Espresso ist nach 12 Sekunden fertig und die Tasse ist schon voll. Was machst du?",
+      "q.a0": "Ich serviere ihn: Die Tasse ist voll, das zählt", "q.a1": "Ich lasse noch einen Bezug darüber laufen, damit er kräftiger wird",
+      "q.a2": "Ich serviere ihn nicht und sage dem Chef, dass feiner gemahlen werden muss", "q.a3": "Ich tampe nächstes Mal fester, ohne etwas zu sagen",
+      "q.good": "Richtig. 12 Sekunden sind viel zu kurz: Der Mahlgrad ist zu grob. Nicht servieren und Bescheid sagen.",
+      "q.bad": "Nicht ganz. Ein Espresso braucht 25 bis 30 Sekunden. Nach 12 Sekunden ist er misslungen: nicht servieren und feiner mahlen lassen.",
+      "q.again": "Noch einmal",
+      "keep.h2": "Was Sie in der Hand behalten",
+      "keep.k1h": "Überblick über jeden Neuen", "keep.k1p": "Wer fertig ist, wer bestanden hat, wer Begleitung braucht und welche Fragen am häufigsten falsch sind. Sie wissen, was Sie mit wem wiederholen.",
+      "keep.k2h": "Abläufe für die erste Woche", "keep.k2p": "Mit dem Tarif für mehrere Standorte können Sie Schulungen für Öffnung, Kasse und Hygiene aneinanderreihen. Ein Link für alles, jeder lernt in seinem Tempo.",
+      "keep.k3h": "Ihre Videos bleiben Ihre", "keep.k3p": "Eine Schulung ist nur über ihren Link sichtbar. Löschen Sie sie, wird das Video entfernt. Datenspeicherung in Europa.",
+      "price.h2": "Ein Tarif für Ihr Unternehmen", "price.lead": "Vom Einzelbetrieb bis zum landesweiten Netz: Wählen Sie den passenden Tarif für Ihre Teams.",
+      "bill.m": "Monatlich", "bill.y": "Jährlich", "bill.note": "Monatspreise bei jährlicher Abrechnung.",
+      "estimate.jump": "Nutzen für mein Team berechnen", "estimate.title": "Welchen Nutzen hat Ihr Team?", "estimate.lead": "Die vorausgefüllten Werte sind ein Beispiel. Passen Sie sie an, um die frei werdende Betreuungszeit und ihren Wert nach Abzug der Abokosten zu schätzen.", "estimate.sites": "Anzahl der Standorte", "estimate.billing": "Abrechnung", "estimate.hires": "Neueinstellungen pro Monat an allen Standorten", "estimate.minutes": "Eingesparte Minuten je Neueinstellung", "estimate.wage": "Stundenkosten der Betreuung inkl. Lohnnebenkosten (€)", "estimate.time": "Freie Zeit pro Monat", "estimate.value": "Wert der freien Zeit pro Monat", "estimate.price": "Abo pro Monat", "estimate.net": "Geschätzter Nutzen nach Abokosten", "estimate.note": "Die Schätzung basiert auf Ihren Annahmen. Beträge sind Monatswerte, auch bei Jahresabrechnung. Freie Zeit ist keine direkte Geldeinsparung. Erstellung und Aktualisierung der Schulungen sind nicht enthalten. Der Preis für einen Standort gilt für Teams bis 20 Personen.",
+      "ent.title": "Großunternehmen", "ent.unit": "pro Standort und Monat ab dem 51. Standort", "ent.base": "Für die ersten 50 Standorte", "ent.period": "pro Standort und Monat", "ent.audience": "Für große Unternehmen, Franchises und Netzwerke mit über 50 Standorten.", "ent.scope": "Umfang nach Marke, Region oder Standorttyp festlegen", "ent.pilot": "Testen Sie einen Ablauf an zwei Standorten und vergleichen Sie die Ergebnisse neuer Mitarbeitender vor der Einführung im gesamten Netz.", "ent.cta": "An einigen Standorten testen", "ent.requirements": "Anforderungen an Berichte, Sicherheit und Integration klären", "ent.sites": "Anzahl der Standorte (optional)", "ent.unknown": "Noch offen",
+      "p1.h": "Ein Betrieb", "p1.unit": "pro Monat", "p1.l1": "Für Teams mit bis zu 20 Personen", "p1.l2": "Unbegrenzte Anzahl an Schulungen", "p1.l3": "Ergebnisse und Benachrichtigungen per E-Mail",
+      "p.cta": "Dieses Angebot wählen",
+      "p2.h": "Mehrere Filialen", "p2.unit": "pro Filiale und Monat", "p2.l1": "2 bis 50 Standorte", "p2.l2": "Alles aus dem Angebot für einen Betrieb", "p2.l3": "Abläufe aus mehreren Schulungen",
+      "pilot.h": "Die ersten 10 Betriebe: ein Monat gratis",
+      "pilot.p": "Wir erstellen Ihre ersten Schulungen gemeinsam mit Ihnen. Dafür sagen Sie uns, was funktioniert und was nicht. Ihr Startpreis bleibt garantiert.",
+      "pilot.cta": "Ich will einen Platz",
+      "faq.h2": "Ihre Fragen",
+      "faq.q1": "Wie erstelle ich meine erste Schulung?", "faq.a1": "Legen Sie Ihren Bereich in einer Minute auf der Seite „Anmelden“ an (E-Mail und Passwort). Filmen Sie eine Aufgabe von 1 bis 3 Minuten oder schreiben Sie Ihre Anweisungen und laden Sie sie hoch. Die Schulung erscheint meist noch am selben Tag in Ihrem Bereich, damit Sie sie vor dem Versand prüfen.",
+      "faq.q2": "Müssen meine Mitarbeiter eine App installieren?", "faq.a2": "Nein. Sie bekommen einen Link per SMS oder WhatsApp und machen die Schulung im Browser. Kein Konto, kein Passwort.",
+      "faq.q3": "Ich kenne mich mit Technik nicht aus. Ist das kompliziert?", "faq.a3": "Wer ein Video per WhatsApp schicken kann, kann FieldFluent nutzen. Im Gratismonat richten wir alles mit Ihnen ein.",
+      "faq.q4": "Und wenn die KI sich irrt?", "faq.a4": "Jede Schulung wird Ihnen vor dem Versand gezeigt. Sie können einen Schritt, eine Quizantwort oder ein Wort ändern. Nichts wird ohne Ihre Zustimmung verschickt.",
+      "faq.q5": "Bleiben meine Videos privat?", "faq.a5": "Ihre Originalvideos bleiben privat. Eine veröffentlichte Schulung ist nur über ihren Link erreichbar, den Sie Ihren neuen Mitarbeitern geben. Sie erscheint in keiner öffentlichen Liste, und das Video wird gelöscht, wenn Sie die Schulung löschen.",
+      "faq.q6": "Ersetzt das eine zertifizierte Pflichtschulung?", "faq.a6": "Nein. FieldFluent hilft Ihnen beim Einarbeiten und dokumentiert es. Für manche vorgeschriebenen Schulungen braucht es weiterhin einen zertifizierten Anbieter.",
+      "faq.q7": "Kann ich jederzeit aufhören?", "faq.a7": "Ja. Es gibt keine Vertragsbindung. Sie können Ihre Schulungen vorher herunterladen.",
+      "c.h2": "Sollen wir reden?", "c.lead": "Sagen Sie uns, was Sie Ihren Neuen beibringen möchten. Wir antworten per E-Mail, meist innerhalb von 24 bis 48 Stunden.",
+      "c.alt": "Lieber selbst ausprobieren? <a class=\"link\" href=\"app/?mode=inscription\">Legen Sie Ihren Bereich an</a> und laden Sie ein erstes Video hoch.",
+      "f.name": "Vor- und Nachname", "f.shop": "Name des Unternehmens oder Betriebs", "f.email": "E-Mail", "f.phone": "Telefon (optional)", "f.sector": "Ihre Branche",
+      "sec.1": "Bäckerei, Konditorei", "sec.2": "Café, Restaurant", "sec.3": "Einzelhandel", "sec.4": "Friseur, Kosmetik", "sec.5": "Hotellerie", "sec.6": "Logistik, Reinigung", "sec.7": "Andere",
+      "f.plan": "Was Sie interessiert", "plan.1": "Der Gratismonat", "plan.2": "Ein Betrieb", "plan.3": "Mehrere Filialen", "plan.4": "Etwas anderes",
+      "f.msg": "Das Erste, was Ihre Neuen lernen sollen (optional)", "f.msgph": "Kasse öffnen, Bestellungen vorbereiten, Kunden empfangen…",
+      "f.send": "Senden", "f.legal": "Ihre Daten dienen nur dazu, Ihnen zu FieldFluent zu antworten (höchstens 3 E-Mails, wenn Sie nicht antworten). Sie werden nie verkauft. Mehr in unserer <a href=\"confidentialite.html\">Datenschutzerklärung</a> (auf Französisch).",
+      "sent.h": "Gesendet.", "sent.p": "Danke! Wir antworten per E-Mail, meist innerhalb von 24 bis 48 Stunden.",
+      "ft.legal": "Impressum", "ft.privacy": "Datenschutz",
+      "err.miss": "Es fehlt: ", "err.name": "Ihr Name", "err.shop": "der Name des Betriebs", "err.mail": "Ihre E-Mail", "err.bad": "Die E-Mail-Adresse ist ungültig.",
+      "err.net": "Senden fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.", "f.sending": "Wird gesendet…",
+      "meta.title": "FieldFluent · Neue Mitarbeiter in wenigen Tagen einarbeiten"
+    },
+    es: {
+      "nav.demo": "Demo", "nav.quiz": "Cuestionario", "nav.contact": "Contacto",
+      "nav.how": "Cómo funciona", "nav.price": "Precios", "nav.faq": "Preguntas", "nav.login": "Iniciar sesión", "nav.try": "Crear una cuenta",
+      "hero.h1": "Convierta sus instrucciones en formación para sus equipos",
+      "hero.lead": "La IA convierte sus instrucciones escritas o un vídeo en formación con pasos y un cuestionario, lista para compartir por enlace, SMS o WhatsApp.",
+      "hero.cta1": "Crear mi primera formación", "hero.cta2": "Ver la demo de espresso sin cuenta",
+      "hero.note": "Un mes gratis para los 10 primeros negocios, sin permanencia.",
+      "lang.note": "Por ahora, el espacio del dueño y las formaciones están en francés.",
+      "nav.options": "Opciones del sitio",
+      "hero.signup": "Cree su cuenta con su correo electrónico y una contraseña.",
+      "hero.pilot": "Solicitar una plaza",
+      "flow.label": "Ejemplo interactivo",
+      "manager.title": "Resultados del personal nuevo",
+      "manager.example": "Ejemplo",
+      "manager.trainee": "Persona",
+      "manager.score": "Puntuación",
+      "manager.attempt": "Intento",
+      "manager.result": "Resultado",
+      "manager.passed": "Aprobado",
+      "manager.review": "Repasar",
+      "manager.support": "Necesita apoyo",
+      "flow.title": "Preparar un pedido",
+      "flow.input": "La instrucción",
+      "flow.task": "Compruebe la referencia antes de embalar el producto.",
+      "flow.training": "La formación",
+      "flow.output": "Un vídeo, pasos y un cuestionario.",
+      "flow.share": "El envío",
+      "flow.link": "Un enlace enviado por SMS o WhatsApp.",
+      "scr.play": "Reproducir el vídeo",
+      "flow.rotate": "Arrastre para girar",
+      "scr.meta": "Demo grabada · 30 s", "scr.title": "Preparar un espresso", "scr.sub": "Reparte 18 g de café molido de forma uniforme.",
+      "scr.steps": "Pasos de la formación",
+      "scr.s1": "Compacte el café molido con el prensador nivelado.", "scr.s2": "Introduzca el portafiltro en el grupo y fíjelo.",
+      "scr.s3": "Observe el flujo y pida que revisen la molienda si el café sale demasiado rápido.",
+      "scr.quiz": "Probar el cuestionario", "scr.caption": "Un ejemplo de formación con imágenes reales.",
+      "how.h2": "Usted lo enseña una vez.<br>La app lo repite con cada nuevo.",
+      "how.b1h": "Graba la tarea, o la escribe",
+      "how.b1p": "De uno a tres minutos con el móvil, mientras hace el trabajo. ¿No le apetece grabar? Escriba sus instrucciones, añada algunas fotos y la app crea el vídeo con una voz.",
+      "how.b2h": "Lo revisa antes de enviarlo",
+      "how.b2p": "Normalmente en el mismo día, la formación le espera en su espacio: el vídeo subtitulado, los pasos cronometrados y el cuestionario. Corrige una palabra, una respuesta, o pide otro cuestionario. Nada sale sin su aprobación.",
+      "how.b3h": "Su nuevo empleado la abre en el móvil",
+      "how.b3p": "Un enlace por SMS o WhatsApp, sin aplicación ni contraseña. Ve el vídeo, hace el cuestionario y usted ve el resultado. Si se atasca, le avisamos.",
+      "quiz.h2": "No es un cuestionario de adorno.",
+      "quiz.lead": "Las preguntas ponen al nuevo en situaciones reales, como detrás de la barra. Pruebe esta, sacada de la formación del espresso.",
+      "quiz.r1": "de respuestas correctas para aprobar. Por debajo, vuelve a ver el vídeo.",
+      "quiz.r2b": "2 intentos", "quiz.r2": "Tras dos fallos, queda marcado como «necesita acompañamiento» y usted recibe un email.",
+      "quiz.r3b": "Vídeo", "quiz.r3": "El cuestionario solo se abre cuando el vídeo se ha visto de verdad.",
+      "q.count": "Pregunta de demostración",
+      "q.text": "Tu espresso doble ha terminado en 12 segundos y la taza ya está llena. ¿Qué haces?",
+      "q.a0": "Lo sirvo: está lleno, que es lo importante", "q.a1": "Hago otra extracción encima para que quede más fuerte",
+      "q.a2": "No lo sirvo y aviso al responsable para moler más fino", "q.a3": "La próxima vez prenso más fuerte sin decir nada",
+      "q.good": "Correcto. 12 segundos es demasiado poco: la molienda es muy gruesa. No se sirve y se avisa.",
+      "q.bad": "No del todo. Un espresso tarda de 25 a 30 segundos. A los 12 segundos está mal hecho: no se sirve y se pide moler más fino.",
+      "q.again": "Volver a empezar",
+      "keep.h2": "Lo que usted controla",
+      "keep.k1h": "El seguimiento de cada nuevo", "keep.k1p": "Quién ha terminado, quién ha aprobado, quién necesita acompañamiento y las preguntas más falladas. Sabe qué repasar y con quién.",
+      "keep.k2h": "Recorridos para la primera semana", "keep.k2p": "Con el plan para varias tiendas, ordene varias formaciones: la apertura, la caja, la higiene. Un solo enlace para todo, cada uno avanza a su ritmo.",
+      "keep.k3h": "Sus vídeos son suyos", "keep.k3p": "Una formación solo se ve con su enlace. Si la borra, el vídeo se elimina. Datos alojados en Europa.",
+      "price.h2": "Un plan para su organización", "price.lead": "Desde un comercio independiente hasta una red nacional, elija el plan para sus equipos.",
+      "bill.m": "Mensual", "bill.y": "Anual", "bill.note": "Precios mensuales con facturación anual.",
+      "estimate.jump": "Estimar el beneficio para mi equipo", "estimate.title": "¿Qué beneficio obtiene su equipo?", "estimate.lead": "Los valores iniciales son un ejemplo. Cámbielos para estimar el tiempo de supervisión liberado y su valor una vez descontada la suscripción.", "estimate.sites": "Número de centros", "estimate.billing": "Facturación", "estimate.hires": "Nuevas contrataciones al mes en todos los centros", "estimate.minutes": "Minutos ahorrados por contratación", "estimate.wage": "Coste laboral total por hora del supervisor (€)", "estimate.time": "Tiempo liberado al mes", "estimate.value": "Valor del tiempo liberado al mes", "estimate.price": "Suscripción al mes", "estimate.net": "Beneficio estimado tras la suscripción", "estimate.note": "Estimación basada en sus supuestos. Los importes son equivalentes mensuales, incluso con facturación anual. El tiempo liberado no supone un ahorro de caja. Se excluye el tiempo de creación y actualización de formaciones. El precio para un centro corresponde a equipos de hasta 20 personas.",
+      "ent.title": "Grandes empresas", "ent.unit": "por centro al mes a partir del centro 51", "ent.base": "Para los primeros 50 centros", "ent.period": "por centro al mes", "ent.audience": "Para grandes grupos, franquicias y redes con más de 50 centros.", "ent.scope": "Definición del alcance por marca, región o tipo de centro", "ent.pilot": "Pruebe un procedimiento en dos centros y compare los resultados de las nuevas incorporaciones antes de extenderlo a toda la red.", "ent.cta": "Probar en algunos centros", "ent.requirements": "Definición de necesidades de informes, seguridad e integración", "ent.sites": "Número de centros (opcional)", "ent.unknown": "Por definir",
+      "p1.h": "Un negocio", "p1.unit": "al mes", "p1.l1": "Para equipos de hasta 20 personas", "p1.l2": "Número de formaciones ilimitado", "p1.l3": "Seguimiento de resultados y avisos por email",
+      "p.cta": "Elegir esta oferta",
+      "p2.h": "Varias tiendas", "p2.unit": "por tienda y al mes", "p2.l1": "De 2 a 50 puntos de venta", "p2.l2": "Todo lo de la oferta un negocio", "p2.l3": "Recorridos de varias formaciones",
+      "pilot.h": "Los 10 primeros negocios: un mes gratis",
+      "pilot.p": "Preparamos con usted sus primeras formaciones. A cambio, nos cuenta qué funciona y qué no. Su precio inicial queda garantizado.",
+      "pilot.cta": "Quiero una plaza",
+      "faq.h2": "Sus preguntas",
+      "faq.q1": "¿Cómo creo mi primera formación?", "faq.a1": "Cree su espacio en un minuto en la página «Iniciar sesión» (email y contraseña). Grabe una tarea de 1 a 3 minutos, o escriba sus instrucciones, y súbala. La formación llega a su espacio, normalmente en el mismo día, para que la revise antes de enviarla.",
+      "faq.q2": "¿Mis empleados tienen que instalar una aplicación?", "faq.a2": "No. Reciben un enlace por SMS o WhatsApp y siguen la formación en el navegador. Sin cuenta ni contraseña.",
+      "faq.q3": "No me llevo bien con la tecnología. ¿Es complicado?", "faq.a3": "Si sabe enviar un vídeo por WhatsApp, sabe usar FieldFluent. Durante el mes gratis, lo ponemos en marcha con usted.",
+      "faq.q4": "¿Y si la IA se equivoca?", "faq.a4": "Cada formación se le muestra antes de enviarla. Puede cambiar un paso, una respuesta o una palabra. Nada se envía sin su aprobación.",
+      "faq.q5": "¿Mis vídeos siguen siendo privados?", "faq.a5": "Sus vídeos originales son privados. Una formación publicada solo se abre con su enlace, que usted da a sus nuevos empleados. No aparece en ninguna lista pública, y su vídeo se borra si elimina la formación.",
+      "faq.q6": "¿Sustituye a una formación obligatoria certificada?", "faq.a6": "No. FieldFluent le ayuda a formar y a dejar constancia. Para algunas formaciones reguladas sigue haciendo falta un organismo certificado.",
+      "faq.q7": "¿Puedo dejarlo cuando quiera?", "faq.a7": "Sí. No hay permanencia. Podrá descargar sus formaciones antes de irse.",
+      "c.h2": "¿Hablamos?", "c.lead": "Cuéntenos qué quiere enseñar a sus nuevos empleados. Le respondemos por email, normalmente en 24 a 48 horas.",
+      "c.alt": "¿Prefiere probar por su cuenta? <a class=\"link\" href=\"app/?mode=inscription\">Cree su espacio</a> y suba un primer vídeo.",
+      "f.name": "Nombre y apellidos", "f.shop": "Nombre de la empresa o negocio", "f.email": "Email", "f.phone": "Teléfono (opcional)", "f.sector": "Su sector",
+      "sec.1": "Panadería, pastelería", "sec.2": "Cafetería, restaurante", "sec.3": "Comercio minorista", "sec.4": "Peluquería, estética", "sec.5": "Hostelería", "sec.6": "Logística, limpieza", "sec.7": "Otro",
+      "f.plan": "Lo que le interesa", "plan.1": "El mes gratis", "plan.2": "Un negocio", "plan.3": "Varias tiendas", "plan.4": "Otra cosa",
+      "f.msg": "Lo primero que deben aprender sus nuevos (opcional)", "f.msgph": "Abrir la caja, preparar pedidos, atender a los clientes…",
+      "f.send": "Enviar", "f.legal": "Sus datos solo sirven para responderle sobre FieldFluent (3 emails como máximo si no responde). Nunca se venden. Más detalles en nuestra <a href=\"confidentialite.html\">política de privacidad</a> (en francés).",
+      "sent.h": "Enviado.", "sent.p": "¡Gracias! Le respondemos por email, normalmente en 24 a 48 horas.",
+      "ft.legal": "Aviso legal", "ft.privacy": "Privacidad",
+      "err.miss": "Falta: ", "err.name": "su nombre", "err.shop": "el nombre del negocio", "err.mail": "su email", "err.bad": "El email no es válido.",
+      "err.net": "No se pudo enviar. Compruebe su conexión e inténtelo de nuevo.", "f.sending": "Enviando…",
+      "meta.title": "FieldFluent · Forme a sus nuevos empleados en pocos días"
+    },
+    it: {
+      "nav.demo": "Demo", "nav.quiz": "Quiz", "nav.contact": "Contatti",
+      "nav.how": "Come funziona", "nav.price": "Prezzi", "nav.faq": "Domande", "nav.login": "Accedi", "nav.try": "Crea un account",
+      "hero.h1": "Trasforma le tue istruzioni in formazione sul campo",
+      "hero.lead": "L’IA trasforma le tue istruzioni scritte o un video in una formazione con passaggi e quiz, da condividere via link, SMS o WhatsApp.",
+      "hero.cta1": "Crea la mia prima formazione", "hero.cta2": "Guarda la demo espresso senza account",
+      "hero.note": "Un mese gratis per le prime 10 attività, senza vincoli.",
+      "lang.note": "Per ora lo spazio del titolare e le formazioni sono in francese.",
+      "nav.options": "Opzioni del sito",
+      "hero.signup": "Crea il tuo account con e-mail e password.",
+      "hero.pilot": "Richiedi un posto",
+      "flow.label": "Esempio interattivo",
+      "manager.title": "Risultati dei nuovi assunti",
+      "manager.example": "Esempio",
+      "manager.trainee": "Nuovo assunto",
+      "manager.score": "Punti",
+      "manager.attempt": "Tentativo",
+      "manager.result": "Esito",
+      "manager.passed": "Superato",
+      "manager.review": "Da ripassare",
+      "manager.support": "Da affiancare",
+      "flow.title": "Preparare un ordine",
+      "flow.input": "L’istruzione",
+      "flow.task": "Controlla il codice prima di imballare il prodotto.",
+      "flow.training": "La formazione",
+      "flow.output": "Un video, i passaggi e un quiz.",
+      "flow.share": "La condivisione",
+      "flow.link": "Un link inviato via SMS o WhatsApp.",
+      "scr.play": "Riproduci il video",
+      "flow.rotate": "Trascina per ruotare",
+      "scr.meta": "Demo filmata · 30 s", "scr.title": "Preparare un espresso", "scr.sub": "Distribuisci 18 g di caffè macinato in modo uniforme.",
+      "scr.steps": "Passaggi della formazione",
+      "scr.s1": "Pressa il caffè macinato tenendo il pressino in piano.", "scr.s2": "Inserisci il portafiltro nel gruppo e bloccalo.",
+      "scr.s3": "Osserva il flusso e fai controllare la macinatura se il caffè scende troppo velocemente.",
+      "scr.quiz": "Prova il quiz", "scr.caption": "Un esempio di formazione con riprese reali.",
+      "how.h2": "Voi lo mostrate una volta.<br>L'app lo ripete a ogni nuovo arrivato.",
+      "how.b1h": "Filmate il compito, oppure lo scrivete",
+      "how.b1p": "Da uno a tre minuti con il telefono, mentre fate il gesto. Non avete voglia di filmare? Scrivete le istruzioni, aggiungete qualche foto e l'app crea il video con una voce.",
+      "how.b2h": "Lo rileggete prima di inviarlo",
+      "how.b2p": "Di solito in giornata, la formazione vi aspetta nel vostro spazio: il video sottotitolato, i passaggi con i tempi e il quiz. Correggete una parola, una risposta, o chiedete un altro quiz. Niente parte senza il vostro accordo.",
+      "how.b3h": "Il nuovo arrivato la apre sul telefono",
+      "how.b3p": "Un link via SMS o WhatsApp, senza app né password. Guarda il video, fa il quiz e voi vedete il risultato. Se si blocca, venite avvisati.",
+      "quiz.h2": "Non è un quiz di facciata.",
+      "quiz.lead": "Le domande mettono il nuovo in situazioni reali, come al bancone. Provate questa, presa dalla formazione sull'espresso.",
+      "quiz.r1": "di risposte giuste per superarlo. Sotto, si riguarda il video.",
+      "quiz.r2b": "2 tentativi", "quiz.r2": "Dopo due errori viene segnato «da affiancare» e voi ricevete un'email.",
+      "quiz.r3b": "Video", "quiz.r3": "Il quiz si apre solo quando il video è stato visto davvero.",
+      "q.count": "Domanda dimostrativa",
+      "q.text": "Il tuo espresso doppio è finito in 12 secondi e la tazzina è già piena. Cosa fai?",
+      "q.a0": "Lo servo: è pieno, è quello che conta", "q.a1": "Faccio un'altra erogazione sopra per renderlo più forte",
+      "q.a2": "Non lo servo e avviso il responsabile di macinare più fine", "q.a3": "La prossima volta presso più forte senza dire niente",
+      "q.good": "Esatto. 12 secondi sono troppo pochi: la macinatura è troppo grossa. Non si serve e si avvisa.",
+      "q.bad": "Non proprio. Un espresso richiede da 25 a 30 secondi. A 12 secondi è venuto male: non si serve e si chiede di macinare più fine.",
+      "q.again": "Ricomincia",
+      "keep.h2": "Quello che resta nelle vostre mani",
+      "keep.k1h": "Il monitoraggio di ogni nuovo arrivato", "keep.k1p": "Chi ha finito, chi ha superato il quiz, chi va affiancato e le domande più sbagliate. Sapete cosa riprendere e con chi.",
+      "keep.k2h": "Percorsi per la prima settimana", "keep.k2p": "Con il piano per più negozi, mettete in ordine più formazioni: l’apertura, la cassa e l’igiene. Un solo link per tutto, ognuno avanza al suo ritmo.",
+      "keep.k3h": "I vostri video restano vostri", "keep.k3p": "Una formazione è visibile solo con il suo link. Cancellatela e il video viene eliminato. Dati ospitati in Europa.",
+      "price.h2": "Un piano per la tua organizzazione", "price.lead": "Dal negozio indipendente alla rete nazionale, scegli il piano per i tuoi team.",
+      "bill.m": "Mensile", "bill.y": "Annuale", "bill.note": "Prezzi mensili con fatturazione annuale.",
+      "estimate.jump": "Stima il beneficio per il tuo team", "estimate.title": "Quale beneficio per il tuo team?", "estimate.lead": "I valori precompilati sono un esempio. Modificali per stimare il tempo di affiancamento liberato e il suo valore al netto dell’abbonamento.", "estimate.sites": "Numero di sedi", "estimate.billing": "Fatturazione", "estimate.hires": "Nuovi assunti al mese in tutte le sedi", "estimate.minutes": "Minuti risparmiati per nuovo assunto", "estimate.wage": "Costo orario totale del supervisore (€)", "estimate.time": "Tempo liberato al mese", "estimate.value": "Valore del tempo liberato al mese", "estimate.price": "Abbonamento al mese", "estimate.net": "Beneficio stimato al netto dell’abbonamento", "estimate.note": "Stima basata sulle tue ipotesi. Gli importi sono equivalenti mensili, anche con fatturazione annuale. Il tempo liberato non è un risparmio di cassa. Sono esclusi creazione e aggiornamento dei corsi. Il prezzo per una sede riguarda i team fino a 20 persone.",
+      "ent.title": "Grandi imprese", "ent.unit": "per sede al mese dalla 51ª sede in poi", "ent.base": "Per le prime 50 sedi", "ent.period": "per sede al mese", "ent.audience": "Per grandi gruppi, franchising e reti con più di 50 sedi.", "ent.scope": "Definizione del perimetro per marchio, regione o tipo di sede", "ent.pilot": "Prova una procedura in due sedi e confronta i risultati dei nuovi assunti prima di estenderla alla rete.", "ent.cta": "Prova in alcune sedi", "ent.requirements": "Definizione delle esigenze di reportistica, sicurezza e integrazione", "ent.sites": "Numero di sedi (facoltativo)", "ent.unknown": "Da definire",
+      "p1.h": "Un'attività", "p1.unit": "al mese", "p1.l1": "Per team fino a 20 persone", "p1.l2": "Numero di corsi illimitato", "p1.l3": "Monitoraggio dei risultati e avvisi via email",
+      "p.cta": "Scegli questa offerta",
+      "p2.h": "Più negozi", "p2.unit": "per negozio al mese", "p2.l1": "Da 2 a 50 punti vendita", "p2.l2": "Tutto quello dell'offerta un'attività", "p2.l3": "Percorsi di più formazioni",
+      "pilot.h": "Le prime 10 attività: un mese gratis",
+      "pilot.p": "Prepariamo con voi le prime formazioni. In cambio, ci dite cosa funziona e cosa no. Il prezzo di partenza vi resta garantito.",
+      "pilot.cta": "Voglio un posto",
+      "faq.h2": "Le vostre domande",
+      "faq.q1": "Come creo la mia prima formazione?", "faq.a1": "Create il vostro spazio in un minuto dalla pagina «Accedi» (email e password). Filmate un compito da 1 a 3 minuti, o scrivete le istruzioni, poi caricatelo. La formazione arriva nel vostro spazio, di solito in giornata, così la controllate prima di inviarla.",
+      "faq.q2": "I miei dipendenti devono installare un'app?", "faq.a2": "No. Ricevono un link via SMS o WhatsApp e seguono la formazione nel browser. Niente account, niente password.",
+      "faq.q3": "Non sono a mio agio con la tecnologia. È complicato?", "faq.a3": "Se sapete inviare un video su WhatsApp, sapete usare FieldFluent. Durante il mese gratuito, configuriamo tutto insieme a voi.",
+      "faq.q4": "E se l'IA sbaglia?", "faq.a4": "Ogni formazione vi viene mostrata prima dell'invio. Potete modificare un passaggio, una risposta del quiz o una parola. Niente viene inviato senza il vostro accordo.",
+      "faq.q5": "I miei video restano privati?", "faq.a5": "I vostri video originali restano privati. Una formazione pubblicata si apre solo con il suo link, che date ai nuovi arrivati. Non compare in nessun elenco pubblico, e il video viene cancellato se eliminate la formazione.",
+      "faq.q6": "Sostituisce una formazione obbligatoria certificata?", "faq.a6": "No. FieldFluent vi aiuta a formare e a tenerne traccia. Per alcune formazioni regolamentate serve comunque un ente certificato.",
+      "faq.q7": "Posso smettere quando voglio?", "faq.a7": "Sì. Nessun vincolo. Potrete scaricare le vostre formazioni prima di andarvene.",
+      "c.h2": "Ne parliamo?", "c.lead": "Diteci cosa volete insegnare ai nuovi arrivati. Rispondiamo via email, di solito entro 24-48 ore.",
+      "c.alt": "Preferite provare da soli? <a class=\"link\" href=\"app/?mode=inscription\">Create il vostro spazio</a> e caricate un primo video.",
+      "f.name": "Nome e cognome", "f.shop": "Nome dell’azienda o dell’attività", "f.email": "Email", "f.phone": "Telefono (facoltativo)", "f.sector": "Il vostro settore",
+      "sec.1": "Panetteria, pasticceria", "sec.2": "Bar, ristorante", "sec.3": "Commercio al dettaglio", "sec.4": "Parrucchiere, estetica", "sec.5": "Hotel", "sec.6": "Logistica, pulizie", "sec.7": "Altro",
+      "f.plan": "Cosa vi interessa", "plan.1": "Il mese gratuito", "plan.2": "Un'attività", "plan.3": "Più negozi", "plan.4": "Altro",
+      "f.msg": "La prima cosa da insegnare ai nuovi (facoltativo)", "f.msgph": "Aprire la cassa, preparare gli ordini, accogliere i clienti…",
+      "f.send": "Invia", "f.legal": "I vostri dati servono solo a rispondervi su FieldFluent (al massimo 3 email se non rispondete). Non vengono mai venduti. Dettagli nella nostra <a href=\"confidentialite.html\">informativa sulla privacy</a> (in francese).",
+      "sent.h": "Inviato.", "sent.p": "Grazie! Vi rispondiamo via email, di solito entro 24-48 ore.",
+      "ft.legal": "Note legali", "ft.privacy": "Privacy",
+      "err.miss": "Manca: ", "err.name": "il vostro nome", "err.shop": "il nome dell'attività", "err.mail": "la vostra email", "err.bad": "L'email non è valida.",
+      "err.net": "Invio non riuscito. Controllate la connessione e riprovate.", "f.sending": "Invio in corso…",
+      "meta.title": "FieldFluent · Formate i nuovi arrivati in pochi giorni"
+    },
+    ar: {
+      "nav.demo": "عرض", "nav.quiz": "اختبار", "nav.contact": "تواصل",
+      "nav.how": "كيف يعمل", "nav.price": "الأسعار", "nav.faq": "أسئلة", "nav.login": "تسجيل الدخول", "nav.try": "إنشاء حساب",
+      "hero.h1": "حوّل تعليماتك إلى تدريب ميداني",
+      "hero.lead": "يحوّل الذكاء الاصطناعي تعليماتك المكتوبة أو فيديو إلى تدريب يتضمّن خطوات واختبارًا ويمكن مشاركته برابط أو عبر الرسائل القصيرة أو واتساب.",
+      "hero.cta1": "أنشئ تدريبي الأول", "hero.cta2": "شاهد عرض الإسبريسو دون حساب",
+      "hero.note": "شهر مجاني لأول 10 متاجر، دون التزام.",
+      "lang.note": "حاليًا، مساحة صاحب المحل والتدريبات نفسها باللغة الفرنسية.",
+      "nav.options": "خيارات الموقع",
+      "hero.signup": "أنشئ حسابك ببريدك الإلكتروني وكلمة مرور.",
+      "hero.pilot": "اطلب مكانًا",
+      "flow.label": "مثال تفاعلي",
+      "manager.title": "نتائج الموظفين الجدد",
+      "manager.example": "مثال",
+      "manager.trainee": "الموظف",
+      "manager.score": "الدرجة",
+      "manager.attempt": "المحاولة",
+      "manager.result": "النتيجة",
+      "manager.passed": "ناجح",
+      "manager.review": "للمراجعة",
+      "manager.support": "يحتاج إلى دعم",
+      "flow.title": "تجهيز طلب",
+      "flow.input": "التعليمات",
+      "flow.task": "تحقّق من رمز المنتج قبل تغليفه.",
+      "flow.training": "التدريب",
+      "flow.output": "فيديو وخطوات واختبار.",
+      "flow.share": "المشاركة",
+      "flow.link": "رابط يُرسل عبر الرسائل القصيرة أو واتساب.",
+      "scr.play": "شغّل الفيديو",
+      "flow.rotate": "اسحب للتدوير",
+      "scr.meta": "عرض مصوّر · 30 ثانية", "scr.title": "تحضير إسبريسو", "scr.sub": "وزّع 18 غ من البن المطحون بالتساوي.",
+      "scr.steps": "خطوات التدريب",
+      "scr.s1": "اكبس البن المطحون مع إبقاء المكبس مستقيماً.", "scr.s2": "ركّب حامل الفلتر في رأس المجموعة وثبّته.",
+      "scr.s3": "راقب التدفق واطلب التحقق من الطحن إذا تدفقت القهوة بسرعة كبيرة.",
+      "scr.quiz": "جرّب الاختبار", "scr.caption": "مثال تدريبي باستخدام لقطات حقيقية.",
+      "how.h2": "تشرح مرة واحدة.<br>والتطبيق يعيدها لكل موظف جديد.",
+      "how.b1h": "تصوّر المهمة، أو تكتبها",
+      "how.b1p": "من دقيقة إلى ثلاث دقائق بالهاتف، أثناء قيامك بالعمل. لا ترغب في التصوير؟ اكتب تعليماتك وأضف بعض الصور، ويصنع التطبيق الفيديو بصوت معلّق.",
+      "how.b2h": "تراجعه قبل الإرسال",
+      "how.b2p": "عادةً في اليوم نفسه، يكون التدريب بانتظارك في مساحتك: الفيديو مع الترجمة النصية، والخطوات بتوقيتها، والاختبار. تصحّح كلمة أو إجابة، أو تطلب اختبارًا آخر. لا يُرسل شيء دون موافقتك.",
+      "how.b3h": "الموظف الجديد يفتحه على هاتفه",
+      "how.b3p": "رابط عبر الرسائل القصيرة أو واتساب، بلا تطبيق ولا كلمة مرور. يشاهد الفيديو، ويجتاز الاختبار، وترى أنت النتيجة. وإذا تعثّر، يصلك تنبيه.",
+      "quiz.h2": "ليس اختبارًا شكليًا.",
+      "quiz.lead": "الأسئلة تضع الموظف الجديد في مواقف حقيقية، كما خلف الكاونتر. جرّب هذا السؤال من تدريب الإسبريسو.",
+      "quiz.r1": "من الإجابات الصحيحة للنجاح. وإذا قلّت، يعيد مشاهدة الفيديو.",
+      "quiz.r2b": "محاولتان", "quiz.r2": "بعد إخفاقين، يُصنَّف «بحاجة إلى مرافقة» وتصلك رسالة بالبريد الإلكتروني.",
+      "quiz.r3b": "الفيديو", "quiz.r3": "لا يُفتح الاختبار إلا بعد مشاهدة الفيديو فعلًا.",
+      "q.count": "سؤال تجريبي",
+      "q.text": "انتهى الإسبريسو المزدوج في 12 ثانية والفنجان ممتلئ بالفعل. ماذا تفعل؟",
+      "q.a0": "أقدّمه: الفنجان ممتلئ وهذا هو المهم", "q.a1": "أعيد الاستخلاص فوقه ليصبح أقوى",
+      "q.a2": "لا أقدّمه وأبلغ المسؤول ليطحن البن أنعم", "q.a3": "أكبس بقوة أكبر في المرة القادمة دون أن أقول شيئًا",
+      "q.good": "صحيح. 12 ثانية قصيرة جدًا: الطحن خشن أكثر من اللازم. لا يُقدَّم ويجب الإبلاغ.",
+      "q.bad": "ليس تمامًا. الإسبريسو يحتاج من 25 إلى 30 ثانية. عند 12 ثانية يكون فاشلًا: لا يُقدَّم ونطلب طحنًا أنعم.",
+      "q.again": "إعادة المحاولة",
+      "keep.h2": "ما يبقى تحت سيطرتك",
+      "keep.k1h": "متابعة كل موظف جديد", "keep.k1p": "من أنهى، ومن نجح، ومن يحتاج إلى مرافقة، والأسئلة الأكثر خطأً. تعرف ماذا تراجع ومع من.",
+      "keep.k2h": "مسارات للأسبوع الأول", "keep.k2p": "مع خطة الفروع المتعددة، رتّب عدة تدريبات: الافتتاح، الصندوق، النظافة. رابط واحد لكل شيء، وكل شخص يتقدّم بإيقاعه.",
+      "keep.k3h": "فيديوهاتك تبقى لك", "keep.k3p": "لا يمكن رؤية التدريب إلا عبر رابطه. احذفه فيُمحى الفيديو. البيانات مستضافة في أوروبا.",
+      "price.h2": "خطة تناسب مؤسستك", "price.lead": "من متجر مستقل إلى شبكة وطنية، اختر الخطة المناسبة لفرقك.",
+      "bill.m": "شهريًا", "bill.y": "سنويًا", "bill.note": "الأسعار شهرية وتُفوتر سنويًا.",
+      "estimate.jump": "قدّر الفائدة لفريقك", "estimate.title": "ما الفائدة لفريقك؟", "estimate.lead": "القيم المعبّأة مسبقًا مثال توضيحي. عدّلها لتقدير وقت الإشراف الموفّر وقيمته بعد خصم تكلفة الاشتراك.", "estimate.sites": "عدد المواقع", "estimate.billing": "الفوترة", "estimate.hires": "عدد الموظفين الجدد شهريًا في جميع المواقع", "estimate.minutes": "الدقائق الموفّرة لكل موظف جديد", "estimate.wage": "التكلفة الإجمالية لساعة عمل المشرف (€)", "estimate.time": "الوقت الموفّر شهريًا", "estimate.value": "قيمة الوقت الموفّر شهريًا", "estimate.price": "تكلفة الاشتراك شهريًا", "estimate.net": "الفائدة المقدّرة بعد الاشتراك", "estimate.note": "التقدير مبني على افتراضاتك. المبالغ معروضة كمكافئ شهري حتى عند الفوترة السنوية. الوقت الموفّر لا يمثل توفيرًا نقديًا. لا يشمل التقدير إعداد الدورات وتحديثها. سعر الموقع الواحد للفرق التي لا تتجاوز 20 شخصًا.",
+      "ent.title": "المؤسسات الكبرى", "ent.unit": "لكل موقع شهريًا من الموقع الحادي والخمسين فصاعدًا", "ent.base": "لأول 50 موقعًا", "ent.period": "لكل موقع شهريًا", "ent.audience": "للمجموعات الكبرى والامتيازات والشبكات التي تضم أكثر من 50 موقعًا.", "ent.scope": "تحديد النطاق حسب العلامة التجارية أو المنطقة أو نوع الموقع", "ent.pilot": "جرّب إجراءً واحدًا في موقعين وقارن نتائج الموظفين الجدد قبل تعميمه على الشبكة.", "ent.cta": "جرّب في بعض المواقع", "ent.requirements": "تحديد متطلبات التقارير والأمان والتكامل", "ent.sites": "عدد المواقع المعنية (اختياري)", "ent.unknown": "يُحدد لاحقًا",
+      "p1.h": "محل واحد", "p1.unit": "شهريًا", "p1.l1": "لفريق يصل إلى 20 شخصًا", "p1.l2": "عدد غير محدود من التدريبات", "p1.l3": "متابعة النتائج وتنبيهات بالبريد الإلكتروني",
+      "p.cta": "اختر هذا العرض",
+      "p2.h": "عدة فروع", "p2.unit": "لكل فرع شهريًا", "p2.l1": "من 2 إلى 50 نقطة بيع", "p2.l2": "كل ما في عرض المحل الواحد", "p2.l3": "مسارات من عدة تدريبات",
+      "pilot.h": "أول 10 محلات: شهر مجاني",
+      "pilot.p": "نُعدّ معك تدريباتك الأولى. وفي المقابل، تخبرنا بما ينجح وما لا ينجح. ويبقى سعرك الأول مضمونًا.",
+      "pilot.cta": "أريد مكانًا",
+      "faq.h2": "أسئلتكم",
+      "faq.q1": "كيف أنشئ تدريبي الأول؟", "faq.a1": "أنشئ مساحتك في دقيقة من صفحة «تسجيل الدخول» (بريد إلكتروني وكلمة مرور). صوّر مهمة من دقيقة إلى ثلاث دقائق، أو اكتب تعليماتك، ثم ارفعها. يصل التدريب إلى مساحتك، عادةً في اليوم نفسه، لتراجعه قبل إرساله.",
+      "faq.q2": "هل يجب على موظفيّ تثبيت تطبيق؟", "faq.a2": "لا. يتلقّون رابطًا عبر الرسائل القصيرة أو واتساب ويتابعون التدريب في المتصفح. بلا حساب ولا كلمة مرور.",
+      "faq.q3": "لست مرتاحًا مع التكنولوجيا. هل الأمر معقّد؟", "faq.a3": "إذا كنت تعرف كيف ترسل فيديو على واتساب، فأنت تعرف كيف تستخدم FieldFluent. وخلال الشهر المجاني، نجهّز كل شيء معك.",
+      "faq.q4": "وماذا لو أخطأ الذكاء الاصطناعي؟", "faq.a4": "يُعرض عليك كل تدريب قبل إرساله. يمكنك تعديل خطوة أو إجابة أو كلمة. لا يُرسل شيء دون موافقتك.",
+      "faq.q5": "هل تبقى فيديوهاتي خاصة؟", "faq.a5": "فيديوهاتك الأصلية تبقى خاصة. لا يمكن فتح التدريب المنشور إلا عبر رابطه، الذي تعطيه لموظفيك الجدد. لا يظهر في أي قائمة عامة، ويُمحى الفيديو إذا حذفت التدريب.",
+      "faq.q6": "هل يحل محل تدريب إلزامي معتمد؟", "faq.a6": "لا. يساعدك FieldFluent على التدريب والاحتفاظ بأثر له. لبعض التدريبات المنظّمة قانونيًا، يبقى اللجوء إلى جهة معتمدة ضروريًا.",
+      "faq.q7": "هل يمكنني التوقف متى شئت؟", "faq.a7": "نعم. لا يوجد التزام. ويمكنك تنزيل تدريباتك قبل المغادرة.",
+      "c.h2": "هل نتحدث؟", "c.lead": "أخبرنا بما تريد تعليمه لموظفيك الجدد. نردّ عليك بالبريد الإلكتروني، عادةً خلال 24 إلى 48 ساعة.",
+      "c.alt": "تفضّل التجربة بنفسك؟ <a class=\"link\" href=\"app/?mode=inscription\">أنشئ مساحتك</a> وارفع أول فيديو.",
+      "f.name": "الاسم واللقب", "f.shop": "اسم الشركة أو المتجر", "f.email": "البريد الإلكتروني", "f.phone": "الهاتف (اختياري)", "f.sector": "مجال عملك",
+      "sec.1": "مخبز، حلويات", "sec.2": "مقهى، مطعم", "sec.3": "تجارة التجزئة", "sec.4": "حلاقة، تجميل", "sec.5": "فنادق", "sec.6": "لوجستيات، تنظيف", "sec.7": "أخرى",
+      "f.plan": "ما يهمّك", "plan.1": "الشهر المجاني", "plan.2": "محل واحد", "plan.3": "عدة فروع", "plan.4": "شيء آخر",
+      "f.msg": "أول ما يجب أن يتعلمه موظفوك الجدد (اختياري)", "f.msgph": "فتح الصندوق، تحضير الطلبات، استقبال الزبائن…",
+      "f.send": "إرسال", "f.legal": "تُستخدم بياناتك فقط للرد عليك بخصوص FieldFluent (3 رسائل كحد أقصى إذا لم ترد). ولا تُباع أبدًا. التفاصيل في <a href=\"confidentialite.html\">سياسة الخصوصية</a> (بالفرنسية).",
+      "sent.h": "تم الإرسال.", "sent.p": "شكرًا! نردّ عليك بالبريد الإلكتروني، عادةً خلال 24 إلى 48 ساعة.",
+      "ft.legal": "إشعار قانوني", "ft.privacy": "الخصوصية",
+      "err.miss": "ينقص: ", "err.name": "اسمك", "err.shop": "اسم المحل", "err.mail": "بريدك الإلكتروني", "err.bad": "البريد الإلكتروني غير صالح.",
+      "err.net": "تعذّر الإرسال. تحقّق من اتصالك ثم أعد المحاولة.", "f.sending": "جارٍ الإرسال…",
+      "meta.title": "FieldFluent · درّب موظفيك الجدد في أيام قليلة"
+    },
+    zh: {
+      "nav.demo": "演示", "nav.quiz": "测验", "nav.contact": "联系",
+      "nav.how": "使用方法", "nav.price": "价格", "nav.faq": "常见问题", "nav.login": "登录", "nav.try": "创建账号",
+      "hero.h1": "把操作指引变成一线培训",
+      "hero.lead": "AI 将您的书面指引或视频转成包含步骤和测验的培训，可通过链接、短信或 WhatsApp 分享。",
+      "hero.cta1": "创建我的第一份培训", "hero.cta2": "无需账号，观看意式浓缩咖啡演示",
+      "hero.note": "前 10 家店铺可免费使用一个月，无需承诺。",
+      "lang.note": "目前，店主后台和培训内容本身仅提供法语版本。",
+      "nav.options": "网站选项",
+      "hero.signup": "使用电子邮箱和密码创建账号。",
+      "hero.pilot": "申请名额",
+      "flow.label": "互动示例",
+      "manager.title": "新员工成绩",
+      "manager.example": "示例",
+      "manager.trainee": "新员工",
+      "manager.score": "分数",
+      "manager.attempt": "尝试次数",
+      "manager.result": "结果",
+      "manager.passed": "已通过",
+      "manager.review": "需复习",
+      "manager.support": "需协助",
+      "flow.title": "准备一份订单",
+      "flow.input": "操作指引",
+      "flow.task": "包装商品前核对货号。",
+      "flow.training": "培训",
+      "flow.output": "视频、操作步骤和测验。",
+      "flow.share": "分享",
+      "flow.link": "通过短信或 WhatsApp 发送链接。",
+      "scr.play": "播放视频",
+      "flow.rotate": "拖动即可旋转",
+      "scr.meta": "实拍演示 · 30 秒", "scr.title": "制作一杯意式浓缩", "scr.sub": "把 18 克咖啡粉均匀铺开。",
+      "scr.steps": "培训步骤",
+      "scr.s1": "保持压粉器水平，压实咖啡粉。", "scr.s2": "将手柄装入冲煮头并锁紧。",
+      "scr.s3": "观察流速，流速过快时请负责人检查研磨度。",
+      "scr.quiz": "试试测验", "scr.caption": "使用实拍画面的培训示例。",
+      "how.h2": "您只需示范一次。<br>应用会为每位新员工重复讲解。",
+      "how.b1h": "拍下这项工作，或者把它写下来",
+      "how.b1p": "边做边用手机拍一到三分钟。不想拍？写下您的要求，加几张照片，应用会生成带配音的视频。",
+      "how.b2h": "发送前由您审核",
+      "how.b2p": "通常当天，培训就会出现在您的后台：带字幕的视频、带时间点的步骤和测验。您可以改一个词、一个答案，或要求换一套测验。未经您同意，什么都不会发出。",
+      "how.b3h": "新员工在手机上打开",
+      "how.b3p": "通过短信或 WhatsApp 发送一个链接，无需安装应用，也无需密码。看视频、做测验，您就能看到结果。如果有人卡住，您会收到通知。",
+      "quiz.h2": "不是走过场的测验。",
+      "quiz.lead": "题目会把新员工放进真实场景，就像站在柜台后面一样。试试这道题，它来自意式浓缩培训。",
+      "quiz.r1": "的正确率才算通过。低于这个比例，需要重新看视频。",
+      "quiz.r2b": "2 次机会", "quiz.r2": "两次未通过后，会被标记为“需要带教”，您会收到一封邮件。",
+      "quiz.r3b": "视频", "quiz.r3": "只有真正看完视频，测验才会开放。",
+      "q.count": "演示题",
+      "q.text": "你的双份浓缩 12 秒就萃取完了，杯子已经满了。你会怎么做？",
+      "q.a0": "直接端出去：杯子满了就行", "q.a1": "在上面再萃取一次，让它更浓",
+      "q.a2": "不端出去，并告诉负责人把粉磨得更细", "q.a3": "下次压得更用力，什么也不说",
+      "q.good": "正确。12 秒太短了：咖啡粉磨得太粗。不能出品，要告诉负责人。",
+      "q.bad": "不太对。一杯浓缩需要 25 到 30 秒。12 秒就是失败的：不能出品，要求把粉磨细一些。",
+      "q.again": "重新作答",
+      "keep.h2": "一切尽在您掌握",
+      "keep.k1h": "跟进每位新员工", "keep.k1p": "谁已完成、谁通过了、谁需要带教，以及错得最多的题目。您知道该和谁复习什么。",
+      "keep.k2h": "第一周的学习路线", "keep.k2p": "多店套餐可让你把开店、收银和卫生等培训按顺序排好。一个链接搞定，每个人按自己的节奏学习。",
+      "keep.k3h": "视频始终属于您", "keep.k3p": "培训只能通过链接查看。删除后，视频也会被清除。数据存放在欧洲。",
+      "price.h2": "适合您组织的方案", "price.lead": "从独立商店到全国性网络，为您的团队选择合适的方案。",
+      "bill.m": "按月付", "bill.y": "按年付", "bill.note": "按月显示价格，按年计费。",
+      "estimate.jump": "估算团队可获得的收益", "estimate.title": "您的团队能获得多少收益？", "estimate.lead": "预填数值仅作示例。您可以修改这些数值，估算节省的指导时间及其扣除订阅费后的价值。", "estimate.sites": "站点数量", "estimate.billing": "计费方式", "estimate.hires": "所有站点每月新员工人数", "estimate.minutes": "每位新员工节省的分钟数", "estimate.wage": "主管每小时总用工成本（€）", "estimate.time": "每月节省的时间", "estimate.value": "每月节省时间的价值", "estimate.price": "每月订阅费用", "estimate.net": "扣除订阅费后的估算收益", "estimate.note": "结果基于您输入的假设。金额按月折算，包括按年计费时。节省的时间不等于现金节省。未计入制作和更新培训内容的耗时。单站点价格适用于最多 20 人的团队。",
+      "ent.title": "大型企业", "ent.unit": "从第 51 个站点起，每站点每月", "ent.base": "前 50 个站点", "ent.period": "每站点每月", "ent.audience": "适合大型集团、加盟体系和超过 50 个站点的网络。", "ent.scope": "按品牌、地区或站点类型明确实施范围", "ent.pilot": "先在两个站点试行一项流程，比较新员工的培训成绩，再推广到整个网络。", "ent.cta": "在部分站点试点", "ent.requirements": "讨论报表、安全及集成需求", "ent.sites": "涉及站点数量（选填）", "ent.unknown": "待定",
+      "p1.h": "单店", "p1.unit": "每月", "p1.l1": "适用于最多 20 人的团队", "p1.l2": "培训数量不限", "p1.l3": "成绩跟进和邮件提醒",
+      "p.cta": "选择此方案",
+      "p2.h": "多家门店", "p2.unit": "每店每月", "p2.l1": "2 到 50 个门店", "p2.l2": "包含单店方案的全部功能", "p2.l3": "多份培训组成的学习路线",
+      "pilot.h": "前 10 家店铺：免费一个月",
+      "pilot.p": "我们和您一起制作最初的几份培训。作为交换，您告诉我们哪些好用、哪些不好用。您的起始价格永久保留。",
+      "pilot.cta": "我要一个名额",
+      "faq.h2": "常见问题",
+      "faq.q1": "我怎样创建第一份培训？", "faq.a1": "在“登录”页面用一分钟创建您的后台（邮箱和密码）。拍一段 1 到 3 分钟的工作视频，或写下您的要求，然后上传。培训通常当天就会出现在您的后台，供您在发送前检查。",
+      "faq.q2": "员工需要安装应用吗？", "faq.a2": "不需要。他们通过短信或 WhatsApp 收到链接，在浏览器里完成培训。无需账号，也无需密码。",
+      "faq.q3": "我不太会用科技产品，会很复杂吗？", "faq.a3": "只要您会在 WhatsApp 上发视频，就会用 FieldFluent。在免费的一个月里，我们会和您一起完成设置。",
+      "faq.q4": "如果 AI 出错怎么办？", "faq.a4": "每份培训在发送前都会先给您看。您可以修改步骤、测验答案或任何字词。未经您同意，什么都不会发出。",
+      "faq.q5": "我的视频会保密吗？", "faq.a5": "您的原始视频始终保密。已发布的培训只能通过链接打开，链接由您交给新员工。它不会出现在任何公开列表中，删除培训时视频也会一并清除。",
+      "faq.q6": "它能代替有资质的强制性培训吗？", "faq.a6": "不能。FieldFluent 帮助您培训并留下记录。某些法规要求的培训，仍需由有资质的机构提供。",
+      "faq.q7": "我可以随时停止吗？", "faq.a7": "可以。无需签约。离开前您可以下载自己的培训。",
+      "c.h2": "聊一聊？", "c.lead": "告诉我们您想教新员工什么。我们会通过邮件回复，通常在 24 到 48 小时内。",
+      "c.alt": "想自己先试试？<a class=\"link\" href=\"app/?mode=inscription\">创建您的后台</a>，上传第一段视频。",
+      "f.name": "姓名", "f.shop": "公司或商户名称", "f.email": "邮箱", "f.phone": "电话（选填）", "f.sector": "您的行业",
+      "sec.1": "面包店、甜品店", "sec.2": "咖啡馆、餐厅", "sec.3": "零售", "sec.4": "美发、美容", "sec.5": "酒店", "sec.6": "物流、保洁", "sec.7": "其他",
+      "f.plan": "您感兴趣的方案", "plan.1": "免费一个月", "plan.2": "单店", "plan.3": "多家门店", "plan.4": "其他",
+      "f.msg": "新员工最先要学的内容（选填）", "f.msgph": "开收银机、准备订单、接待顾客……",
+      "f.send": "发送", "f.legal": "您的信息仅用于就 FieldFluent 回复您（如您未回复，最多发送 3 封邮件），绝不出售。详情见我们的<a href=\"confidentialite.html\">隐私政策</a>（法语）。",
+      "sent.h": "已发送。", "sent.p": "谢谢！我们会通过邮件回复，通常在 24 到 48 小时内。",
+      "ft.legal": "法律声明", "ft.privacy": "隐私",
+      "err.miss": "缺少：", "err.name": "您的姓名", "err.shop": "店铺名称", "err.mail": "您的邮箱", "err.bad": "邮箱地址无效。",
+      "err.net": "发送失败。请检查网络后重试。", "f.sending": "正在发送……",
+      "meta.title": "FieldFluent · 几天内培训好您的新员工"
+    }
+  };
+  // Textes affichés par le script, en français
+  var FR_JS = {
+    "q.a0": "Je le sers : il est plein, c'est l'essentiel", "q.a1": "Je relance une extraction par-dessus pour le corser",
+    "q.a2": "Je ne le sers pas et je préviens le responsable pour moudre plus fin", "q.a3": "Je tasse plus fort la prochaine fois sans rien dire",
+    "q.good": "Exact. 12 secondes, c'est bien trop court : le café est trop gros, on ne sert pas et on prévient.",
+    "q.bad": "Pas tout à fait. Un espresso se fait en 25 à 30 secondes. À 12 secondes, il est raté : on ne le sert pas et on prévient pour moudre plus fin.",
+    "err.miss": "Il manque ", "err.name": "votre nom", "err.shop": "le nom du commerce", "err.mail": "votre email", "err.bad": "L'email n'est pas valide.",
+    "err.net": "L'envoi n'a pas abouti. Vérifiez votre connexion puis réessayez.", "f.sending": "Envoi en cours…"
+  };
+  var LANGS = ["fr", "en", "de", "es", "it", "ar", "zh"];
+  var FR = {}, FRPH = {}, FRTITLE = document.title;
+  document.querySelectorAll("[data-i18n]").forEach(function (e) { FR[e.dataset.i18n] = e.innerHTML; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function (e) { FRPH[e.dataset.i18nPh] = e.placeholder; });
+  var cur = "fr";
+  function msg(k) { return (cur !== "fr" && T[cur][k]) || FR_JS[k] || FR[k] || ""; }
+
+  function setLang(l, save) {
+    if (LANGS.indexOf(l) < 0) l = "fr";
+    cur = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i18n]").forEach(function (e) {
+      var k = e.dataset.i18n;
+      e.innerHTML = l === "fr" ? FR[k] : (T[l][k] || FR[k]);
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(function (e) {
+      var k = e.dataset.i18nPh;
+      e.placeholder = l === "fr" ? FRPH[k] : (T[l][k] || FRPH[k]);
+    });
+    document.getElementById("langNote").hidden = l === "fr";
+    document.title = l === "fr" ? FRTITLE : T[l]["meta.title"];
+    document.getElementById("lang").value = l;
+    bindPlans();
+    updateEnterpriseFields();
+    renderEstimate();
+    renderQ(picked);
+    if (save) { try { localStorage.setItem("pdp-langue", l); } catch (e) {} }
+  }
+
+  // ---------- Question d'exemple (vraie question de la formation espresso) ----------
+  var OK = 2, picked = null;
+  var opts = document.getElementById("qopts"), fb = document.getElementById("qfb"), again = document.getElementById("qagain");
+  function renderQ(p) {
+    picked = p;
+    opts.innerHTML = "";
+    [0, 1, 2, 3].forEach(function (i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "qopt"; b.textContent = msg("q.a" + i);
+      if (p != null) { b.disabled = true; if (i === OK) b.classList.add("right"); else if (i === p) b.classList.add("wrong"); }
+      b.addEventListener("click", function () { renderQ(i); });
+      opts.appendChild(b);
+    });
+    fb.hidden = p == null; again.hidden = p == null;
+    if (p != null) fb.textContent = p === OK ? msg("q.good") : msg("q.bad");
+  }
+  again.addEventListener("click", function () { renderQ(null); opts.querySelector("button").focus(); });
+
+  // ---------- Tarifs ----------
+  var bm = document.getElementById("billM"), by = document.getElementById("billY");
+  var annualNote = document.getElementById("annual-note");
+  var networkAmount = document.querySelector("#network-price .v");
+  var enterpriseBaseRate = document.getElementById("enterprise-base-rate");
+  var isYearly = false;
+  function setBill(yearly) {
+    isYearly = yearly;
+    annualNote.hidden = !yearly;
+    bm.setAttribute("aria-pressed", String(!yearly)); by.setAttribute("aria-pressed", String(yearly));
+    document.querySelectorAll(".price[data-m]").forEach(function (p) { p.querySelector(".v").textContent = (yearly ? p.dataset.y : p.dataset.m) + " €"; });
+    enterpriseBaseRate.textContent = networkAmount.textContent;
+    estimateBilling.value = yearly ? "yearly" : "monthly";
+    renderEstimate();
+  }
+  bm.addEventListener("click", function () { setBill(false); });
+  by.addEventListener("click", function () { setBill(true); });
+
+  // ---------- Estimation du temps libéré et de la valeur après abonnement ----------
+  var estimateBilling = document.getElementById("estimate-billing");
+  var estimateSites = document.getElementById("estimate-sites");
+  var estimateHires = document.getElementById("estimate-hires");
+  var estimateMinutes = document.getElementById("estimate-minutes");
+  var estimateWage = document.getElementById("estimate-wage");
+  var soloPrice = document.getElementById("solo-price");
+  var networkPrice = document.getElementById("network-price");
+  var additionalSitePrice = document.querySelector(".plan-enterprise .price");
+  function readEstimate(input) {
+    return input.validity.valid ? input.valueAsNumber : NaN;
+  }
+  function formatEstimateDuration(totalMinutes) {
+    if (!Number.isFinite(totalMinutes)) return "—";
+    var hours = Math.floor(totalMinutes / 60);
+    var minutes = totalMinutes % 60;
+    var parts = [];
+    if (hours) parts.push(new Intl.NumberFormat(cur, {numberingSystem: "latn", style: "unit", unit: "hour", unitDisplay: "short"}).format(hours));
+    if (minutes || !hours) parts.push(new Intl.NumberFormat(cur, {numberingSystem: "latn", style: "unit", unit: "minute", unitDisplay: "short"}).format(minutes));
+    return parts.join(" ");
+  }
+  function renderEstimate() {
+    var sites = readEstimate(estimateSites);
+    var hires = readEstimate(estimateHires);
+    var minutes = readEstimate(estimateMinutes);
+    var wage = readEstimate(estimateWage);
+    var period = isYearly ? "y" : "m";
+    var price = sites === 1 ? Number(soloPrice.dataset[period]) :
+      Math.min(sites, 50) * Number(networkPrice.dataset[period]) +
+      Math.max(sites - 50, 0) * Number(additionalSitePrice.dataset[period]);
+    var totalMinutes = hires * minutes;
+    var savings = totalMinutes / 60 * wage;
+    var money = new Intl.NumberFormat(cur, {numberingSystem: "latn", style: "currency", currency: "EUR", maximumFractionDigits: 2});
+    document.getElementById("estimate-time").textContent = formatEstimateDuration(totalMinutes);
+    document.getElementById("estimate-value").textContent = Number.isFinite(savings) ? money.format(savings) : "—";
+    document.getElementById("estimate-price").textContent = Number.isFinite(price) ? money.format(price) : "—";
+    document.getElementById("estimate-net").textContent = Number.isFinite(savings - price) ? money.format(savings - price) : "—";
+  }
+  [estimateSites, estimateHires, estimateMinutes, estimateWage].forEach(function (input) {
+    input.addEventListener("input", renderEstimate);
+  });
+  estimateBilling.addEventListener("change", function () { setBill(estimateBilling.value === "yearly"); });
+
+  // ---------- Les boutons d'offre présélectionnent le formulaire (liens recréés à chaque changement de langue) ----------
+  var planSelect = document.getElementById("f-plan");
+  var sitesSelect = document.getElementById("f-sites");
+  function updateEnterpriseFields() {
+    var enterprise = planSelect.value === "Entreprise";
+    document.getElementById("enterprise-fields").hidden = !enterprise;
+    sitesSelect.disabled = !enterprise;
+  }
+  planSelect.addEventListener("change", updateEnterpriseFields);
+  function bindPlans() {
+    document.querySelectorAll("[data-plan]").forEach(function (a) {
+      if (a.dataset.lie) return;
+      a.dataset.lie = "1";
+      a.addEventListener("click", function () {
+        planSelect.value = a.dataset.plan;
+        updateEnterpriseFields();
+      });
+    });
+  }
+
+  // ---------- Langue de départ : lien ?lang=, sinon choix enregistré, sinon langue du navigateur ----------
+  var depart = null;
+  try { depart = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+  if (!depart) { try { depart = localStorage.getItem("pdp-langue"); } catch (e) {} }
+  if (!depart) {
+    var nav = (navigator.languages || [navigator.language || "fr"]);
+    for (var i = 0; i < nav.length && !depart; i++) { var c = String(nav[i]).slice(0, 2).toLowerCase(); if (LANGS.indexOf(c) >= 0) depart = c; }
+  }
+  document.getElementById("lang").addEventListener("change", function (e) { setLang(e.target.value, true); });
+  setLang(depart || "fr", false);
+
+  // ---------- Formulaire ----------
+  var form = document.getElementById("leadForm");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var err = document.getElementById("formErr");
+    var name = document.getElementById("f-name").value.trim();
+    var shop = document.getElementById("f-shop").value.trim();
+    var email = document.getElementById("f-email").value.trim();
+    var missing = [];
+    if (!name) missing.push(msg("err.name"));
+    if (!shop) missing.push(msg("err.shop"));
+    if (!email) missing.push(msg("err.mail"));
+    var problems = [];
+    if (missing.length) problems.push(msg("err.miss") + missing.join(cur === "ar" ? "، " : cur === "zh" ? "、" : ", ") + (cur === "zh" ? "。" : "."));
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) problems.push(msg("err.bad"));
+    if (problems.length) { err.textContent = problems.join(" "); err.hidden = false; return; }
+    err.hidden = true;
+    function done(title, text) {
+      document.getElementById("formFields").hidden = true;
+      if (title) document.getElementById("sentTitle").textContent = title;
+      if (text) document.getElementById("sentText").textContent = text;
+      document.getElementById("formSent").hidden = false;
+    }
+    if (typeof window.claude !== "undefined") {
+      done("Demande prête à être envoyée.", "Aperçu : l'envoi réel fonctionne sur le site en ligne.");
+      return;
+    }
+    var btn = document.getElementById("f-submit");
+    btn.disabled = true; btn.textContent = msg("f.sending");
+    if (document.getElementById("f-bot").value) { done(); return; }  // robot : on ne transmet rien
+    var SB = "https://ydrcqevotcddnpigpawm.supabase.co", ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkcmNxZXZvdGNkZG5waWdwYXdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ5NDE4NTYsImV4cCI6MjExMDUxNzg1Nn0.Kt22b4FXzX7LWsuyXXvQ50zkMdYjbx-kzp-EAkosxhE";
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var message = v("f-msg");
+    var offer = planSelect.value;
+    if (offer === "Entreprise") {
+      offer = "Autre";
+      var sites = sitesSelect.value || "à définir";
+      var billing = isYearly ? "annuelle" : "mensuelle";
+      message = "[Offre Grandes entreprises · Nombre de sites : " + sites + " · Facturation : " + billing + "]" + (message ? "\n" + message : "");
+    }
+    if (cur !== "fr") message = "[langue du site : " + cur + "] " + message;
+    fetch(SB + "/rest/v1/rpc/envoyer_contact", {
+      method: "POST",
+      headers: { apikey: ANON, Authorization: "Bearer " + ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_nom: v("f-name"), p_commerce: v("f-shop"), p_email: v("f-email"), p_telephone: v("f-phone"),
+                             p_secteur: v("f-sector"), p_offre: offer, p_message: message })
+    }).then(function (r) { return r.json(); }).then(function (ok) {
+      if (ok !== true) throw new Error("refus");
+      done();
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = msg("f.send") || "Envoyer";
+      err.textContent = msg("err.net");
+      err.hidden = false;
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

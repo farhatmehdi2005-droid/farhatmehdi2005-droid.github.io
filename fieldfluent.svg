@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>FieldFluent</title>
+  <rect width="64" height="64" rx="15" fill="#284bc7"/>
+  <path fill="#f5f8ff" d="M16 15h35l-8 9H26v7h15l-8 9h-7v10H16z"/>
+  <path fill="#a9cbff" d="M43 34h9L38 50h-9z"/>
+</svg>

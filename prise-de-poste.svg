@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Prise de poste</title>
+  <rect width="64" height="64" rx="16" fill="#5039bb"/>
+  <path fill="#fff" fill-rule="evenodd" d="M17 46V18a4 4 0 0 1 4-4h14a13 13 0 0 1 0 26h-8v6a5 5 0 1 1-10 0Zm10-24.5a1 1 0 0 1 1.46-.89l11.06 5.5a1 1 0 0 1 0 1.78l-11.06 5.5a1 1 0 0 1-1.46-.89Z"/>
+</svg>
