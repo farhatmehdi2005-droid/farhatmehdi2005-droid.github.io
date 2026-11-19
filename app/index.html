@@ -170,7 +170,7 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     <div id="l-recrues"></div>
     <div class="card" id="l-abo" hidden>
       <h2>Votre abonnement</h2>
-      <p class="small muted">Prix hors taxes. Paiement sécurisé par carte avec Stripe, sans engagement : vous résiliez en ligne quand vous voulez. Les prix et conditions sont dans les <a href="../conditions-generales.html">conditions générales</a>.</p>
+      <p class="small muted">TVA non applicable (art. 293 B du CGI) : le prix affiché est le prix payé. Paiement sécurisé par carte avec Stripe, sans engagement : vous résiliez en ligne quand vous voulez. Les prix et conditions sont dans les <a href="../conditions-generales.html">conditions générales</a>.</p>
       <div id="abo-offres" style="display:flex;flex-wrap:wrap;gap:8px"></div>
       <p class="small" id="abo-portail-l" hidden><a id="abo-portail" href="#">Gérer mon abonnement</a> : changer de carte, voir mes factures ou résilier.</p>
     </div>
@@ -323,8 +323,8 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
   function renderAbo() {
     var cfg = window.FF_PAIEMENT || {}, zone = $("abo-offres"); zone.innerHTML = "";
     function ok(u, d) { return typeof u === "string" && u.indexOf(d) === 0; }
-    var offres = [["solo_mois", "Un commerce : 35 € HT / mois"], ["solo_an", "Un commerce : 29 € HT / mois, payé à l'année"],
-                  ["reseau_mois", "Plusieurs boutiques : 19 € HT / boutique / mois"], ["reseau_an", "Plusieurs boutiques : 16 € HT / boutique / mois, payé à l'année"]];
+    var offres = [["solo_mois", "Un commerce : 35 € / mois"], ["solo_an", "Un commerce : 29 € / mois, payé à l'année"],
+                  ["reseau_mois", "Plusieurs boutiques : 19 € / boutique / mois"], ["reseau_an", "Plusieurs boutiques : 16 € / boutique / mois, payé à l'année"]];
     var n = 0;
     offres.forEach(function (o) {
       var u = cfg[o[0]]; if (!ok(u, "https://buy.stripe.com/")) return;
