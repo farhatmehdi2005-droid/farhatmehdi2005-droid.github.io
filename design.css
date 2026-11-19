@@ -389,3 +389,6 @@ footer a:hover { color: var(--ink); text-decoration: underline; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* Paiement */
+.pay-note { margin-block-start: 16px; }

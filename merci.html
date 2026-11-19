@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Paiement reçu · FieldFluent</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="fieldfluent.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root { --bg:#f4f6fb; --ink:#101a2d; --muted:#4f5d75; --line:#d6deeb; --accent:#244ab0; --badge:#e4ebff; --badge-ink:#244ab0; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root { --bg:#080c16; --ink:#f2f5fd; --muted:#a0aec7; --line:#253248; --accent:#a9c1ff; color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 "Inter", system-ui, sans-serif; padding: 48px max(16px, env(safe-area-inset-right, 0px)) 80px max(16px, env(safe-area-inset-left, 0px)); }
+main { max-width: 720px; margin: 0 auto; display:flex; flex-direction:column; gap: 20px; }
+h1 { font-family:"Bricolage Grotesque", system-ui, sans-serif; font-weight:800; font-size: 2.2rem; line-height:1.1; margin:0; }
+h2 { font-family:"Bricolage Grotesque", system-ui, sans-serif; font-size: 1.2rem; margin: 16px 0 0; }
+p, li { margin:0; max-width: 65ch; }
+ul { margin:0; padding-left: 20px; display:flex; flex-direction:column; gap:4px; }
+a { color: var(--accent); }
+.todo { background: var(--badge); color: var(--badge-ink); padding: 0 4px; border-radius: 3px; }
+.back { font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">← Retour au site</a>
+  <h1>Merci, votre paiement est reçu</h1>
+  <p>Stripe vous envoie le reçu par email. Votre facture est aussi disponible dans votre espace, rubrique « Gérer mon abonnement ».</p>
+
+  <h2>La suite</h2>
+  <ul>
+    <li>Nous vérifions votre paiement et nous vous écrivons sous 24 heures (jours ouvrés) pour confirmer votre abonnement.</li>
+    <li>Vous pouvez déjà créer vos formations : <a href="app/">ouvrir mon espace</a>.</li>
+    <li>Vous n'avez pas encore de compte ? <a href="app/?mode=inscription">Créez-le avec la même adresse email</a> que pour le paiement.</li>
+  </ul>
+
+  <h2>Une question ?</h2>
+  <p>Écrivez-nous à farhat.mehdi.2005@gmail.com. Vous pouvez résilier à tout moment, sans frais, depuis « Gérer mon abonnement » ou par simple email : voir les <a href="conditions-generales.html">conditions générales</a>.</p>
+</main>
+</body>
+</html>

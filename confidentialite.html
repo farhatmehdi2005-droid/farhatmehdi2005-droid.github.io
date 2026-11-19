@@ -37,6 +37,7 @@ a { color: var(--accent); }
   <ul>
     <li><strong>Formulaire de contact du site :</strong> prénom et nom, nom du commerce, email, téléphone (facultatif), métier, offre qui vous intéresse, message (facultatif).</li>
     <li><strong>Espace patron :</strong> email et mot de passe du compte (le mot de passe est chiffré, nous ne le voyons jamais), prénom, nom du commerce, métier.</li>
+    <li><strong>Paiement :</strong> nom, email, adresse de facturation et moyen de paiement, saisis directement chez Stripe. Nous recevons seulement le nom, l'email, l'offre choisie, le montant et l'état du paiement ; jamais le numéro de carte.</li>
     <li><strong>Formations :</strong> les vidéos, photos et consignes déposées (qui peuvent montrer des personnes et leur voix), leur transcription, les étapes et quiz générés.</li>
     <li id="recrues"><strong>Recrues :</strong> uniquement le prénom saisi au début de la formation, les scores obtenus au quiz, le numéro d'essai, les étapes ratées et la date. Aucun compte, email, téléphone ni nom de famille n'est demandé aux recrues.</li>
   </ul>
@@ -45,6 +46,7 @@ a { color: var(--accent); }
   <ul>
     <li>Créer et afficher les formations, et montrer les résultats des recrues au patron qui les forme.</li>
     <li>Envoyer au patron les emails liés à son compte : formation prête, en ligne, résultat d'une recrue.</li>
+    <li>Encaisser l'abonnement et établir les factures.</li>
     <li>Répondre aux demandes de contact et les relancer au plus 2 fois. Chaque relance permet de se désinscrire en répondant « STOP ».</li>
   </ul>
   <p>Base légale : l'exécution du service demandé par le patron (contrat), et notre intérêt légitime à répondre aux demandes reçues. Le patron s'engage, en déposant une vidéo ou des photos, à avoir l'accord des personnes visibles. Vos données ne servent jamais à de la publicité et ne sont jamais vendues ni louées.</p>
@@ -60,6 +62,7 @@ a { color: var(--accent); }
   <ul>
     <li><strong>Supabase</strong> (serveurs en Irlande, Union européenne) : comptes, base de données, vidéos, résultats et formulaire de contact.</li>
     <li><strong>GitHub, Inc.</strong> (États-Unis) : hébergement des pages du site (GitHub Pages). GitHub reçoit l'adresse IP des visiteurs pour afficher les pages.</li>
+    <li><strong>Stripe Payments Europe</strong> (Irlande, Union européenne) : paiement par carte, abonnements et factures. Stripe est aussi responsable de ses propres traitements (lutte contre la fraude, obligations légales) : voir stripe.com/fr/privacy.</li>
     <li><strong>Google (Gmail)</strong> : envoi et réception des emails.</li>
     <li><strong>Anthropic</strong> (États-Unis) : outil d'intelligence artificielle qui rédige les formations et les emails à partir de la transcription.</li>
   </ul>
@@ -70,6 +73,7 @@ a { color: var(--accent); }
     <li>Compte, formations et résultats : tant que le compte est actif. Supprimer une formation, ou son compte, efface aussitôt les données de la base ; les fichiers vidéo et photo correspondants sont retirés du stockage sous 7 jours au plus.</li>
     <li>Résultats d'une recrue : jusqu'à ce que le patron les efface (bouton « Effacer ») ou supprime la formation ou son compte.</li>
     <li>Copies de sauvegarde : 30 jours, puis effacées automatiquement.</li>
+    <li>Factures et données de paiement : 10 ans, comme l'exige le Code de commerce, même après la suppression du compte.</li>
     <li>Demandes de contact sans suite : 3 ans après le dernier échange.</li>
   </ul>
 

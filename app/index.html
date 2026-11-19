@@ -168,9 +168,15 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     <p class="small muted">Les vidéos sont transformées en formation en général dans la journée. Vous recevez un email quand c'est prêt.</p>
     <div id="l-parcours"></div>
     <div id="l-recrues"></div>
+    <div class="card" id="l-abo" hidden>
+      <h2>Votre abonnement</h2>
+      <p class="small muted">Prix hors taxes. Paiement sécurisé par carte avec Stripe, sans engagement : vous résiliez en ligne quand vous voulez. Les prix et conditions sont dans les <a href="../conditions-generales.html">conditions générales</a>.</p>
+      <div id="abo-offres" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+      <p class="small" id="abo-portail-l" hidden><a id="abo-portail" href="#">Gérer mon abonnement</a> : changer de carte, voir mes factures ou résilier.</p>
+    </div>
     <div class="card" id="l-compte">
       <h2>Votre compte</h2>
-      <p class="small muted">Supprimer votre compte efface définitivement vos formations, leurs vidéos, les résultats de vos recrues et vos parcours. Les fichiers vidéo sont retirés du stockage sous 7 jours et les copies de sauvegarde sous 30 jours.</p>
+      <p class="small muted">Supprimer votre compte efface définitivement vos formations, leurs vidéos, les résultats de vos recrues et vos parcours. Les fichiers vidéo sont retirés du stockage sous 7 jours et les copies de sauvegarde sous 30 jours. Si vous avez un abonnement, résiliez-le d'abord dans « Gérer mon abonnement » : supprimer le compte n'arrête pas le paiement.</p>
       <p class="msg err" id="k-err" role="alert" hidden></p>
       <div><button class="btn danger small" id="k-suppr" type="button">Supprimer mon compte</button></div>
     </div>
@@ -239,6 +245,7 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
   <a href="../conditions-generales.html">Conditions générales</a> · <a href="../confidentialite.html">Confidentialité</a> · <a href="../cookies.html">Cookies</a> · <a href="../mentions-legales.html">Mentions légales</a>
 </footer>
 
+<script src="../paiement-config.js"></script>
 <script src="supabase-2.45.4.js"></script>
 <script>
 (function () {
@@ -312,6 +319,23 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
     await sb.auth.signOut(); me = null; prof = null; location.hash = "";
     alert("Votre compte et toutes vos données ont été supprimés."); route();
   });
+  // ---------- Abonnement (liens Stripe de paiement-config.js) ----------
+  function renderAbo() {
+    var cfg = window.FF_PAIEMENT || {}, zone = $("abo-offres"); zone.innerHTML = "";
+    function ok(u, d) { return typeof u === "string" && u.indexOf(d) === 0; }
+    var offres = [["solo_mois", "Un commerce : 35 € HT / mois"], ["solo_an", "Un commerce : 29 € HT / mois, payé à l'année"],
+                  ["reseau_mois", "Plusieurs boutiques : 19 € HT / boutique / mois"], ["reseau_an", "Plusieurs boutiques : 16 € HT / boutique / mois, payé à l'année"]];
+    var n = 0;
+    offres.forEach(function (o) {
+      var u = cfg[o[0]]; if (!ok(u, "https://buy.stripe.com/")) return;
+      var q = "?prefilled_email=" + encodeURIComponent(me.email || "") + "&client_reference_id=" + encodeURIComponent(me.id);
+      zone.appendChild(el("a", { class: "btn ghost small", href: u + q }, o[1])); n++;
+    });
+    var portail = ok(cfg.portail, "https://billing.stripe.com/");
+    if (portail) $("abo-portail").href = cfg.portail + (me.email ? "?prefilled_email=" + encodeURIComponent(me.email) : "");
+    $("abo-portail-l").hidden = !portail;
+    $("l-abo").hidden = !n && !portail;
+  }
   $("logout").addEventListener("click", async function () { await sb.auth.signOut(); me = null; prof = null; location.hash = ""; route(); });
 
   // ---------- Profil ----------
@@ -328,6 +352,7 @@ th { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font
   // ---------- Liste ----------
   async function showList(leger) {
     view("v-formations"); $("l-commerce").textContent = (prof.commerce || "").toUpperCase();
+    renderAbo();
     var r = await sb.from("formations").select("id,code,titre,tache,statut,created_at").order("created_at", { ascending: false });
     var list = $("l-list"); list.innerHTML = "";
     var rows = r.data || [];
