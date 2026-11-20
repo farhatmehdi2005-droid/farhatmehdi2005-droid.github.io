@@ -155,13 +155,33 @@ html[dir="rtl"] .hero-demo-link::before { transform: scaleX(-1); }
   background: repeating-linear-gradient(180deg, var(--cobalt) 0 10px, color-mix(in srgb, var(--cobalt) 80%, #000) 10px 12px);
   border-radius: 0 0 4px 4px;
 }
+/* Le badge est un objet 3D : une face avant, un dos, et une tranche faite de fines couches.
+   badge3d.js le fait tourner et se balancer ; sans script (ou mouvement réduit), il reste de face. */
+.ff-scene { width: min(100%, 360px); perspective: 1100px; filter: drop-shadow(0 26px 28px rgba(21, 26, 43, .28)); }
+:root[data-theme="dark"] .ff-scene { filter: drop-shadow(0 26px 28px rgba(0, 0, 0, .6)); }
+.ff-scene.ff-3d { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.ff-scene.ff-tire { cursor: grabbing; }
 .ff-badge {
-  position: relative; width: min(100%, 360px); padding: 0 0 22px; border-radius: var(--r-object);
-  background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+  position: relative; width: 100%; transform-style: preserve-3d;
   transform: rotate(-2.5deg); transform-origin: 50% -64px;
 }
-.ff-clip { /* la pince et la fente */
-  position: absolute; inset-block-start: -18px; left: 50%; translate: -50% 0; width: 54px; height: 30px;
+.ff-face { border-radius: var(--r-object); background: var(--surface); border: 1px solid var(--line); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.ff-front { position: relative; padding: 0 0 22px; transform: translateZ(0); }
+.ff-edge { position: absolute; inset: 0; border-radius: var(--r-object); transform: translateZ(var(--z));
+  background: color-mix(in srgb, var(--surface) 72%, var(--cobalt)); }
+.ff-back {
+  position: absolute; inset: 0; transform: translateZ(-8px) rotateY(180deg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 64px 24px 24px; text-align: center;
+}
+.ff-back .ff-band { position: absolute; inset: 0 0 auto; }
+.ff-check { width: 96px; height: 96px; border-radius: 50%;
+  background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 56px no-repeat; }
+:root[data-theme="dark"] .ff-check { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121626' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+.ff-back-title { font-size: clamp(1.75rem, 3vw, 2.25rem); line-height: 1.1; font-weight: 800; letter-spacing: -.02em; color: var(--ink); }
+.ff-back-sub { color: var(--ok); font-weight: 700; font-size: 1.125rem; }
+.ff-clip { /* la pince et la fente, au milieu de l'épaisseur pour être vue des deux côtés */
+  position: absolute; inset-block-start: -18px; left: 50%; translate: -50% 0; width: 54px; height: 30px; z-index: 2;
+  transform: translateZ(-4px);
   border-radius: 8px; background: linear-gradient(#c9cdd8, #9aa1b3); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
 }
 .ff-clip::after { content: ""; position: absolute; inset: 8px 12px; border-radius: 4px; background: rgba(21, 26, 43, .35); }
@@ -183,7 +203,7 @@ html[dir="rtl"] .hero-demo-link::before { transform: scaleX(-1); }
 
 /* Un seul mouvement : le badge se pose, puis les deux tâches se cochent */
 @media (prefers-reduced-motion: no-preference) {
-  .ff-badge { animation: ff-hang 1100ms cubic-bezier(.2, .9, .25, 1.15) both; }
+  .ff-scene:not(.ff-3d) .ff-badge { animation: ff-hang 1100ms cubic-bezier(.2, .9, .25, 1.15) both; }
   .ff-tasks li.done::before { animation: ff-tick 360ms cubic-bezier(.3, 1.4, .5, 1) both; }
   .ff-tasks li.done:nth-child(1)::before { animation-delay: 950ms; }
   .ff-tasks li.done:nth-child(2)::before { animation-delay: 1300ms; }
@@ -383,7 +403,7 @@ footer a:hover { color: var(--ink); text-decoration: underline; }
   .form, .estimate-inputs { grid-template-columns: minmax(0, 1fr); }
   .manager-preview :is(th, td) { padding: 10px 12px; }
   .manager-heading { padding: 14px 12px; }
-  .ff-badge { width: min(calc(100% - 24px), 320px); }
+  .ff-scene { width: min(calc(100% - 24px), 320px); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
