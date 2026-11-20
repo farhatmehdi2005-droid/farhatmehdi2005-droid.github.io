@@ -413,24 +413,22 @@ footer a:hover { color: var(--ink); text-decoration: underline; }
 /* Paiement */
 .pay-note { margin-block-start: 16px; }
 
-/* ---------- Défilement 3D : « Comment ça marche » en prisme (defilement3d.js) ----------
+/* ---------- Prisme 3D : « Comment ça marche » (defilement3d.js) ----------
+   Les 3 étapes sont les faces d'un prisme qu'on tourne avec les flèches, un glissé ou le clavier.
    Sans script ou avec mouvement réduit, rien de ce bloc ne s'applique : la section garde sa mise en page normale. */
-#comment.ff-prisme { height: 300vh; padding-block: 0; }
-#comment.ff-prisme .section-split {
-  position: sticky; top: var(--ff-haut, 69px); height: calc(100vh - var(--ff-haut, 69px));
-  display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 4vh, 40px);
-}
 #comment.ff-prisme h2 { text-align: center; margin-inline: auto; }
-.ff-prisme-scene { perspective: 1400px; width: min(100%, 560px); margin-inline: auto; align-self: center; }
+#comment.ff-prisme .section-split { display: flex; flex-direction: column; align-items: center; gap: clamp(24px, 4vh, 40px); }
+.ff-prisme-scene { perspective: 1400px; width: min(100%, 560px); margin-inline: auto; touch-action: pan-y; cursor: grab; border-radius: var(--r-object); }
+.ff-prisme-scene:focus-visible { outline-offset: 8px; }
 #comment.ff-prisme .story {
   display: block; position: relative; width: 100%; margin: 0; transform-style: preserve-3d;
-  transition: none;
+  transition: transform .75s cubic-bezier(.3, .9, .3, 1);
 }
 #comment.ff-prisme .beat {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   display: grid; grid-template-columns: 1fr; align-content: center; gap: 16px;
   padding: clamp(24px, 4vw, 40px); border: 1px solid var(--line); border-radius: var(--r-object);
-  background: var(--surface); box-shadow: var(--shadow);
+  background: var(--surface); box-shadow: var(--shadow); user-select: none; -webkit-user-select: none;
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 #comment.ff-prisme .beat:nth-child(1) { transform: rotateY(0deg) translateZ(var(--ff-r, 160px)); }
@@ -439,11 +437,21 @@ footer a:hover { color: var(--ink); text-decoration: underline; }
 #comment.ff-prisme .beat .num { width: 56px; height: 56px; font-size: 1.375rem; background: var(--cobalt); color: var(--cobalt-ink); border: 0; }
 #comment.ff-prisme .beat h3 { font-size: clamp(1.4rem, 2.6vw, 1.75rem); }
 #comment.ff-prisme .beat p { max-width: none; }
-.ff-prisme-points { display: flex; justify-content: center; gap: 10px; align-self: center; }
-.ff-prisme-points span { width: 10px; height: 10px; border-radius: 50%; background: var(--line); transition: width .25s, background-color .25s; }
-.ff-prisme-points span.on { width: 28px; border-radius: 5px; background: var(--cobalt); }
+.ff-prisme-commandes { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.ff-fleche {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
+  border: 1.5px solid var(--line); background: var(--surface); color: var(--cobalt); font-size: 1.125rem; cursor: pointer;
+  transition: border-color .15s, transform .15s;
+}
+.ff-fleche:hover { border-color: var(--cobalt); }
+.ff-fleche:active { transform: scale(.94); }
+html[dir="rtl"] .ff-fleche { transform: scaleX(-1); }
+.ff-prisme-points { display: flex; gap: 4px; }
+.ff-prisme-points button { width: 28px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
+.ff-prisme-points button::before { content: ""; position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; translate: -50% -50%;
+  border-radius: 5px; background: var(--line); transition: width .25s, background-color .25s; }
+.ff-prisme-points button.on::before { width: 24px; background: var(--cobalt); }
 @media (max-width: 900px) {
-  #comment.ff-prisme .beat { border-block-start: 1px solid var(--line); }
   .ff-prisme-scene { width: min(100%, 420px); }
 }
 
