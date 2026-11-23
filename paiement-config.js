@@ -22,6 +22,6 @@
   };
   // Paiement en ligne coupé sur le site public en attendant le SIRET de la micro-entreprise.
   // Pour le réactiver : remplacer false par true (les liens réels ci-dessus sont prêts).
-  var PAIEMENT_EN_LIGNE = false;
+  var PAIEMENT_EN_LIGNE = true;
   window.FF_PAIEMENT = local ? test : (PAIEMENT_EN_LIGNE ? reel : {});
 })();
